@@ -11,8 +11,12 @@ public class PlayeController : MonoBehaviour
     private PlayerControlls playerControlls;
     private Rigidbody2D rbody;
     private Vector2 moveInput;
+    [SerializeField]
+    private float dashForce;
 
     private bool performed = false;
+    private bool dashPerformed = false;
+    private bool canMove = true;
 
     private string currentControllScheme;
 
@@ -38,17 +42,21 @@ public class PlayeController : MonoBehaviour
     private void FixedUpdate()
     {
         moveInput = playerControlls.Standard.Movement.ReadValue<Vector2>();
-        rbody.velocity = moveInput * speed;
-
+        if (canMove)
+        {
+            rbody.velocity = moveInput * speed;
+        }
         playerControlls.Standard.Dash.performed += context =>
         {
-            performed = true;
-            if(context.interaction is TapInteraction)
+            if (context.interaction is TapInteraction)
             {
-                Debug.Log("Dashing");
+                rbody.velocity = Vector2.zero;
+                StartCoroutine(dash(moveInput));
             }
             else
             {
+                performed = true;
+                speed *= 2;
                 Debug.Log("Running");
             }
         };
@@ -56,9 +64,23 @@ public class PlayeController : MonoBehaviour
         {
             if (performed && context.interaction is HoldInteraction)
             {
-                Debug.Log("End Running");
+                speed /= 2;
+                performed = false;
+                Debug.Log("End Running. Speed: " + speed);
             }
         };
+    }
+
+    private IEnumerator dash(Vector2 direction)
+    {
+        canMove = false;
+        if (direction == Vector2.zero) 
+        { 
+           direction = Vector2.left;
+        };
+        rbody.AddForce(direction * dashForce, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.1f);
+        canMove = true;
     }
     private void SwitchControls(PlayerInput input)
     {
