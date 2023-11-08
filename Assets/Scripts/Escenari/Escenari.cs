@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +24,7 @@ static class Escenari
             MapaEscenari = CrearParetsEscenari(MapaEscenari, size.x, size.y, nSales, midaParets);
         }
         else{
-            return SpawnEscenari(size, quadratsPerGenerarm, dpc, midaParets){
+            return SpawnEscenari(size, quadratsPerGenerarm, dpc, midaParets);
                 return MapaEscenari;
             }
         }
@@ -156,4 +156,4 @@ static class Escenari
 
 
     
-}
+}*/

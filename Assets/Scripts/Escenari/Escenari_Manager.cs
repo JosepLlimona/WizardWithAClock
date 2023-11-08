@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -60,3 +60,4 @@ public class Escenari_Manager : MonoBehavior {
     }
 
 }
+*/

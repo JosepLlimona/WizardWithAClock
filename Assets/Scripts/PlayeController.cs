@@ -13,6 +13,8 @@ public class PlayeController : MonoBehaviour
     private Vector2 moveInput;
     [SerializeField]
     private float dashForce;
+    [SerializeField]
+    private Animator anim;
 
     private bool performed = false;
     private bool dashPerformed = false;
@@ -45,6 +47,8 @@ public class PlayeController : MonoBehaviour
         if (canMove)
         {
             rbody.velocity = moveInput * speed;
+            anim.SetFloat("dirX", moveInput.x);
+            anim.SetFloat("dirY", moveInput.y);
         }
         playerControlls.Standard.Dash.performed += context =>
         {
@@ -74,12 +78,14 @@ public class PlayeController : MonoBehaviour
     private IEnumerator dash(Vector2 direction)
     {
         canMove = false;
+        anim.SetBool("dashing", true);
         if (direction == Vector2.zero) 
         { 
            direction = Vector2.left;
         };
         rbody.AddForce(direction * dashForce, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
+        anim.SetBool("dashing", false);
         canMove = true;
     }
     private void SwitchControls(PlayerInput input)
