@@ -44,6 +44,33 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=0.3),Tap"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""917a3fec-f334-46d8-9b30-c1cb7abc55e7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextClock"",
+                    ""type"": ""Button"",
+                    ""id"": ""d6202150-106f-47d8-96a8-27b6cc8a9570"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LastClock"",
+                    ""type"": ""Button"",
+                    ""id"": ""769498a4-abd3-444b-be61-82543ffa810c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -178,6 +205,72 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c90d5fa0-3466-4dca-8b59-422f8a5a1421"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e922eb80-c09e-4156-88e4-da5b169cbbba"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""40835490-e9a0-47b5-b57c-d9359a9bc0d5"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""NextClock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42b58eb5-a976-463a-a054-63cd947a5565"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""NextClock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67cb728c-f1bb-4787-9488-cdcfdecd9d88"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""LastClock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2713c024-a121-4567-9710-cd16cfa9e5d6"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""LastClock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -211,6 +304,9 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         m_Standard = asset.FindActionMap("Standard", throwIfNotFound: true);
         m_Standard_Movement = m_Standard.FindAction("Movement", throwIfNotFound: true);
         m_Standard_Dash = m_Standard.FindAction("Dash", throwIfNotFound: true);
+        m_Standard_Attack = m_Standard.FindAction("Attack", throwIfNotFound: true);
+        m_Standard_NextClock = m_Standard.FindAction("NextClock", throwIfNotFound: true);
+        m_Standard_LastClock = m_Standard.FindAction("LastClock", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -274,12 +370,18 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
     private List<IStandardActions> m_StandardActionsCallbackInterfaces = new List<IStandardActions>();
     private readonly InputAction m_Standard_Movement;
     private readonly InputAction m_Standard_Dash;
+    private readonly InputAction m_Standard_Attack;
+    private readonly InputAction m_Standard_NextClock;
+    private readonly InputAction m_Standard_LastClock;
     public struct StandardActions
     {
         private @PlayerControlls m_Wrapper;
         public StandardActions(@PlayerControlls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Standard_Movement;
         public InputAction @Dash => m_Wrapper.m_Standard_Dash;
+        public InputAction @Attack => m_Wrapper.m_Standard_Attack;
+        public InputAction @NextClock => m_Wrapper.m_Standard_NextClock;
+        public InputAction @LastClock => m_Wrapper.m_Standard_LastClock;
         public InputActionMap Get() { return m_Wrapper.m_Standard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -295,6 +397,15 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @NextClock.started += instance.OnNextClock;
+            @NextClock.performed += instance.OnNextClock;
+            @NextClock.canceled += instance.OnNextClock;
+            @LastClock.started += instance.OnLastClock;
+            @LastClock.performed += instance.OnLastClock;
+            @LastClock.canceled += instance.OnLastClock;
         }
 
         private void UnregisterCallbacks(IStandardActions instance)
@@ -305,6 +416,15 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @NextClock.started -= instance.OnNextClock;
+            @NextClock.performed -= instance.OnNextClock;
+            @NextClock.canceled -= instance.OnNextClock;
+            @LastClock.started -= instance.OnLastClock;
+            @LastClock.performed -= instance.OnLastClock;
+            @LastClock.canceled -= instance.OnLastClock;
         }
 
         public void RemoveCallbacks(IStandardActions instance)
@@ -344,5 +464,8 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnNextClock(InputAction.CallbackContext context);
+        void OnLastClock(InputAction.CallbackContext context);
     }
 }
