@@ -191,11 +191,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &585129704 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 11315516522119166, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
-  m_PrefabInstance: {fileID: 8241632657743746710}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &777322853
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,11 +429,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!95 &1475459914 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8874270791730765656, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
-  m_PrefabInstance: {fileID: 8241632657743746710}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1531462367
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,26 +613,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3029510607719520783, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
-      propertyPath: m_Name
-      value: Clocks
-      objectReference: {fileID: 0}
-    - target: {fileID: 4225950331743176527, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
-      propertyPath: m_Name
-      value: Wizard
-      objectReference: {fileID: 0}
     - target: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: text
       value: 
       objectReference: {fileID: 777322855}
-    - target: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
-      propertyPath: clockAnim
-      value: 
-      objectReference: {fileID: 585129704}
-    - target: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
-      propertyPath: playerAnim
-      value: 
-      objectReference: {fileID: 1475459914}
     - target: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: playerInput
       value: 
@@ -686,10 +660,6 @@ PrefabInstance:
     - target: {fileID: 6909465057724879632, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8276195095122704865, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -97,6 +97,15 @@ public class PlayeController : MonoBehaviour
             changeText();
             Debug.Log("Actual Clock: " + actualClock);
         };
+        playerControlls.Standard.LastClock.performed += context =>
+        {
+            actualClock--;
+            if(actualClock <= 0)
+            {
+                actualClock = 3;
+            }
+            changeText();
+        };
     }
 
     private void changeText()

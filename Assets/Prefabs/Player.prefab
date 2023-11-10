@@ -122,7 +122,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   dashForce: 2
-  anim: {fileID: 8874270791730765656}
+  playerAnim: {fileID: 8874270791730765656}
+  clockAnim: {fileID: 11315516522119166}
+  playerInput: {fileID: 0}
+  text: {fileID: 0}
 --- !u!1 &3029510607719520783
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +138,7 @@ GameObject:
   - component: {fileID: 8276195095122704865}
   - component: {fileID: 11315516522119166}
   m_Layer: 0
-  m_Name: spritesheet Clocks_0
+  m_Name: Clocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,7 +199,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: -1662999356, guid: 973b73ad682f6f647b528f25d6f2a72a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -241,7 +244,7 @@ GameObject:
   - component: {fileID: 8509955331423329210}
   - component: {fileID: 8874270791730765656}
   m_Layer: 0
-  m_Name: wizo32
+  m_Name: Wizard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
