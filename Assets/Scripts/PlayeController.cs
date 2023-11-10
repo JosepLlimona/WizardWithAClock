@@ -58,6 +58,8 @@ public class PlayeController : MonoBehaviour
             rbody.velocity = moveInput * speed;
             playerAnim.SetFloat("dirX", moveInput.x);
             playerAnim.SetFloat("dirY", moveInput.y);
+            clockAnim.SetFloat("dirX", moveInput.x);
+            clockAnim.SetFloat("dirY", moveInput.y);
         }
         playerControlls.Standard.Dash.performed += context =>
         {
