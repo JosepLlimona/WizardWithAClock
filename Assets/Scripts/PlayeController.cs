@@ -22,11 +22,14 @@ public class PlayeController : MonoBehaviour
     private PlayerInput playerInput;
     [SerializeField]
     private TextMeshProUGUI text;
+    [SerializeField]
+    private GameObject hammer;
+    [SerializeField]
+    private Transform hammerStart;
 
     private int actualClock = 1;
 
     private bool performed = false;
-    private bool dashPerformed = false;
     private bool canMove = true;
 
     private string currentControllScheme;
@@ -156,9 +159,13 @@ public class PlayeController : MonoBehaviour
         }
         else if (actualClock == 3)
         {
+            Vector3 pos = hammerStart.transform.position;
+            GameObject hammerInstance = Instantiate(hammer, pos, Quaternion.identity);
             clockAnim.SetBool("HeavyAttack", true);
+            hammerInstance.GetComponent<Animator>().SetTrigger("Attacking");
             yield return new WaitForSeconds(2f);
             clockAnim.SetBool("HeavyAttack", false);
+            Destroy(hammerInstance);
         }
     }
 
