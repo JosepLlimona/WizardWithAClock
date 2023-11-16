@@ -31,6 +31,7 @@ public class PlayeController : MonoBehaviour
 
     private bool performed = false;
     private bool canMove = true;
+    private bool canHeavyAttack = true;
 
     private string currentControllScheme;
 
@@ -90,7 +91,10 @@ public class PlayeController : MonoBehaviour
         playerControlls.Standard.Attack.performed += context =>
         {
             Debug.Log("Attacking");
-            StartCoroutine(attack());
+            if (canHeavyAttack)
+            {
+                StartCoroutine(attack());
+            }
         };
         playerControlls.Standard.NextClock.performed += context =>
         {
@@ -159,6 +163,7 @@ public class PlayeController : MonoBehaviour
         }
         else if (actualClock == 3)
         {
+            canHeavyAttack = false;
             Vector3 pos = hammerStart.transform.position;
             GameObject hammerInstance = Instantiate(hammer, pos, Quaternion.identity);
             clockAnim.SetBool("HeavyAttack", true);
@@ -166,6 +171,7 @@ public class PlayeController : MonoBehaviour
             yield return new WaitForSeconds(2f);
             clockAnim.SetBool("HeavyAttack", false);
             Destroy(hammerInstance);
+            canHeavyAttack = true;
         }
     }
 

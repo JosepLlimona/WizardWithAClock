@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class HammerController : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
+
+    [SerializeField]
+    Slider life;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +21,12 @@ public class HammerController : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    public void changeLife(int damage)
     {
-        if (col.gameObject.tag == "Enemy")
+        life.value -= damage;
+        if(life.value <= 0 ) 
         {
-            Debug.Log(col.gameObject.name + " touched");
-            col.GetComponent<EnemyController>().changeLife(30);
+            Destroy(this.gameObject);
         }
     }
 }
