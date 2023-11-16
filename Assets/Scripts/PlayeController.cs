@@ -19,17 +19,26 @@ public class PlayeController : MonoBehaviour
     [SerializeField]
     private Animator clockAnim;
     [SerializeField]
+    private Animator fistAnim;
+    [SerializeField]
     private PlayerInput playerInput;
     [SerializeField]
     private TextMeshProUGUI text;
     [SerializeField]
     private GameObject hammer;
     [SerializeField]
+    private GameObject fists;
+    [SerializeField]
     private Transform hammerStart;
+    [SerializeField]
+    private AudioSource ora;
+    [SerializeField]
+    private AudioSource singleOra;
 
     private int actualClock = 1;
 
-    private bool performed = false;
+    private bool dashPerformed = false;
+    private bool mattackPerformed = false;
     private bool canMove = true;
     private bool canHeavyAttack = true;
 
@@ -60,6 +69,14 @@ public class PlayeController : MonoBehaviour
         if (canMove)
         {
             rbody.velocity = moveInput * speed;
+            if (moveInput.x < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
             playerAnim.SetFloat("dirX", moveInput.x);
             playerAnim.SetFloat("dirY", moveInput.y);
             clockAnim.SetFloat("dirX", moveInput.x);
@@ -74,45 +91,74 @@ public class PlayeController : MonoBehaviour
             }
             else
             {
-                performed = true;
+                dashPerformed = true;
                 speed *= 2;
                 Debug.Log("Running");
             }
         };
         playerControlls.Standard.Dash.canceled += context =>
         {
-            if (performed && context.interaction is HoldInteraction)
+            if (dashPerformed && context.interaction is HoldInteraction)
             {
                 speed /= 2;
-                performed = false;
+                dashPerformed = false;
                 Debug.Log("End Running. Speed: " + speed);
             }
         };
         playerControlls.Standard.Attack.performed += context =>
         {
-            Debug.Log("Attacking");
-            if (canHeavyAttack)
+            if (context.interaction is TapInteraction)
             {
-                StartCoroutine(attack());
+                Debug.Log("Attacking");
+                if (canHeavyAttack)
+                {
+                    StartCoroutine(attack());
+                }
+            }
+            else if (context.interaction is HoldInteraction && actualClock == 1)
+            {
+                Debug.Log("Starting attacking");
+                mattackPerformed = true;
+                fistAnim.SetBool("isAttacking", true);
+                clockAnim.SetBool("LightAttack", true);
+                fists.GetComponent<SpriteRenderer>().enabled = true;
+                ora.Play();
+            }
+        };
+        playerControlls.Standard.Attack.canceled += context =>
+        {
+            if (context.interaction is HoldInteraction && mattackPerformed && actualClock == 1)
+            {
+                Debug.Log("Attack stoped");
+                mattackPerformed = false;
+                fists.GetComponent<SpriteRenderer>().enabled = false;
+                ora.Stop();
+                singleOra.Play();
+                fistAnim.SetBool("isAttacking", false);
+                clockAnim.SetBool("LightAttack", false);
             }
         };
         playerControlls.Standard.NextClock.performed += context =>
         {
             actualClock++;
-            if(actualClock >= 4)
+            if (actualClock >= 4)
             {
                 actualClock = 1;
             }
+            StopAllCoroutines();
+            resetBools();
             changeText();
             Debug.Log("Actual Clock: " + actualClock);
         };
         playerControlls.Standard.LastClock.performed += context =>
         {
             actualClock--;
-            if(actualClock <= 0)
+            if (actualClock <= 0)
             {
                 actualClock = 3;
             }
+            StopAllCoroutines();
+            resetBools();
             changeText();
         };
     }
@@ -123,23 +169,34 @@ public class PlayeController : MonoBehaviour
         {
             text.text = "Actual clock: Light";
         }
-        else if(actualClock == 2)
+        else if (actualClock == 2)
         {
             text.text = "Actual clock: Medium";
         }
-        else if(actualClock == 3)
+        else if (actualClock == 3)
         {
             text.text = "Actual clock: Heavy";
         }
     }
 
+    private void resetBools()
+    {
+        clockAnim.SetBool("LightAttack", false);
+        fistAnim.SetBool("isAttacking", false);
+        clockAnim.SetBool("MediumAttack", false);
+        clockAnim.SetBool("HeavyAttack", false);
+        mattackPerformed = false;
+        ora.Stop();
+        singleOra.Stop();
+        fists.GetComponent<SpriteRenderer>().enabled = false;
+    }
     private IEnumerator dash(Vector2 direction)
     {
         canMove = false;
         playerAnim.SetBool("dashing", true);
-        if (direction == Vector2.zero) 
-        { 
-           direction = Vector2.left;
+        if (direction == Vector2.zero)
+        {
+            direction = Vector2.left;
         };
         rbody.AddForce(direction * dashForce, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.3f);
@@ -151,9 +208,13 @@ public class PlayeController : MonoBehaviour
     {
         if (actualClock == 1)
         {
+            fists.GetComponent<SpriteRenderer>().enabled = true;
             clockAnim.SetBool("LightAttack", true);
+            fistAnim.SetBool("isAttacking", true);
             yield return new WaitForSeconds(1f);
+            fistAnim.SetBool("isAttacking", false);
             clockAnim.SetBool("LightAttack", false);
+            fists.GetComponent<SpriteRenderer>().enabled = false;
         }
         else if (actualClock == 2)
         {
