@@ -21,7 +21,7 @@ public class FistsController : MonoBehaviour
         if (col.gameObject.tag == "Enemy")
         {
             Debug.Log(col.gameObject.name + " touched");
-            col.GetComponent<EnemyController>().changeLife(5);
+            col.GetComponent<EnemyController>().changeLife(1);
         }
     }
 }
