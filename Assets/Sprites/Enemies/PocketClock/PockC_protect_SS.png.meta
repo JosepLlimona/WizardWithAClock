@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,7 +108,301 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: PockC_protect_SS_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 76
+        width: 53
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 862cb00c97d42044c97e28a314eb4fa0
+      internalID: 2096960044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PockC_protect_SS_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 76
+        width: 53
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 293eaf75aacb6c745843c34f53f634a0
+      internalID: -1621062092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PockC_protect_SS_2
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 76
+        width: 53
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b9552f5cfbd0a043b590de29ae26a53
+      internalID: 41454226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PockC_protect_SS_3
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 76
+        width: 53
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eccf740d19e0abf49983ce2c38a11f31
+      internalID: -350612295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PockC_protect_SS_4
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 76
+        width: 54
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa12746da05b01342983dc5e524c29d1
+      internalID: -741443209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PockC_protect_SS_6
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 75
+        width: 55
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 804713673b7942f4eb41cffda965cfce
+      internalID: -2075012169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PockC_protect_SS_9
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 76
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b118339c7e5c814c8ee75571763b667
+      internalID: -342173675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PockC_protect_SS_14
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 10
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 722f8eef21fdc1e49ae97565ad773cf1
+      internalID: -18591082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PockC_protect_SS_15
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 10
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 426ca6a3a7b462547bb53defda193d42
+      internalID: -1249779776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PockC_protect_SS_16
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 10
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49e5f876585b0d047884237a699d1647
+      internalID: -2128884972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PockC_protect_SS_17
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 10
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98bad621749236f4f9b14b0a7811a7f1
+      internalID: 2026837270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PockC_protect_SS_18
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 10
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ffaffc9b273f754fa4cc73c5a4d9ad9
+      internalID: 1922246809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PockC_protect_SS_19
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 10
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 717494b5042747d4b9c7f1c99ef80f7a
+      internalID: -44330611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PockC_protect_SS_20
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 10
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f633afbb85bc23b4d8d52d5ad9d4e81b
+      internalID: -1716305641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +413,28 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PockC_protect_SS_0: 2096960044
+      PockC_protect_SS_1: -1621062092
+      PockC_protect_SS_10: 1627402902
+      PockC_protect_SS_11: 1479232777
+      PockC_protect_SS_12: 1322786667
+      PockC_protect_SS_13: -998674867
+      PockC_protect_SS_14: -18591082
+      PockC_protect_SS_15: -1249779776
+      PockC_protect_SS_16: -2128884972
+      PockC_protect_SS_17: 2026837270
+      PockC_protect_SS_18: 1922246809
+      PockC_protect_SS_19: -44330611
+      PockC_protect_SS_2: 41454226
+      PockC_protect_SS_20: -1716305641
+      PockC_protect_SS_3: -350612295
+      PockC_protect_SS_4: -741443209
+      PockC_protect_SS_5: 1155672057
+      PockC_protect_SS_6: -2075012169
+      PockC_protect_SS_7: -958896080
+      PockC_protect_SS_8: -1623415139
+      PockC_protect_SS_9: -342173675
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
