@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class HammerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    private AudioSource enter;
+    [SerializeField]
+    private AudioSource explosion;
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -23,5 +16,15 @@ public class HammerController : MonoBehaviour
             Debug.Log(col.gameObject.name + " touched");
             col.GetComponent<EnemyController>().changeLife(30);
         }
+    }
+
+    void PlayEnter()
+    {
+        enter.Play();
+    }
+
+    void PlayExplosion()
+    {
+        explosion.Play();
     }
 }

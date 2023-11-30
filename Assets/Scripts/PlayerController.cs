@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
-public class PlayeController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float speed;
@@ -34,6 +34,10 @@ public class PlayeController : MonoBehaviour
     private AudioSource ora;
     [SerializeField]
     private AudioSource singleOra;
+    [SerializeField]
+    private AudioSource[] punches;
+    [SerializeField]
+    private AudioSource[] misses;
 
     private int actualClock = 1;
 
@@ -73,7 +77,7 @@ public class PlayeController : MonoBehaviour
             {
                 transform.localScale = new Vector3(-1, 1, 1);
             }
-            else
+            else if(moveInput.x > 0)
             {
                 transform.localScale = new Vector3(1, 1, 1);
             }
@@ -93,6 +97,7 @@ public class PlayeController : MonoBehaviour
             {
                 dashPerformed = true;
                 speed *= 2;
+                playerAnim.speed = 2;
                 Debug.Log("Running");
             }
         };
@@ -101,6 +106,7 @@ public class PlayeController : MonoBehaviour
             if (dashPerformed && context.interaction is HoldInteraction)
             {
                 speed /= 2;
+                playerAnim.speed = 1;
                 dashPerformed = false;
                 Debug.Log("End Running. Speed: " + speed);
             }
@@ -193,6 +199,7 @@ public class PlayeController : MonoBehaviour
     private IEnumerator dash(Vector2 direction)
     {
         canMove = false;
+        GetComponent<BoxCollider2D>().isTrigger = true;
         playerAnim.SetBool("dashing", true);
         if (direction == Vector2.zero)
         {
@@ -202,6 +209,8 @@ public class PlayeController : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         playerAnim.SetBool("dashing", false);
         canMove = true;
+        GetComponent<BoxCollider2D>().isTrigger = false;
+
     }
 
     private IEnumerator attack()
@@ -231,8 +240,31 @@ public class PlayeController : MonoBehaviour
             hammerInstance.GetComponent<Animator>().SetTrigger("Attacking");
             yield return new WaitForSeconds(2f);
             clockAnim.SetBool("HeavyAttack", false);
-            Destroy(hammerInstance);
             canHeavyAttack = true;
+            yield return new WaitForSeconds(2f);
+            Destroy(hammerInstance);
+        }
+    }
+
+    public void playPunchAudio(bool hit)
+    {
+        if (hit)
+        {
+            int rand = Random.Range(1, 6);
+            if (punches[rand].isPlaying)
+            {
+                rand = Random.Range(1, 6);
+            }
+            punches[rand].Play();
+        }
+        else
+        {
+            int rand = Random.Range(1, 6);
+            if (misses[rand].isPlaying)
+            {
+                rand = Random.Range(1, 6);
+            }
+            misses[rand].Play();
         }
     }
 
