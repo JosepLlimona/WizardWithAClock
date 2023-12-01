@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FistsController : MonoBehaviour
 {
+    private bool hit = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +22,25 @@ public class FistsController : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy")
         {
-            Debug.Log(col.gameObject.name + " touched");
+            hit = true;
+            //Debug.Log(col.gameObject.name + " touched");
             col.GetComponent<EnemyController>().changeLife(1);
+            GetComponentInParent<PlayerController>().playPunchAudio(true);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            hit = false;
+        }
+    }
+
+    public void punch()
+    {
+        if (!hit)
+        {
+            GetComponentInParent<PlayerController>().playPunchAudio(false);
         }
     }
 }
