@@ -32,9 +32,10 @@ public class MapGenerator : MonoBehaviour
     void GenerateMap(){
 
         List<Vector3> posUsades = new List<Vector3>();
-        for (int x = 0; x < ampladaMapa; x++){
-            for (int y = 0; y < alturaMapa; y++){
-                Vector3 spawnPosition = new Vector3(x * (ampladaMapa + separacioHabitacions) + Random.Range(-separacioHabitacions, separacioHabitacions), y * (petitaAltura + separacioHabitacions) + Random.Range(-separacioHabitacions, separacioHabitacions),0);
+        for (int i = 0; i < ampladaMapa; i++){
+            for (int j = 0; j < alturaMapa; j++){
+                int x = i;
+                int y = j;
                 
                 int nRandom = Random.Range(1,4);
                 if (anterior == 3){ //habitacio anterior es gran
@@ -43,15 +44,34 @@ public class MapGenerator : MonoBehaviour
                 else if(anterior == 1){ //habitacio anterior es petita
                     nRandom = Random.Range(2,4);
                 }
+
+                float ampladaHabitacio;
+                float alturaHabitacio;
+
+                if (nRandom == 1){
+                    ampladaHabitacio = petitaAmplada;
+                    alturaHabitacio = petitaAltura;
+                }
+                else if (nRandom == 2){
+                    ampladaHabitacio = mitjanaAmplada;
+                    alturaHabitacio = mitjanaAltura;
+                }
+                else{
+                    ampladaHabitacio = granAmplada;
+                    alturaHabitacio = granAltura;
+                }
+
+                Vector3 spawnPosition = new Vector3(x * (ampladaHabitacio + separacioHabitacions) + Random.Range(-separacioHabitacions, separacioHabitacions), y * (alturaHabitacio + separacioHabitacions) + Random.Range(-separacioHabitacions, separacioHabitacions),0);
     
                 while(PosicioOcupada(spawnPosition, posUsades, nRandom) || QuadriculaOcupada(x,y)){ //comporbar que spawnPosition es buida
-                    spawnPosition = new Vector3(x * (ampladaMapa + separacioHabitacions) + Random.Range(-separacioHabitacions, separacioHabitacions), y * (alturaMapa+ separacioHabitacions) + Random.Range(-separacioHabitacions, separacioHabitacions),0);
+                    spawnPosition = new Vector3(x * (ampladaHabitacio + separacioHabitacions) + Random.Range(-separacioHabitacions, separacioHabitacions), y * (alturaHabitacio+ separacioHabitacions) + Random.Range(-separacioHabitacions, separacioHabitacions),0);
                     x = Mathf.FloorToInt(spawnPosition.x / 1f);
                     y = Mathf.FloorToInt(spawnPosition.y / 1f);
                 }
 
                 posUsades.Add(spawnPosition);
                 MarcarQuadricula(x,y);
+                anterior = nRandom;
 
                 if (nRandom ==1){ //instanciar habitacio petita
                     GameObject habitacioRandom = habPetita[Random.Range(0, habPetita.Length)];
