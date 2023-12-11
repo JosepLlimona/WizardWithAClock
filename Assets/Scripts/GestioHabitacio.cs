@@ -21,7 +21,7 @@ public class GestioHabitacio : MonoBehaviour
 
     void TancarPortesAleatories(){
         int i = 0;
-       while (i < posPortes.Length && tancades <=2){
+       while (i < posPortes.Length && tancades < posPortes.Length / 2){
             float nRandom = Random.Range(0f,1f);
 
             if (nRandom < 0.5f){

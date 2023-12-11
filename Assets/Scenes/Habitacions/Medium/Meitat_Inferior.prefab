@@ -7726,19 +7726,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3672855922463547434, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.027
+      value: 2.56
       objectReference: {fileID: 0}
     - target: {fileID: 4640830173482305558, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.998
+      value: 2.56
       objectReference: {fileID: 0}
     - target: {fileID: 4656666652430028785, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.878
+      value: 5.76
       objectReference: {fileID: 0}
     - target: {fileID: 4656666652430028785, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.027
+      value: 2.56
       objectReference: {fileID: 0}
     - target: {fileID: 6326063553285601642, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: m_Size.x
