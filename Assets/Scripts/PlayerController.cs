@@ -48,8 +48,8 @@ public class PlayerController : MonoBehaviour
     private bool canMove = true;
     private bool canHeavyAttack = true;
 
-    private List<int> swordAttacks = new List<int>();
-    int times = 0;
+    [SerializeField]
+    private int combo = 0;
 
     private string currentControllScheme;
 
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
             {
                 transform.localScale = new Vector3(-1, 1, 1);
             }
-            else if(moveInput.x > 0)
+            else if (moveInput.x > 0)
             {
                 transform.localScale = new Vector3(1, 1, 1);
             }
@@ -233,11 +233,11 @@ public class PlayerController : MonoBehaviour
         else if (actualClock == 2)
         {
             clockAnim.SetBool("MediumAttack", true);
-            times++;
-            swordAttacks.Add(0);
-            Debug.Log(swordAttacks.Count);
-            yield return new WaitForSeconds(1.5f);
-            clockAnim.SetBool("MediumAttack", false);
+            if (combo < 3)
+            {
+                combo++;
+            }
+            swordAttack();
         }
         else if (actualClock == 3)
         {
@@ -276,16 +276,41 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator swordAttack()
+    private void swordAttack()
     {
-        if (swordAttacks.Count == 1)
+        if (combo >= 2)
         {
-            swordAnim.SetTrigger("FirstAttack");
-            yield return new WaitForSeconds(0.25f);
-            swordAttacks.RemoveAt(swordAttacks.Count - 1);
-
+            return;
         }
+        swordAnim.SetTrigger("FirstAttack");
+    }
 
+    public void continueCombo(string actual)
+    {
+        Debug.Log("Entering with: " + actual);
+        switch (actual)
+        {
+            case "FirstAttack": 
+                if (combo <= 1)
+                {
+                    combo = 0;
+                    return;
+                }
+                swordAnim.SetTrigger("SecondAttack");
+                break;
+            case "SecondAttack":
+                if (combo <= 2)
+                {
+                    combo = 0;
+                    return;
+                }
+                swordAnim.SetTrigger("ThirdAttack");
+                break;
+            case "ThirdAttack":
+                Debug.Log("Enters");
+                combo = 0;
+                break;
+        }
     }
 
     private void SwitchControls(PlayerInput input)
