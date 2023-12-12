@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Animator fistAnim;
     [SerializeField]
+    private Animator swordAnim;
+    [SerializeField]
     private PlayerInput playerInput;
     [SerializeField]
     private TextMeshProUGUI text;
@@ -45,6 +47,9 @@ public class PlayerController : MonoBehaviour
     private bool mattackPerformed = false;
     private bool canMove = true;
     private bool canHeavyAttack = true;
+
+    private List<int> swordAttacks = new List<int>();
+    int times = 0;
 
     private string currentControllScheme;
 
@@ -228,6 +233,9 @@ public class PlayerController : MonoBehaviour
         else if (actualClock == 2)
         {
             clockAnim.SetBool("MediumAttack", true);
+            times++;
+            swordAttacks.Add(0);
+            Debug.Log(swordAttacks.Count);
             yield return new WaitForSeconds(1.5f);
             clockAnim.SetBool("MediumAttack", false);
         }
@@ -266,6 +274,18 @@ public class PlayerController : MonoBehaviour
             }
             misses[rand].Play();
         }
+    }
+
+    private IEnumerator swordAttack()
+    {
+        if (swordAttacks.Count == 1)
+        {
+            swordAnim.SetTrigger("FirstAttack");
+            yield return new WaitForSeconds(0.25f);
+            swordAttacks.RemoveAt(swordAttacks.Count - 1);
+
+        }
+
     }
 
     private void SwitchControls(PlayerInput input)
