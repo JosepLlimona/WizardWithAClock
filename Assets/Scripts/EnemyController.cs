@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     Slider life;
+    private Transform playerPos;
+    private Vector2 currentPos;
 
     // Start is called before the first frame update
     void Start()

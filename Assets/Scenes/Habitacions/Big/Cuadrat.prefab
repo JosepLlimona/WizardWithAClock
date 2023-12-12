@@ -2416,6 +2416,26 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[119].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 1255680479383570853, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267012808275447362, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267012808275447362, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 3672180462719548077, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3672180462719548077, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.33
+      objectReference: {fileID: 0}
     - target: {fileID: 4867070665962898799, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 675
@@ -15567,6 +15587,10 @@ PrefabInstance:
     - target: {fileID: 4867070665962898799, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
       propertyPath: m_Tiles.Array.data[674].second.m_TileObjectToInstantiateIndex
       value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201822920874533273, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.84
       objectReference: {fileID: 0}
     - target: {fileID: 8270966046452545704, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
       propertyPath: m_RootOrder

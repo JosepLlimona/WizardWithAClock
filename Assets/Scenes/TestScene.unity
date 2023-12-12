@@ -525,6 +525,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607480224}
   m_CullTransparentMesh: 1
+--- !u!1 &761546053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 761546054}
+  - component: {fileID: 761546055}
+  m_Layer: 0
+  m_Name: MapGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &761546054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761546053}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.9012165, y: 1.455896, z: 0.6779643}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &761546055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761546053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a31a8c5fb898d74e82790dcc15da3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  habPetita:
+  - {fileID: 2704241189179990617, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
+  - {fileID: 1432208134790832122, guid: b540772425b545d4da52f520764fe9a0, type: 3}
+  - {fileID: 6827216152462671143, guid: c3e82f783907f2e44b32c16114648b82, type: 3}
+  - {fileID: 4706996916178307895, guid: 810bd04b24e6b9f40b442d5da2316e23, type: 3}
+  - {fileID: 8918944738318338178, guid: ece9a5da0e4ed844bac148617a186972, type: 3}
+  - {fileID: 7929797244062532913, guid: 4765cc113379cf74cba43b6265d90dc1, type: 3}
+  - {fileID: 1080430604109331132, guid: 8ceb876e179858946a231c516616f320, type: 3}
+  habMitjana:
+  - {fileID: 8398647893813273578, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
+  - {fileID: 8398647893813273578, guid: 57ebba60f9a2c864c8b7910ba59ce47f, type: 3}
+  - {fileID: 8398647893813273578, guid: 0926b0f882e8a724cbd6605ffc97977f, type: 3}
+  - {fileID: 8398647893813273578, guid: 5057ad2cb56d2794695c6ac9a2190480, type: 3}
+  - {fileID: 8398647893813273578, guid: ca0cc510002605148b3be02c467c984a, type: 3}
+  - {fileID: 8398647893813273578, guid: 0f40b7d850f67e24db65dcb1bc6de525, type: 3}
+  - {fileID: 8398647893813273578, guid: e8bc32106510c934090643142508fd70, type: 3}
+  - {fileID: 8398647893813273578, guid: 1294c4d7b427ea145b49d31897581226, type: 3}
+  habGran:
+  - {fileID: 8340938953758021030, guid: 30e022c9967ca694b965c8a5c8d939a4, type: 3}
+  - {fileID: 8340938953758021030, guid: 451f6e6953c348948953300a145c5e1a, type: 3}
+  - {fileID: 8340938953758021030, guid: 61504b21e9a61d34c8af2b23c0fd90ec, type: 3}
+  habitacionsMapa: 10
+  alturaMapa: 30
+  ampladaMapa: 30
+  separacioHabitacions: 2
 --- !u!1 &777322853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,6 +1581,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6909465057724879632, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909465057724879632, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.075
       objectReference: {fileID: 0}
@@ -1570,11 +1643,12 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1972795777}
-  - {fileID: 1602081237}
   - {fileID: 1328360335}
   - {fileID: 273305519}
   - {fileID: 1935087976}
   - {fileID: 1531462368}
   - {fileID: 8241632657743746710}
+  - {fileID: 1602081237}
+  - {fileID: 1972795777}
   - {fileID: 415197841}
+  - {fileID: 761546054}
