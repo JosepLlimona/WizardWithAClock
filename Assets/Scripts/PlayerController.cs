@@ -59,7 +59,11 @@ public class PlayerController : MonoBehaviour
         playerControlls = new PlayerControlls();
         rbody = GetComponent<Rigidbody2D>();
 
-        playerInput.onControlsChanged += SwitchControls;
+        // Assegura't que playerInput estigui inicialitzat
+        if (playerInput != null)
+        {
+            playerInput.onControlsChanged += SwitchControls;
+        }
     }
 
     private void OnEnable()
