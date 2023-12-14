@@ -1630,7 +1630,7 @@ PrefabInstance:
       objectReference: {fileID: 777322855}
     - target: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: speed
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: playerInput
