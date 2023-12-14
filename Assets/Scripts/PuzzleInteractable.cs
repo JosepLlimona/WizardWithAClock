@@ -22,7 +22,9 @@ public class PuzzleInteractable : MonoBehaviour
 
         // Obtenir el component SpriteRenderer
         spriteRenderer = GetComponent<SpriteRenderer>();
-        audioSource = GetComponent<AudioSource>(); 
+        audioSource = GetComponent<AudioSource>();
+        if (estaEncesa) { activarPlaca(); }
+        else { desactivarPlaca(); }
 
     }
 

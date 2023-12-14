@@ -597,6 +597,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlacaPuzzle (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2427904462097542812, guid: 6a58584212c2cb34fa508713ee3bdd92, type: 3}
+      propertyPath: estaEncesa
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7531294780302008211, guid: 6a58584212c2cb34fa508713ee3bdd92, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5061045
@@ -685,6 +689,10 @@ PrefabInstance:
     - target: {fileID: 702509372565678974, guid: 6a58584212c2cb34fa508713ee3bdd92, type: 3}
       propertyPath: m_Name
       value: PlacaPuzzle (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427904462097542812, guid: 6a58584212c2cb34fa508713ee3bdd92, type: 3}
+      propertyPath: estaEncesa
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7531294780302008211, guid: 6a58584212c2cb34fa508713ee3bdd92, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1058,6 +1066,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2427904462097542812, guid: 6a58584212c2cb34fa508713ee3bdd92, type: 3}
       propertyPath: id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427904462097542812, guid: 6a58584212c2cb34fa508713ee3bdd92, type: 3}
+      propertyPath: estaEncesa
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2427904462097542812, guid: 6a58584212c2cb34fa508713ee3bdd92, type: 3}
