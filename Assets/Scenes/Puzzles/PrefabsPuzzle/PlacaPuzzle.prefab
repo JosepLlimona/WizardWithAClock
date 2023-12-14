@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7531294780302008211}
+  - component: {fileID: 2427904462097542812}
   - component: {fileID: 8969794958890308971}
   - component: {fileID: 5326381162577033770}
-  - component: {fileID: 2427904462097542812}
   - component: {fileID: 6080542159147283699}
   m_Layer: 0
   m_Name: PlacaPuzzle
@@ -35,6 +35,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2427904462097542812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702509372565678974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4b900a1b4d89f4dbda3dcb0e5bd6f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  estaEncesa: 0
+  spriteON: {fileID: 21300000, guid: 184daf161a84fb946b25da2ce9a09537, type: 3}
+  spriteOFF: {fileID: 21300000, guid: 0cc912f29b470b944ae7e6da727f85c5, type: 3}
+  audioSource: {fileID: 0}
 --- !u!61 &8969794958890308971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -71,7 +88,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2.78, y: 1.87}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -121,7 +138,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0cc912f29b470b944ae7e6da727f85c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,23 +149,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2427904462097542812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702509372565678974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f4b900a1b4d89f4dbda3dcb0e5bd6f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  estaEncesa: 0
-  spriteON: {fileID: 21300000, guid: f87e34f08aec7ab40b3ab0f9d699d41e, type: 3}
-  spriteOFF: {fileID: 21300000, guid: 7a6ec9ea76c94b8469804330a9386b8e, type: 3}
-  audioSource: {fileID: 0}
 --- !u!82 &6080542159147283699
 AudioSource:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.916126
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

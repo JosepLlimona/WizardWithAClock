@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private PlayerControlls playerControlls;
     private Rigidbody2D rbody;
     private Vector2 moveInput;
+    [SerializeField] private bool esMirror;
     [SerializeField]
     private float dashForce;
     [SerializeField]
@@ -78,7 +80,15 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        moveInput = playerControlls.Standard.Movement.ReadValue<Vector2>();
+     
+        if (esMirror)
+        {
+            moveInput = playerControlls.Standard.Movement.ReadValue<Vector2>()*-1;
+        }
+        else
+        {
+            moveInput = playerControlls.Standard.Movement.ReadValue<Vector2>();
+        }
         if (canMove)
         {
             rbody.velocity = moveInput * speed;
@@ -176,6 +186,7 @@ public class PlayerController : MonoBehaviour
             resetBools();
             changeText();
         };
+
     }
 
     private void changeText()
@@ -322,4 +333,5 @@ public class PlayerController : MonoBehaviour
         currentControllScheme = input.currentControlScheme;
         Debug.Log("Device is now: " + currentControllScheme);
     }
+
 }

@@ -27,8 +27,6 @@ public class PuzzleController_1 : MonoBehaviour
                 plaques.controlarPlaques();
                 if (plaques.esCompleta())
                 {
-       
-
 
                     _plaquesPuzzle.Remove(plaques); //eliminem les plaques completades perque ja no les necessitem
                 }
