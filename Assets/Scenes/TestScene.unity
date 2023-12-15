@@ -307,9 +307,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2bcf8ffd8247e945a896247ef85e9ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.8
+  speed: 1.5
   checkRadius: 2
-  attackRadius: 0.1
+  attackRadius: 0.15
   shouldRotate: 0
   layerPlayer:
     serializedVersion: 2
@@ -2101,6 +2101,10 @@ PrefabInstance:
       propertyPath: text
       value: 
       objectReference: {fileID: 777322855}
+    - target: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: playerInput
       value: 

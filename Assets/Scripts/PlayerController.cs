@@ -308,6 +308,7 @@ public class PlayerController : MonoBehaviour
             case "FirstAttack": 
                 if (combo <= 1)
                 {
+                    clockAnim.SetBool("MediumAttack", false);
                     combo = 0;
                     return;
                 }
@@ -316,6 +317,7 @@ public class PlayerController : MonoBehaviour
             case "SecondAttack":
                 if (combo <= 2)
                 {
+                    clockAnim.SetBool("MediumAttack", false);
                     combo = 0;
                     return;
                 }
@@ -323,6 +325,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case "ThirdAttack":
                 Debug.Log("Enters");
+                clockAnim.SetBool("MediumAttack", false);
                 combo = 0;
                 break;
         }
