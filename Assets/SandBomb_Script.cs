@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyController : MonoBehaviour
+public class SandBomb_Script : MonoBehaviour
 {
 
     public float speed;
@@ -19,7 +19,6 @@ public class EnemyController : MonoBehaviour
 
     private bool isInChaseRange;
     private bool isInAttackRange;
-    private bool isProtecting = false;
 
     [SerializeField]
     private GameObject player;
@@ -38,6 +37,7 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         anim.SetBool("isMoving", isInChaseRange);
+        anim.SetBool("isExploding", isInAttackRange);
 
         isInChaseRange = Physics2D.OverlapCircle(transform.position, checkRadius, layerPlayer);
         isInAttackRange = Physics2D.OverlapCircle(transform.position, attackRadius, layerPlayer);
@@ -51,28 +51,28 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate(){
         dir = player.transform.position - transform.position;
-        if(!isInAttackRange){
-            anim.SetBool("isProtecting", false);
-            isProtecting = false;
-        }
+
         if(isInChaseRange && !isInAttackRange){
             rb.velocity = dir.normalized * speed;
         }
         if(isInAttackRange){
             rb.velocity = Vector2.zero;
-            isProtecting = true;
-            anim.SetBool("isProtecting", true);
+            
         }
     }
 
+    private void Explode(){
+        Destroy(this.gameObject);
+        //afegir dany player
+    }
+
+
     public void changeLife(int damage)
     {
-        if(!isProtecting){
-            life.value -= damage;
-            if(life.value <= 0 ) 
-            {
-                Destroy(this.gameObject);
-            }
+        life.value -= damage;
+        if(life.value <= 0 ) 
+        {
+            Destroy(this.gameObject);
         }
         
     }
