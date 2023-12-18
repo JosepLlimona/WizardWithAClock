@@ -23,6 +23,7 @@ public class SFBossAI : MonoBehaviour
     private Vector2 objective;
     [SerializeField]
     private Animator BossAnim;
+    private bool overload = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,11 +36,11 @@ public class SFBossAI : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (atack)
+        if (atack && !overload)
         {
             print("atacking i cant move");
         }
-        if (canmove && !atack)
+        if (canmove && !atack && !overload)
         {
             Vector2 direction = objective;
             rbody.velocity = direction.normalized * speed;
@@ -48,6 +49,7 @@ public class SFBossAI : MonoBehaviour
 
     private void moveboss()
     {
+        AtackOption = Random.Range(0, 11);
         num1 = Random.Range(-5, 6);
         num2 = Random.Range(-5, 6);
         if (num1 < 2 && num1 > -2)
@@ -59,8 +61,11 @@ public class SFBossAI : MonoBehaviour
             num2 = 2;
         }
         objective = new Vector2(player.transform.position.x + num1 - transform.position.x, player.transform.position.y + num2 - transform.position.y);
-        canmove = !canmove;
-        if (!canmove)
+        if (!atack && !overload)
+        {
+            canmove = !canmove;
+        }
+        if (!canmove && !overload)
         {
             rbody.velocity = Vector3.zero;
             rbody.angularVelocity = 0;
@@ -69,7 +74,7 @@ public class SFBossAI : MonoBehaviour
             {
                 portalPunch();
             }
-            else if (AtackOption >= 2 && AtackOption < 4 && !atack)
+            else if (AtackOption >= 2 && AtackOption < 20 && !atack)
             {
                 TpPunchCharge();
             }
@@ -85,33 +90,51 @@ public class SFBossAI : MonoBehaviour
     {
         BossAnim.SetBool("PreparingPortalP", false);
         print("doing portal Punch");
-        AtackOption = Random.Range(0, 11);
     }
     private void TpPunchCharge()
     {
         BossAnim.SetBool("TpCharging",true);
     }
-    private void TpPunch()
+    public void TpPunch()
     {
         BossAnim.SetBool("TpCharging", false);
         BossAnim.SetBool("TpPunchReady", true);
-        rbody.position = new Vector2(player.transform.position.x + 1, player.transform.position.y);
+    }
+
+    public void punchTp()
+    { 
+        rbody.position = new Vector2(player.transform.position.x - 1, player.transform.position.y);
+    }
+    public void punchDash()
+    {
         Vector2 direction = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
-        rbody.velocity = direction.normalized * speed * 2;
-        AtackOption = Random.Range(0, 11);
+        rbody.velocity = direction.normalized * speed * 4;
+    }
+    public void end_punch()
+    {
+        rbody.velocity = Vector3.zero;
+        rbody.angularVelocity = 0;
+        BossAnim.SetBool("TpPunchReady", false);
     }
     private void RayGun()
     {
         print("doing RayGun");
-        AtackOption = Random.Range(0, 11);
     }
 
-    private void startAtack()
+    public void startAtack()
     {
         atack = true;
     }
-    private void finishAtack()
+    public void finishAtack()
     {
         atack = false;
+    }
+    public void start_overload()
+    {
+        overload = true;
+    }
+    public void finish_overload()
+    {
+        overload = false;
     }
 }
