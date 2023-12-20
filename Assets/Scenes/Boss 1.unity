@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5407300226473750090, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6909465057724879632, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.3861572
@@ -380,6 +384,8 @@ MonoBehaviour:
   player: {fileID: 1021269038}
   speed: 3
   timemove: 0.75
+  punch: {fileID: 4997157328353192316, guid: 7c5cda7a5c792a84ab6edf1393d43430, type: 3}
+  PunchStart: {fileID: 1450500415}
   BossAnim: {fileID: 1450500419}
 --- !u!70 &1450500417
 CapsuleCollider2D:
@@ -424,11 +430,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450500413}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

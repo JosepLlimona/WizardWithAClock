@@ -15,6 +15,10 @@ public class SFBossAI : MonoBehaviour
     private int speed = 3;
     [SerializeField]
     private float timemove = 3f;
+    [SerializeField]
+    private GameObject punch;
+    [SerializeField]
+    private Transform PunchStart;
     private bool canmove = true;
     private bool atack = false;
     private int num1 = 0;
@@ -24,6 +28,10 @@ public class SFBossAI : MonoBehaviour
     [SerializeField]
     private Animator BossAnim;
     private bool overload = false;
+    private float maximumOverload = 20;
+    private int numOverloaded = 0;
+    private float maximumPortalPunch = 3;
+    private int numPortalPunch = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -70,11 +78,12 @@ public class SFBossAI : MonoBehaviour
             rbody.velocity = Vector3.zero;
             rbody.angularVelocity = 0;
 
-            if (AtackOption >= 0 && AtackOption < 2 && !atack)
+            if (AtackOption >= 0 && AtackOption < 5 && !atack)
             {
                 portalPunch();
+                BossAnim.SetBool("PreparingPortalP", true);
             }
-            else if (AtackOption >= 2 && AtackOption < 20 && !atack)
+            else if (AtackOption >= 5 && AtackOption < 8 && !atack)
             {
                 TpPunchCharge();
             }
@@ -88,17 +97,38 @@ public class SFBossAI : MonoBehaviour
 
     private void portalPunch()
     {
-        BossAnim.SetBool("PreparingPortalP", false);
-        print("doing portal Punch");
+        int nombre = Random.Range(5, 10);
+        for (int i=0;i<=nombre; i++)
+        {
+            SummonInstance();            
+        }
+        
+    }
+    private void SummonInstance()
+    {
+        Vector2 pos = new Vector2 (PunchStart.transform.position.x + Random.Range(-2, 2), PunchStart.transform.position.y + Random.Range(-2, 2));
+        GameObject punchInstance = Instantiate(punch, pos, Quaternion.identity);
+        punchInstance.GetComponent<Animator>().SetTrigger("Attacking");
+       
+       //Destroy(punchInstance);
+    }
+    public void add_portal_punch()
+    {
+        numPortalPunch++;
+        if (numPortalPunch >= maximumPortalPunch * speed)
+        {
+            BossAnim.SetBool("PreparingPortalP", false);
+            numPortalPunch=0;
+        }
     }
     private void TpPunchCharge()
     {
         BossAnim.SetBool("TpCharging",true);
     }
     public void TpPunch()
-    {
-        BossAnim.SetBool("TpCharging", false);
+    {   
         BossAnim.SetBool("TpPunchReady", true);
+        BossAnim.SetBool("TpCharging", false);   
     }
 
     public void punchTp()
@@ -112,9 +142,9 @@ public class SFBossAI : MonoBehaviour
     }
     public void end_punch()
     {
+        BossAnim.SetBool("TpPunchReady", false);
         rbody.velocity = Vector3.zero;
         rbody.angularVelocity = 0;
-        BossAnim.SetBool("TpPunchReady", false);
     }
     private void RayGun()
     {
@@ -131,10 +161,22 @@ public class SFBossAI : MonoBehaviour
     }
     public void start_overload()
     {
+        BossAnim.SetBool("overload", true);
         overload = true;
+    }
+    public void add_overload()
+    {
+        numOverloaded++;
+        if (numOverloaded >= maximumOverload / speed)
+        {
+            finish_overload();
+        }
     }
     public void finish_overload()
     {
+        atack = false;
+        BossAnim.SetBool("overload", false);
         overload = false;
+        numOverloaded=0;
     }
 }

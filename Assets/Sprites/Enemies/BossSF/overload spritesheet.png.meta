@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0c5196c56f84ca1489c49faadc338841
+guid: db7998a40f82ddc418a6b7d426cc6c92
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BOSS SF PORTALPUNCH spritesheet_0
+      name: overload spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85e14475ccfe41241a9114f57e6bb296
-      internalID: -597790298
+      spriteID: 25edd364ae336c94bbcf84d57a25dcd6
+      internalID: -1101557992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BOSS SF PORTALPUNCH spritesheet_1
+      name: overload spritesheet_1
       rect:
         serializedVersion: 2
         x: 128
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae2c6db321a4f034d9ce48e0187e0324
-      internalID: 1377238472
+      spriteID: f47352ea1c2007f4086b31d1ff2b341b
+      internalID: -479285267
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BOSS SF PORTALPUNCH spritesheet_2
+      name: overload spritesheet_2
       rect:
         serializedVersion: 2
         x: 256
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0fdba2a85b3078499f4b25fba79968f
-      internalID: 60626431
+      spriteID: 974d190d31f12e946b907c29b30af2c5
+      internalID: 1329596883
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BOSS SF PORTALPUNCH spritesheet_3
+      name: overload spritesheet_3
       rect:
         serializedVersion: 2
         x: 384
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed193ac592cf9794794bc05936a32a5d
-      internalID: 983388743
+      spriteID: 4cfc51b524f95864c983cb0281b8fc95
+      internalID: -399077086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BOSS SF PORTALPUNCH spritesheet_4
+      name: overload spritesheet_4
       rect:
         serializedVersion: 2
         x: 512
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7519aab88b039e44f96234f36f4a37c5
-      internalID: -800505858
+      spriteID: f6ffd84f15b03e34fb7bffa0444cd931
+      internalID: -2004707275
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BOSS SF PORTALPUNCH spritesheet_5
+      name: overload spritesheet_5
       rect:
         serializedVersion: 2
         x: 640
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e8ca12cf0cc62641905148559ebd162
-      internalID: -1186678369
+      spriteID: 9cbef7e1fb6007648be17462e1e24d21
+      internalID: -438601492
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BOSS SF PORTALPUNCH spritesheet_6
+      name: overload spritesheet_6
       rect:
         serializedVersion: 2
         x: 768
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 799f66e9219f7924280974d6e8aab727
-      internalID: -455975243
+      spriteID: 6ebe92c8372eada428d3e1bf95daecdc
+      internalID: -687383514
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BOSS SF PORTALPUNCH spritesheet_7
+      name: overload spritesheet_7
       rect:
         serializedVersion: 2
         x: 896
@@ -271,71 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e415464d4b2ce1944afd471b4944aa77
-      internalID: 364542834
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BOSS SF PORTALPUNCH spritesheet_8
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 107cdad8a180fa042add5bdeb14762ca
-      internalID: 1666260846
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BOSS SF PORTALPUNCH spritesheet_9
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 30acef568e6a78e4b9fb78a656caa150
-      internalID: -1975883171
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BOSS SF PORTALPUNCH spritesheet_10
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d4e086e2b0c5c0941a9987f2c7886c2f
-      internalID: -1897759133
+      spriteID: e35924f3f9399a446bc5071836b3cdf6
+      internalID: 835145684
       vertices: []
       indices: 
       edges: []
@@ -351,17 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BOSS SF PORTALPUNCH spritesheet_0: -597790298
-      BOSS SF PORTALPUNCH spritesheet_1: 1377238472
-      BOSS SF PORTALPUNCH spritesheet_10: -1897759133
-      BOSS SF PORTALPUNCH spritesheet_2: 60626431
-      BOSS SF PORTALPUNCH spritesheet_3: 983388743
-      BOSS SF PORTALPUNCH spritesheet_4: -800505858
-      BOSS SF PORTALPUNCH spritesheet_5: -1186678369
-      BOSS SF PORTALPUNCH spritesheet_6: -455975243
-      BOSS SF PORTALPUNCH spritesheet_7: 364542834
-      BOSS SF PORTALPUNCH spritesheet_8: 1666260846
-      BOSS SF PORTALPUNCH spritesheet_9: -1975883171
+      overload spritesheet_0: -1101557992
+      overload spritesheet_1: -479285267
+      overload spritesheet_2: 1329596883
+      overload spritesheet_3: -399077086
+      overload spritesheet_4: -2004707275
+      overload spritesheet_5: -438601492
+      overload spritesheet_6: -687383514
+      overload spritesheet_7: 835145684
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
