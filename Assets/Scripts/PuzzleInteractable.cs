@@ -13,10 +13,12 @@ public class PuzzleInteractable : MonoBehaviour
     [SerializeField] private int id;  // Identificador de la placa
     private bool estaPitjada = false;  // Estat de si està pitjada
     [SerializeField] private bool estaEncesa;   // Estat de si està en ON
+    [SerializeField] private bool PlacaIniciPuzzle; //Per controlar la placa de inici i no crear un script a part
     private SpriteRenderer spriteRenderer;
     public Sprite spriteON;  // Assenyala l'sprite quan la placa està en ON
     public Sprite spriteOFF;  // Assenyala l'sprite quan la placa està en OFF
     public AudioSource audioSource;  // AudioSource per reproduir el so
+    public GameObject mirrorPlayer;
     private void Start()
     {
 
@@ -36,6 +38,15 @@ public class PuzzleInteractable : MonoBehaviour
         {
             estaPitjada = true;
              Debug.Log("OntriggerEnter -> estic pitjada");
+
+        }
+        if (PlacaIniciPuzzle)
+        {
+            activarPlaca();
+            if(mirrorPlayer.activeInHierarchy == false)
+            {
+                mirrorPlayer.SetActive(true);
+            }
 
         }
 

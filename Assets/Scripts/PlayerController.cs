@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        if (esMirror) { this.gameObject.SetActive(false); }
         playerControlls = new PlayerControlls();
         rbody = GetComponent<Rigidbody2D>();
 
@@ -83,7 +84,8 @@ public class PlayerController : MonoBehaviour
      
         if (esMirror)
         {
-            moveInput = playerControlls.Standard.Movement.ReadValue<Vector2>()*-1;
+            moveInput = playerControlls.Standard.Movement.ReadValue<Vector2>();
+            moveInput.y *= -1;
         }
         else
         {
