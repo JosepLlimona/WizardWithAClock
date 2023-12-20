@@ -71,6 +71,15 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Tap"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowCanvas"",
+                    ""type"": ""Button"",
+                    ""id"": ""932c8005-2b93-4b2d-bfea-135fac2afee5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -326,6 +335,17 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
                     ""action"": ""LastClock"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d3b2ac2-d6c4-47c9-9602-112d6935a684"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -362,6 +382,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         m_Standard_Attack = m_Standard.FindAction("Attack", throwIfNotFound: true);
         m_Standard_NextClock = m_Standard.FindAction("NextClock", throwIfNotFound: true);
         m_Standard_LastClock = m_Standard.FindAction("LastClock", throwIfNotFound: true);
+        m_Standard_ShowCanvas = m_Standard.FindAction("ShowCanvas", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -428,6 +449,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Standard_Attack;
     private readonly InputAction m_Standard_NextClock;
     private readonly InputAction m_Standard_LastClock;
+    private readonly InputAction m_Standard_ShowCanvas;
     public struct StandardActions
     {
         private @PlayerControlls m_Wrapper;
@@ -437,6 +459,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Standard_Attack;
         public InputAction @NextClock => m_Wrapper.m_Standard_NextClock;
         public InputAction @LastClock => m_Wrapper.m_Standard_LastClock;
+        public InputAction @ShowCanvas => m_Wrapper.m_Standard_ShowCanvas;
         public InputActionMap Get() { return m_Wrapper.m_Standard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -461,6 +484,9 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
             @LastClock.started += instance.OnLastClock;
             @LastClock.performed += instance.OnLastClock;
             @LastClock.canceled += instance.OnLastClock;
+            @ShowCanvas.started += instance.OnShowCanvas;
+            @ShowCanvas.performed += instance.OnShowCanvas;
+            @ShowCanvas.canceled += instance.OnShowCanvas;
         }
 
         private void UnregisterCallbacks(IStandardActions instance)
@@ -480,6 +506,9 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
             @LastClock.started -= instance.OnLastClock;
             @LastClock.performed -= instance.OnLastClock;
             @LastClock.canceled -= instance.OnLastClock;
+            @ShowCanvas.started -= instance.OnShowCanvas;
+            @ShowCanvas.performed -= instance.OnShowCanvas;
+            @ShowCanvas.canceled -= instance.OnShowCanvas;
         }
 
         public void RemoveCallbacks(IStandardActions instance)
@@ -522,5 +551,6 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnNextClock(InputAction.CallbackContext context);
         void OnLastClock(InputAction.CallbackContext context);
+        void OnShowCanvas(InputAction.CallbackContext context);
     }
 }
