@@ -5,8 +5,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.U2D;
-
-
+using Vector3 = UnityEngine.Vector3;
 
 public class PuzzleInteractable : MonoBehaviour
 {
@@ -19,6 +18,9 @@ public class PuzzleInteractable : MonoBehaviour
     public Sprite spriteOFF;  // Assenyala l'sprite quan la placa està en OFF
     public AudioSource audioSource;  // AudioSource per reproduir el so
     public GameObject mirrorPlayer;
+    public PlayerController player;
+    [SerializeField] private FadeObject fader;
+
     private void Start()
     {
 
@@ -42,10 +44,17 @@ public class PuzzleInteractable : MonoBehaviour
         }
         if (PlacaIniciPuzzle)
         {
+            //
             activarPlaca();
             if(mirrorPlayer.activeInHierarchy == false)
             {
-                mirrorPlayer.SetActive(true);
+
+                mirrorPlayer.transform.position = new Vector3(
+                    player.transform.position.x,
+                     -player.transform.position.y, // Inverteix la posició y del playe
+                player.transform.position.z);
+                mirrorPlayer.SetActive(true);   
+    
             }
 
         }
@@ -86,6 +95,7 @@ public class PuzzleInteractable : MonoBehaviour
 
     public void desactivarPlaca()
     {
+        
         spriteRenderer.sprite = spriteOFF;
         estaEncesa = false;
     }
@@ -98,5 +108,10 @@ public class PuzzleInteractable : MonoBehaviour
         {
             audioSource.Play();
         }
+    }
+
+    public void FadeOutPlaca()
+    {
+        fader.startFadingOut();
     }
 }

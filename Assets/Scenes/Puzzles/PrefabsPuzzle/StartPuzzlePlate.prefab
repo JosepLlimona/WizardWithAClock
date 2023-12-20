@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5913194406565981266}
   - component: {fileID: 620743282242161274}
+  - component: {fileID: 8387938268272184986}
   - component: {fileID: 6878182881317212899}
   - component: {fileID: 1152725114905105469}
   - component: {fileID: 840756144521326110}
@@ -54,6 +55,21 @@ MonoBehaviour:
   spriteOFF: {fileID: 21300000, guid: 0cc912f29b470b944ae7e6da727f85c5, type: 3}
   audioSource: {fileID: 0}
   mirrorPlayer: {fileID: 0}
+  player: {fileID: 0}
+  fader: {fileID: 8387938268272184986}
+--- !u!114 &8387938268272184986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8532261887224547119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ef1aeeac6a1744897a1ac9a92d6689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InicialmentVisualitzable: 1
 --- !u!61 &6878182881317212899
 BoxCollider2D:
   m_ObjectHideFlags: 0

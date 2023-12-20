@@ -5,12 +5,13 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class UIActiveController : MonoBehaviour
+public class UIController : MonoBehaviour
 {
     [SerializeField] private CanvasController canva;
     private PlayerControlls playerControlls;
     private bool esPotMostrar = false;
     private bool mostrat = false;
+    private bool puzzleComençat = false;
     // Start is called before the first frame update
     private void Start()
     {
@@ -18,9 +19,12 @@ public class UIActiveController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!puzzleComençat)
+        {
+            canva.showInteractText();
+            esPotMostrar = true;
 
-        canva.showInteractText();
-        esPotMostrar = true;
+        }
 
  
     }
@@ -44,6 +48,14 @@ public class UIActiveController : MonoBehaviour
             canva.hidePuzzleText();
             mostrat = false;
         }
+
+    }
+    public void setPuzzleStarted()
+    {
+        puzzleComençat = true;
+        esPotMostrar = false;
+        canva.hideInteractText();
+        canva.hidePuzzleText();
 
     }
 }

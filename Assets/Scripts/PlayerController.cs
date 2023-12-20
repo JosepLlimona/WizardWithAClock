@@ -339,4 +339,13 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Device is now: " + currentControllScheme);
     }
 
+    public void disableMirrorPlayer()
+    {
+        if (esMirror)
+        {
+           gameObject.SetActive(false);
+           
+        }
+    }
+
 }
