@@ -3051,11 +3051,11 @@ PrefabInstance:
     - target: {fileID: 7151900529481786940, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: tileParetEsq
       value: 
-      objectReference: {fileID: 1129423310124026210, guid: db5b4374f0ce01047accdb983e44b127, type: 3}
+      objectReference: {fileID: 11400000, guid: 2e400df9e2c2e16428599a5b9ac01492, type: 2}
     - target: {fileID: 7151900529481786940, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: tileParetDreta
       value: 
-      objectReference: {fileID: 1129423310124026210, guid: 31cd38184e9b3cc40b7a198b4fbb5702, type: 3}
+      objectReference: {fileID: 11400000, guid: e13207f046be20545bf378ac6a9c63d1, type: 2}
     - target: {fileID: 7151900529481786940, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: tilemapColisions
       value: 
@@ -3063,11 +3063,11 @@ PrefabInstance:
     - target: {fileID: 7151900529481786940, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: tileParetInferior
       value: 
-      objectReference: {fileID: 1129423310124026210, guid: 4b2a0c14c8fd2074995ab5af0c99ecec, type: 3}
+      objectReference: {fileID: 11400000, guid: 8acf28dc046afb7478f6656f3f118995, type: 2}
     - target: {fileID: 7151900529481786940, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: tileParetSuperior
       value: 
-      objectReference: {fileID: 1129423310124026210, guid: 886708d8afc94ff41b70df16018add01, type: 3}
+      objectReference: {fileID: 11400000, guid: a63d43673597e71409b4a57e802ded83, type: 2}
     - target: {fileID: 7151900529481786940, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: posPortes.Array.size
       value: 3

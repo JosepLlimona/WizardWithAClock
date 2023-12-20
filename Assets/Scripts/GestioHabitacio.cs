@@ -11,12 +11,22 @@ public class GestioHabitacio : MonoBehaviour
     public GameObject tileParetDreta;
     public GameObject tileParetSuperior;
     public GameObject tileParetInferior;
+    public GameObject tilePortaVertical;
+    public GameObject tilePortaHoritzontal;
 
     private int tancades = 0;
+    private bool portesTancades = false;
 
     void Start()
     {
         TancarPortesAleatories();
+    }
+
+    void OnTriggerEnter2D(Collider2D personatge){
+        if (!portesTancades && personatge.CompareTag("Player")){
+            TancarTotesLesPortes();
+            portesTancades = true;
+        }
     }
 
     void TancarPortesAleatories(){
@@ -39,6 +49,17 @@ public class GestioHabitacio : MonoBehaviour
         }
     }
 
+    void TancarTotesLesPortes(){
+        foreach (GameObject porta in posPortes){
+            Vector3 posicio = porta.transform.position;
+            string lloc = porta.name;
+            GameObject portaPerColocar = ObtenirPortaPerNom(lloc);
+            if(portaPerColocar != null){
+                Instantiate(portaPerColocar, posicio, Quaternion.identity);
+            }
+        }
+    }
+
     GameObject ObtenirParetPerNom(string lloc){
         if (lloc.Contains("PortaEsq")){
             return tileParetEsq;
@@ -54,4 +75,16 @@ public class GestioHabitacio : MonoBehaviour
         }
         return null;
     }
+
+
+    GameObject ObtenirPortaPerNom(string lloc){
+        if (lloc.Contains("PortaEsq") || lloc.Contains("PortaDreta")){
+            return tilePortaVertical;
+        }
+        else if (lloc.Contains("PortaSuperior") || lloc.Contains("PortaInferior")){
+            return tilePortaHoritzontal;
+        }
+        return null;
+    }
+
 }

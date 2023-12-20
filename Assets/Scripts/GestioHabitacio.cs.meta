@@ -3,7 +3,14 @@ guid: 610f78a48fbaccf4ebe43da1fe95e607
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tilemapColisions: {instanceID: 0}
+  - tileParetEsq: {fileID: 1129423310124026210, guid: db5b4374f0ce01047accdb983e44b127, type: 3}
+  - tileParetDreta: {fileID: 1129423310124026210, guid: 31cd38184e9b3cc40b7a198b4fbb5702, type: 3}
+  - tileParetSuperior: {fileID: 1129423310124026210, guid: 886708d8afc94ff41b70df16018add01, type: 3}
+  - tileParetInferior: {fileID: 1129423310124026210, guid: 4b2a0c14c8fd2074995ab5af0c99ecec, type: 3}
+  - tilePortaVertical: {fileID: 1129423310124026210, guid: 13f9c379d0850fc4b93fc5aa14d619f6, type: 3}
+  - tilePortaHoritzontal: {fileID: 1129423310124026210, guid: 05f00702dc68e3d4ca600ceafe32bfea, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

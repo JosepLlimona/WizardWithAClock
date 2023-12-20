@@ -100,14 +100,12 @@ MonoBehaviour:
   - {fileID: 5547446930803124640}
   - {fileID: 7645468703713603129}
   - {fileID: 647254989598898799}
-  tileParetEsq: {fileID: 1129423310124026210, guid: db5b4374f0ce01047accdb983e44b127, type: 3}
-  tileParetDreta: {fileID: 1129423310124026210, guid: 31cd38184e9b3cc40b7a198b4fbb5702, type: 3}
-  tileParetSuperior: {fileID: 1129423310124026210, guid: 886708d8afc94ff41b70df16018add01, type: 3}
-  tileParetInferior: {fileID: 1129423310124026210, guid: 4b2a0c14c8fd2074995ab5af0c99ecec, type: 3}
-  ParetEsq: {fileID: 11400000, guid: 2e400df9e2c2e16428599a5b9ac01492, type: 2}
-  ParetDreta: {fileID: 11400000, guid: e13207f046be20545bf378ac6a9c63d1, type: 2}
-  ParetSuperior: {fileID: 11400000, guid: a63d43673597e71409b4a57e802ded83, type: 2}
-  ParetInferior: {fileID: 11400000, guid: 8acf28dc046afb7478f6656f3f118995, type: 2}
+  tilePortaVertical: {fileID: 1129423310124026210, guid: 13f9c379d0850fc4b93fc5aa14d619f6, type: 3}
+  tilePortaHoritzontal: {fileID: 1129423310124026210, guid: 05f00702dc68e3d4ca600ceafe32bfea, type: 3}
+  tileParetEsq: {fileID: 11400000, guid: 2e400df9e2c2e16428599a5b9ac01492, type: 2}
+  tileParetDreta: {fileID: 11400000, guid: e13207f046be20545bf378ac6a9c63d1, type: 2}
+  tileParetSuperior: {fileID: 11400000, guid: a63d43673597e71409b4a57e802ded83, type: 2}
+  tileParetInferior: {fileID: 11400000, guid: 8acf28dc046afb7478f6656f3f118995, type: 2}
 --- !u!1 &3820002869583263134
 GameObject:
   m_ObjectHideFlags: 0
