@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private CanvasController canva;
+    [SerializeField] private CanvasController pressSpaceToRead;
     private PlayerControlls playerControlls;
     private bool esPotMostrar = false;
     private bool mostrat = false;
@@ -21,7 +21,7 @@ public class UIController : MonoBehaviour
     {
         if (!puzzleComençat)
         {
-            canva.showInteractText();
+            pressSpaceToRead.showInteractText();
             esPotMostrar = true;
 
         }
@@ -32,20 +32,20 @@ public class UIController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         esPotMostrar = false;
-        canva.hideInteractText();
-        canva.hidePuzzleText();
+        pressSpaceToRead.hideInteractText();
+        pressSpaceToRead.hidePuzzleText();
     }
     public void onShowCanva()
     {
 
         if (esPotMostrar && !mostrat)
         {
-            canva.showPuzzleText();
+            pressSpaceToRead.showPuzzleText();
             mostrat = true;
         }
         else if (esPotMostrar && mostrat)
         {
-            canva.hidePuzzleText();
+            pressSpaceToRead.hidePuzzleText();
             mostrat = false;
         }
 
@@ -54,8 +54,8 @@ public class UIController : MonoBehaviour
     {
         puzzleComençat = true;
         esPotMostrar = false;
-        canva.hideInteractText();
-        canva.hidePuzzleText();
+        pressSpaceToRead.hideInteractText();
+        pressSpaceToRead.hidePuzzleText();
 
     }
 }
