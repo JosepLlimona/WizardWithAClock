@@ -11,7 +11,7 @@ public class PuzzleController_1 : MonoBehaviour
     [SerializeField] private List<PuzzleInteractuableBehavior> _plaquesPuzzle;
     [SerializeField] private PlayerController mirrorPlayer;
     [SerializeField] private Chest chest;
-    private GameObject winnerItem;
+
     private bool puzzleStarted;
     private int plaquesCompletades = 0;
     private bool puzzleComplet;

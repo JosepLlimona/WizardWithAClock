@@ -23,14 +23,14 @@ public class Chest : MonoBehaviour
         // winnerItem.SetActive(false);
 
         canOpen = false;
-        Color c = spriteRenderer.material.color;
-        c.a = 0f;
-        spriteRenderer.material.color = c;
+        isOpen = false;
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!isOpen && canOpen)
         {
+            Debug.Log("hoila tio");
             isOpen = true;
             spriteRenderer.sprite = openSprite;
             winnerItem = GetWinnerItem();
@@ -38,8 +38,7 @@ public class Chest : MonoBehaviour
             Debug.Log(WinnerItems.Count());
             winnerItem.transform.position = new Vector3(0, 0, 0);
             Instantiate(winnerItem);
-            fader.startFadingOut();
-            fader.startFadingObject(winnerItem);
+            DisableChest();
         }
 
     }
@@ -53,8 +52,8 @@ public class Chest : MonoBehaviour
     public void DisableChest()
     {
         fader.startFadingOut();
-        gameObject.SetActive(false);
-        //gameObject.GetComponent("BoxCollider2D").gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+ 
     }
 
     public GameObject GetWinnerItem()

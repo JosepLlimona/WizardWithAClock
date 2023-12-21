@@ -52,17 +52,6 @@ public class FadeObject : MonoBehaviour
         StartCoroutine("FadeIn");
     }
 
-    public void startFadingOutObject(GameObject obj)
-    {
-        SpriteRenderer newSprite = obj.GetComponent<SpriteRenderer>();
-        spriteRenderer = newSprite;
-        StartCoroutine("FadeOut");
-    }
 
-    public void startFadingObject(GameObject obj)
-    {
-        SpriteRenderer newSprite = obj.GetComponent<SpriteRenderer>();
-        spriteRenderer = newSprite;
-        StartCoroutine("FadeIn");
-    }
+
 }
