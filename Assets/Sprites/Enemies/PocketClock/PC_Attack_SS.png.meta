@@ -1,5 +1,7 @@
 fileFormatVersion: 2
+
 guid: bcd27f71db9cec9448a0e37d412511ce
+
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +36,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+
+    filterMode: 1
+
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,7 +47,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+
+  spriteMode: 1
+
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -434,6 +440,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+
     nameFileIdTable:
       PC_Attack_SS_0: -1302721320
       PC_Attack_SS_1: -886471763
@@ -450,6 +457,7 @@ TextureImporter:
       PC_Attack_SS_7: -506326303
       PC_Attack_SS_8: 599217604
       PC_Attack_SS_9: 2007233070
+
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
