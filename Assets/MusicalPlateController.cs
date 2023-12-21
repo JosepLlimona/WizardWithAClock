@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class MusicalPlateController : PlateController
 {
     // Start is called before the first frame update
     [SerializeField] private int idPlaca;
+    public static event Action<int> OnMusicalPlatePressed;
 
     void Start()
     {
@@ -25,7 +27,12 @@ public class MusicalPlateController : PlateController
             estaPitjada = true;
             activarPlaca();
             ReproduirSo();
-            Debug.Log("OntriggerEnter -> estic pitjada");
+            desactivarPlaca();
+            if(OnMusicalPlatePressed != null) //invoco el event onmusicalplatepressed quan pitjo una placa
+            {
+                OnMusicalPlatePressed.Invoke(idPlaca);
+            }
+            //Debug.Log("OntriggerEnter -> estic pitjada");
 
         }
 
@@ -35,7 +42,7 @@ public class MusicalPlateController : PlateController
     {
         if (estaPitjada)
         {
-            Debug.Log("OnTriggerExit -> Ja no esta PITJADA");
+            //Debug.Log("OnTriggerExit -> Ja no esta PITJADA");
             estaPitjada = false;
             desactivarPlaca();
         }

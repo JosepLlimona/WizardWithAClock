@@ -15,12 +15,29 @@ public class PuzzleMusicPlatesController : PuzzleController
     int idPlacaActualPitjada = 0;
     bool playerHaPitjatPlaca = false; 
    bool revisarPlaques = true;
+    bool handlingPlayerTurn = false;
     [SerializeField] private AudioSource ticSound;
     // Start is called before the first frame update
     void Start()
     {
         ordrePlaquesMusicals = new List<int>(maximRondes);
         GetNewMusicalSequence();
+        
+    }
+
+    private void OnEnable()
+    {
+
+        Debug.Log("holaaa");
+            MusicalPlateController.OnMusicalPlatePressed += HandlePlayerTurn;
+        
+    }
+
+    private void OnDisable()
+    {
+   
+        
+            MusicalPlateController.OnMusicalPlatePressed -= HandlePlayerTurn;
         
     }
 
@@ -53,75 +70,7 @@ public class PuzzleMusicPlatesController : PuzzleController
         }
 
 
-        if (isPlayerTurn)
-        {
-            
-            if (revisarPlaques) //revisem fins que en pitjem una
-            {
-                for (int i = 0; i < musicalPlates.Count; i++)
-                {
-                    if (musicalPlates[i].EstaSiguentPitjada())
-                    {
-                        playerHaPitjatPlaca = true;
-                        idPlacaActualPitjada = musicalPlates[i].getIdPlaca();
-                        ferSonarPlaca(musicalPlates[i]);
-                        revisarPlaques = false; //ja no fa falta revisar plaques
-
-                    }
-                }
-            }
-
-
-            if (playerHaPitjatPlaca)
-            {
-                Debug.Log("HANDLING PLAYER TURN");
-                playerHaPitjatPlaca = false;
-                Debug.Log("El player ha pitjar una placa i comprovem si es igual" + idPlacaActualPitjada + ordrePlaquesMusicals[placaActualHauriaSerPitjadaPerJugador]);
-
-
-                if (idPlacaActualPitjada == ordrePlaquesMusicals[placaActualHauriaSerPitjadaPerJugador])
-                {
-                    placaActualHauriaSerPitjadaPerJugador++;
-                    Debug.Log("Sumem la placa acutal que estem mrian de la sequencia:" + placaActualHauriaSerPitjadaPerJugador);
-                    if (placaActualHauriaSerPitjadaPerJugador == indexRonda)
-                    {
-                        Debug.Log("hem passat de ronda");
-                        if (indexRonda == maximRondes)
-                        {
-                            //hem guanyat el puzzle
-                            isPlayerTurn = false;
-                            OnPuzzleEnd();
-                        }
-                        else
-                        {
-                            //encara queden rondes
-                            placaActualHauriaSerPitjadaPerJugador = 0;
-                            indexRonda++;
-                            isPlayerTurn = false;
-                            revisarPlaques = true;
-                            HandleTurns();
-                        }
-
-                    }
-                    revisarPlaques = true;
-                }
-                else
-                { //jugador ha fallat
-                    Debug.Log("el jugador s'ha ewquivcoat");
-                    indexRonda = 1;
-                    placaActualHauriaSerPitjadaPerJugador = 0;
-                    GetNewMusicalSequence();
-                    isPlayerTurn = false;
-                    revisarPlaques = true;
-                    HandleTurns();
-
-                }
-                    revisarPlaques = true;
-
-            }
-            
-        }
-
+      
 
     }
 
@@ -144,7 +93,7 @@ public class PuzzleMusicPlatesController : PuzzleController
         Debug.Log("Getting New Sequence");
         int id;
         ordrePlaquesMusicals.Clear();
-        StartCoroutine(ReproducirSecuencia());
+        //StartCoroutine(ReproducirSecuencia());
         for (int i = 0; i<maximRondes; i++)
         {
             id = GetRandomId();
@@ -171,14 +120,88 @@ public class PuzzleMusicPlatesController : PuzzleController
         //cada vegada que sigui el torn de la ia he de fer sona totes les plaques fins el index de ronda
         StartCoroutine(ReproducirSecuencia());
         isPlayerTurn = true;
+        revisarPlaques = true;
     }
 
+    public void HandlePlayerTurn(int idPlacaActualPitjada)
+    {
+        if (isPlayerTurn)
+        {
+            handlingPlayerTurn = true;
+            Debug.Log("Provaaa" + idPlacaActualPitjada);
+            placaActualHauriaSerPitjadaPerJugador++;
+
+            if(placaActualHauriaSerPitjadaPerJugador == indexRonda) { 
+                indexRonda++;
+                placaActualHauriaSerPitjadaPerJugador = 0;  
+                isPlayerTurn = false; 
+                if(indexRonda == maximRondes+1) { OnPuzzleEnd(); }
+                else { HandleTurns(); }
+                
+            }
+            
+            
+          
+        }
+        
+        /*
+         * isPlayerTurn = false;
+        Debug.Log("HANDLING PLAYER TURN");
+        playerHaPitjatPlaca = false;
+        Debug.Log("El player ha pitjar una placa i comprovem si es igual" + idPlacaActualPitjada + ordrePlaquesMusicals[placaActualHauriaSerPitjadaPerJugador]);
+
+
+        if (idPlacaActualPitjada == ordrePlaquesMusicals[placaActualHauriaSerPitjadaPerJugador])
+        {
+            placaActualHauriaSerPitjadaPerJugador++;
+            Debug.Log("Sumem la placa acutal que estem mrian de la sequencia:" + placaActualHauriaSerPitjadaPerJugador);
+            if (placaActualHauriaSerPitjadaPerJugador == indexRonda)
+            {
+                Debug.Log("hem passat de ronda");
+                if (indexRonda == maximRondes)
+                {
+                    //hem guanyat el puzzle
+                    isPlayerTurn = false;
+                    OnPuzzleEnd();
+                }
+                else
+                {
+                    //encara queden rondes
+                    placaActualHauriaSerPitjadaPerJugador = 0;
+                    indexRonda++;
+                    isPlayerTurn = false;
+                    revisarPlaques = true;
+                    //StartCoroutine(ReproducirSecuencia());
+                    HandleTurns();
+                }
+
+            }
+            else
+            {
+
+                revisarPlaques = true;
+            }
+        }
+        else
+        { //jugador ha fallat
+            Debug.Log("el jugador s'ha ewquivcoat");
+            indexRonda = 1;
+            placaActualHauriaSerPitjadaPerJugador = 0;
+            GetNewMusicalSequence();
+            isPlayerTurn = false;
+            revisarPlaques = true;
+            HandleTurns();
+
+        }
+         */
+
+    }
 
 
     private void HandleTurns()
     {
-        
-        StartCoroutine(ReporduirTicsPrincipi());
+
+        //StartCoroutine(ReporduirTicsPrincipi());
         //StartCoroutine(esperar());
         
         if (!isPlayerTurn)
@@ -194,15 +217,15 @@ public class PuzzleMusicPlatesController : PuzzleController
     IEnumerator ReproducirSecuencia()
     {
 
-        yield return new WaitForSeconds(3.5f); // Ajusta el tiempo entre cada placa en la secuencia.
+        yield return new WaitForSeconds(3); // Ajusta el tiempo entre cada placa en la secuencia.
         for (int i = 0; i < indexRonda; i++)
         {
+            yield return new WaitForSeconds(0.7f); // Ajusta el tiempo entre cada placa en la secuencia.
             int idPlacaAcutal = ordrePlaquesMusicals[i];
-            Debug.Log("Id de la placa que hauria de sonar" + idPlacaAcutal);
+            Debug.Log("IndexRonda" + indexRonda);
             Debug.Log(musicalPlates[idPlacaAcutal].getIdPlaca());
             ferSonarPlaca(musicalPlates[idPlacaAcutal]);
 
-            yield return new WaitForSeconds(0.7f); // Ajusta el tiempo entre cada placa en la secuencia.
         }
 
    

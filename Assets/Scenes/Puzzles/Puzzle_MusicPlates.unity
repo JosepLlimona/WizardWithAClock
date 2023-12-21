@@ -304,7 +304,7 @@ MonoBehaviour:
   - {fileID: 1963178543}
   - {fileID: 532171284}
   - {fileID: 1213122971}
-  maximRondes: 8
+  maximRondes: 4
   ticSound: {fileID: 353687430}
 --- !u!82 &353687428
 AudioSource:
