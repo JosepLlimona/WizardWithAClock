@@ -108,17 +108,17 @@ public class SFBossAI : MonoBehaviour
         SummonInstance(PunchStart.transform.position.x + place / 2, PunchStart.transform.position.y);
         SummonInstance(PunchStart.transform.position.x , PunchStart.transform.position.y - place / 2);
 
-        if(2<=place / 3)
+        if(2<= numPortalPunch)
         {
-            SummonInstance(PunchStart.transform.position.x + place / 3, PunchStart.transform.position.y + place / 3);
-            SummonInstance(PunchStart.transform.position.x - place / 3, PunchStart.transform.position.y + place / 3);
-            SummonInstance(PunchStart.transform.position.x + place / 3, PunchStart.transform.position.y - place / 3);
-            SummonInstance(PunchStart.transform.position.x - place / 3, PunchStart.transform.position.y - place / 3);
+            SummonInstance(PunchStart.transform.position.x + place / 2, PunchStart.transform.position.y + place / 4);
+            SummonInstance(PunchStart.transform.position.x - place / 4, PunchStart.transform.position.y + place / 2);
+            SummonInstance(PunchStart.transform.position.x + place / 4, PunchStart.transform.position.y - place / 2);
+            SummonInstance(PunchStart.transform.position.x - place / 2, PunchStart.transform.position.y - place / 4);
 
-            SummonInstance(PunchStart.transform.position.x, PunchStart.transform.position.y + place / 2);
-            SummonInstance(PunchStart.transform.position.x - place / 2, PunchStart.transform.position.y);
-            SummonInstance(PunchStart.transform.position.x + place / 2, PunchStart.transform.position.y);
-            SummonInstance(PunchStart.transform.position.x, PunchStart.transform.position.y - place / 2);
+            SummonInstance(PunchStart.transform.position.x + place / 4, PunchStart.transform.position.y + place / 2);
+            SummonInstance(PunchStart.transform.position.x - place / 2, PunchStart.transform.position.y + place / 4);
+            SummonInstance(PunchStart.transform.position.x + place / 2, PunchStart.transform.position.y - place / 4);
+            SummonInstance(PunchStart.transform.position.x - place / 4, PunchStart.transform.position.y - place / 2);
         }
     }
     private void SummonInstance(float posx, float posy)
