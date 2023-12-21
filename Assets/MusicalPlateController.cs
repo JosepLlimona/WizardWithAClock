@@ -26,9 +26,11 @@ public class MusicalPlateController : PlateController
         {
             estaPitjada = true;
             activarPlaca();
+            //spriteRenderer.sprite = spriteON;
             ReproduirSo();
-            desactivarPlaca();
-            if(OnMusicalPlatePressed != null) //invoco el event onmusicalplatepressed quan pitjo una placa
+            //desactivarPlaca();
+            //spriteRenderer.sprite = spriteOFF;
+            if (OnMusicalPlatePressed != null) //invoco el event onmusicalplatepressed quan pitjo una placa
             {
                 OnMusicalPlatePressed.Invoke(idPlaca);
             }
