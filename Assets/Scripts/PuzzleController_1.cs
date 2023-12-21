@@ -4,17 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PuzzleController_1 : MonoBehaviour
+public class PuzzleController_1 : PuzzleController
 {
-    [SerializeField] private UIController ui;
-    [SerializeField] private PuzzleInteractable startPlate;
+
     [SerializeField] private List<PuzzleInteractuableBehavior> _plaquesPuzzle;
     [SerializeField] private PlayerController mirrorPlayer;
-    [SerializeField] private Chest chest;
-
-    private bool puzzleStarted;
-    private int plaquesCompletades = 0;
-    private bool puzzleComplet;
 
     // Start is called before the first frame update
     void Start()
@@ -31,12 +25,28 @@ public class PuzzleController_1 : MonoBehaviour
     void Update()
     {
 
-        if (startPlate.IsON() && !puzzleStarted) { 
-            OnPuzzleStart();  
-        
+        if (startPlate.IsON() && !puzzleStarted)
+        {
+            OnPuzzleStart();
+
         }
 
-        foreach(var plaques in _plaquesPuzzle)
+        if (puzzleStarted)
+        {
+            ControlarPlaquesPuzzle();
+        }
+    }
+
+    private void OnMirrorPuzzleEnd()
+    {
+        OnPuzzleEnd();
+        mirrorPlayer.disableMirrorPlayer();
+        //reproduir so del cofre
+    }
+
+    private void ControlarPlaquesPuzzle()
+    {
+        foreach (var plaques in _plaquesPuzzle)
         {
             if (!puzzleComplet)
             {
@@ -47,36 +57,13 @@ public class PuzzleController_1 : MonoBehaviour
 
                     _plaquesPuzzle.Remove(plaques); //eliminem les plaques completades perque ja no les necessitem
                 }
-                if(_plaquesPuzzle.Count <= 0)
+                if (_plaquesPuzzle.Count <= 0)
                 {
-                    OnPuzzleEnd();
+                    OnMirrorPuzzleEnd();
                 }
             }
         }
     }
-
-    private void OnPuzzleStart()
-    {
-
-        puzzleStarted = true;
-        ui.setPuzzleStarted();
-        startPlate.FadeOutPlaca();
-        //startPlate.gameObject.SetActive(false);
-
-
-    }
-    private void OnPuzzleEnd()
-    {
-        chest.canOpenChest();
-        puzzleComplet = true;
-        //AQUI HAURE DE FER SPAWN DEL COFRE
-        Debug.Log("PuzzleCompletat");
-        chest.EnableChest();
-        //Fer desapareixer al mirror player
-        mirrorPlayer.disableMirrorPlayer();
-        //reproduir so del cofre
-    }
-
 
 
 }

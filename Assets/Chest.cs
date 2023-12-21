@@ -21,7 +21,8 @@ public class Chest : MonoBehaviour
     public void Start()
     {
         // winnerItem.SetActive(false);
-
+        //gameObject.transform.position = new Vector3(0,0.5f,0);
+        gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         canOpen = false;
         isOpen = false;
 
@@ -36,8 +37,11 @@ public class Chest : MonoBehaviour
             winnerItem = GetWinnerItem();
             Debug.Log(winnerItemPosition);
             Debug.Log(WinnerItems.Count());
-            winnerItem.transform.position = new Vector3(0, 0, 0);
+            winnerItem.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y+0.7f, 0);
             Instantiate(winnerItem);
+          
+            //
+            //
             DisableChest();
         }
 
@@ -45,13 +49,17 @@ public class Chest : MonoBehaviour
 
     public void EnableChest()
     {
+        gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
         fader.startFadingIn();
-
+        //transform.position = Vector3.zero;
     }
 
     public void DisableChest()
     {
-        fader.startFadingOut();
+        //fader.startFadingOut();
+        gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        Debug.Log("shoud fade out");
+        //Destroy(this.gameObject);
         //gameObject.SetActive(false);
  
     }
@@ -59,9 +67,11 @@ public class Chest : MonoBehaviour
     public GameObject GetWinnerItem()
     {
 
-        winnerItemPosition = Random.Range(0, WinnerItems.Count());
+        winnerItemPosition = Random.Range(0, WinnerItems.Count);
         winnerItem = WinnerItems[winnerItemPosition];
         return winnerItem;
     }
     public void canOpenChest() { canOpen = true; }
+
+    
 }
