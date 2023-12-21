@@ -19,6 +19,6 @@ public class punchInstance : MonoBehaviour
     public void DestroyPunch()
     {
         print("destroying");
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }

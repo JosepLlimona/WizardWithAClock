@@ -96,7 +96,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.44285715
+  - time: 0.042857144
     functionName: portalPunch
     data: 
     objectReferenceParameter: {fileID: 0}

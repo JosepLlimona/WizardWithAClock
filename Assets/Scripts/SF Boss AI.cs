@@ -97,16 +97,33 @@ public class SFBossAI : MonoBehaviour
 
     private void portalPunch()
     {
-        int nombre = Random.Range(5, 10);
-        for (int i=0;i<=1; i++)
+        float place = numPortalPunch+1;
+        SummonInstance(PunchStart.transform.position.x + place / 3, PunchStart.transform.position.y + place / 3);
+        SummonInstance(PunchStart.transform.position.x - place / 3, PunchStart.transform.position.y + place / 3);
+        SummonInstance(PunchStart.transform.position.x + place / 3, PunchStart.transform.position.y - place / 3);
+        SummonInstance(PunchStart.transform.position.x - place / 3, PunchStart.transform.position.y - place / 3);
+
+        SummonInstance(PunchStart.transform.position.x , PunchStart.transform.position.y + place / 2);
+        SummonInstance(PunchStart.transform.position.x - place / 2, PunchStart.transform.position.y);
+        SummonInstance(PunchStart.transform.position.x + place / 2, PunchStart.transform.position.y);
+        SummonInstance(PunchStart.transform.position.x , PunchStart.transform.position.y - place / 2);
+
+        if(2<=place / 3)
         {
-            SummonInstance();            
+            SummonInstance(PunchStart.transform.position.x + place / 3, PunchStart.transform.position.y + place / 3);
+            SummonInstance(PunchStart.transform.position.x - place / 3, PunchStart.transform.position.y + place / 3);
+            SummonInstance(PunchStart.transform.position.x + place / 3, PunchStart.transform.position.y - place / 3);
+            SummonInstance(PunchStart.transform.position.x - place / 3, PunchStart.transform.position.y - place / 3);
+
+            SummonInstance(PunchStart.transform.position.x, PunchStart.transform.position.y + place / 2);
+            SummonInstance(PunchStart.transform.position.x - place / 2, PunchStart.transform.position.y);
+            SummonInstance(PunchStart.transform.position.x + place / 2, PunchStart.transform.position.y);
+            SummonInstance(PunchStart.transform.position.x, PunchStart.transform.position.y - place / 2);
         }
-        
     }
-    private void SummonInstance()
+    private void SummonInstance(float posx, float posy)
     {
-        Vector2 pos = new Vector2 (PunchStart.transform.position.x + Random.Range(-2, 2), PunchStart.transform.position.y + Random.Range(-2, 2));
+        Vector2 pos = new Vector2(posx, posy);
         GameObject punchInstance = Instantiate(punch, pos, Quaternion.identity);
         punchInstance.GetComponent<Animator>().SetTrigger("Attacking");
     }
@@ -116,21 +133,21 @@ public class SFBossAI : MonoBehaviour
         if (numPortalPunch >= maximumPortalPunch * speed)
         {
             BossAnim.SetBool("PreparingPortalP", false);
-            numPortalPunch=0;
+            numPortalPunch = 0;
         }
     }
     private void TpPunchCharge()
     {
-        BossAnim.SetBool("TpCharging",true);
+        BossAnim.SetBool("TpCharging", true);
     }
     public void TpPunch()
-    {   
+    {
         BossAnim.SetBool("TpPunchReady", true);
-        BossAnim.SetBool("TpCharging", false);   
+        BossAnim.SetBool("TpCharging", false);
     }
 
     public void punchTp()
-    { 
+    {
         rbody.position = new Vector2(player.transform.position.x - 1, player.transform.position.y);
     }
     public void punchDash()
@@ -175,6 +192,6 @@ public class SFBossAI : MonoBehaviour
         atack = false;
         BossAnim.SetBool("overload", false);
         overload = false;
-        numOverloaded=0;
+        numOverloaded = 0;
     }
 }
