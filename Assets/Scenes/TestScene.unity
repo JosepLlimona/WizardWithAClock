@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 12520815}
   - component: {fileID: 12520814}
   - component: {fileID: 12520820}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SandBomb
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -620,11 +620,11 @@ RectTransform:
   - {fileID: 72749640}
   m_Father: {fileID: 1328360335}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0}
 --- !u!114 &126560367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,7 +668,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 126560368}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1468857708}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: heal
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &126560368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -913,7 +925,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 372180602}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -951,7 +963,7 @@ GameObject:
   - component: {fileID: 395950437}
   - component: {fileID: 395950439}
   - component: {fileID: 395950438}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1029,7 +1041,7 @@ GameObject:
   - component: {fileID: 415197844}
   - component: {fileID: 415197845}
   - component: {fileID: 415197846}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pocket_Clock
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1255,7 +1267,7 @@ GameObject:
   - component: {fileID: 512364903}
   - component: {fileID: 512364902}
   - component: {fileID: 512364901}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1354,7 +1366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 538319946}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1391,7 +1403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 541896720}
   - component: {fileID: 541896719}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: SB_Life
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1481,7 +1493,7 @@ GameObject:
   - component: {fileID: 607480225}
   - component: {fileID: 607480227}
   - component: {fileID: 607480226}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1561,7 +1573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &761546054
 Transform:
   m_ObjectHideFlags: 0
@@ -1762,7 +1774,7 @@ GameObject:
   - component: {fileID: 893541019}
   - component: {fileID: 893541018}
   - component: {fileID: 893541017}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1862,7 +1874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1058058052}
   - component: {fileID: 1058058053}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Life
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2437,7 +2449,7 @@ GameObject:
   - component: {fileID: 1552976030}
   - component: {fileID: 1552976032}
   - component: {fileID: 1552976031}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2730,7 +2742,7 @@ GameObject:
   - component: {fileID: 1854121397}
   - component: {fileID: 1854121399}
   - component: {fileID: 1854121398}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3077,13 +3089,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 108549430072566982, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 252358442347464726, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1241653803343867569, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2517380927504100526, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2517380927504100526, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029510607719520783, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225950331743176527, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: text
@@ -3105,9 +3137,25 @@ PrefabInstance:
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 1531462369}
+    - target: {fileID: 4643719411154317920, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881773076653663336, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4881773076653663336, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5323574457044323565, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879733518824674493, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6909465057724879632, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: m_LocalPosition.x
