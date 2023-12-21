@@ -20,6 +20,8 @@ public class EnemyController : MonoBehaviour, EnemyLife
     private bool isInChaseRange;
     private bool isInAttackRange;
     private bool isProtecting = false;
+    private bool isAttacking = false;
+    private int Protect;
 
     [SerializeField]
     private GameObject player;
@@ -39,6 +41,7 @@ public class EnemyController : MonoBehaviour, EnemyLife
     {
         anim.SetBool("isMoving", isInChaseRange);
 
+
         isInChaseRange = Physics2D.OverlapCircle(transform.position, checkRadius, layerPlayer);
         isInAttackRange = Physics2D.OverlapCircle(transform.position, attackRadius, layerPlayer);
 
@@ -50,19 +53,35 @@ public class EnemyController : MonoBehaviour, EnemyLife
     }
 
     private void FixedUpdate(){
+
+        Protect = Random.Range(0, 11);
+
         dir = player.transform.position - transform.position;
-        if(!isInAttackRange){
-            anim.SetBool("isProtecting", false);
-            isProtecting = false;
-        }
-        if(isInChaseRange && !isInAttackRange){
-            rb.velocity = dir.normalized * speed;
-        }
-        if(isInAttackRange){
+        if(Protect == 4 && !isAttacking){
             rb.velocity = Vector2.zero;
             isProtecting = true;
             anim.SetBool("isProtecting", true);
         }
+        else if(Protect >= 0 && Protect <= 3){
+            anim.SetBool("isProtecting", false);
+            isProtecting = false;
+            
+        }
+        
+        if(!isInAttackRange){
+            anim.SetBool("isAttacking", false);
+            isAttacking = false;
+        }
+        if(isInChaseRange && !isInAttackRange && !isProtecting){
+            rb.velocity = dir.normalized * speed;
+        }
+        if(isInAttackRange && !isProtecting){
+            rb.velocity = Vector2.zero;
+            isAttacking = true;
+            anim.SetBool("isAttacking", true);
+        }
+    
+        
     }
 
     public void changeLife(int damage)

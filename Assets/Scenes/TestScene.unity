@@ -310,7 +310,7 @@ MonoBehaviour:
   speed: 1.5
   checkRadius: 2
   attackRadius: 0.15
-  shouldRotate: 0
+  shouldRotate: 1
   layerPlayer:
     serializedVersion: 2
     m_Bits: 256
@@ -3121,6 +3121,10 @@ PrefabInstance:
       propertyPath: text
       value: 
       objectReference: {fileID: 777322855}
+    - target: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: lifeText
       value: 
