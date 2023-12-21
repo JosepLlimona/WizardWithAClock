@@ -98,7 +98,7 @@ public class SFBossAI : MonoBehaviour
     private void portalPunch()
     {
         int nombre = Random.Range(5, 10);
-        for (int i=0;i<=nombre; i++)
+        for (int i=0;i<=1; i++)
         {
             SummonInstance();            
         }
@@ -109,8 +109,6 @@ public class SFBossAI : MonoBehaviour
         Vector2 pos = new Vector2 (PunchStart.transform.position.x + Random.Range(-2, 2), PunchStart.transform.position.y + Random.Range(-2, 2));
         GameObject punchInstance = Instantiate(punch, pos, Quaternion.identity);
         punchInstance.GetComponent<Animator>().SetTrigger("Attacking");
-       
-       //Destroy(punchInstance);
     }
     public void add_portal_punch()
     {
