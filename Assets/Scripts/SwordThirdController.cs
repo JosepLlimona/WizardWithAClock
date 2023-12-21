@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
 
-public class SwordController : MonoBehaviour
+public class SwordThirdController : MonoBehaviour
 {
+
+    public GameObject player;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -15,9 +16,9 @@ public class SwordController : MonoBehaviour
         }
     }
 
-    private void AniamtionEnds(string name)
+    public void endAttack()
     {
-        Debug.Log("Animation End: " + name);
-        GetComponentInParent<PlayerController>().continueCombo(name);
+        player.GetComponent<PlayerController>().endSTA();
+        Destroy(this.gameObject);
     }
 }

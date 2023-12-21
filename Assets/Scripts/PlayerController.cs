@@ -1,13 +1,16 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header ("Movement")]
     [SerializeField]
     private float speed;
     private PlayerControlls playerControlls;
@@ -16,6 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool esMirror;
     [SerializeField]
     private float dashForce;
+    private bool isDashing = false;
+
+    [Header("Animators")]
     [SerializeField]
     private Animator playerAnim;
     [SerializeField]
@@ -24,16 +30,23 @@ public class PlayerController : MonoBehaviour
     private Animator fistAnim;
     [SerializeField]
     private Animator swordAnim;
+    [Header("Input")]
     [SerializeField]
     private PlayerInput playerInput;
     [SerializeField]
     private TextMeshProUGUI text;
+    
+    [Header("GameObjects")]
     [SerializeField]
     private GameObject hammer;
+    [SerializeField]
+    private GameObject swordThird;
     [SerializeField]
     private GameObject fists;
     [SerializeField]
     private Transform hammerStart;
+
+    [Header("Audio")]
     [SerializeField]
     private AudioSource ora;
     [SerializeField]
@@ -43,14 +56,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private AudioSource[] misses;
 
+    [Header("Health")]
+    [SerializeField]
+    private Slider lifeSlider;
+    [SerializeField]
+    private TextMeshProUGUI lifeText;
+    private int life = 100;
+    private int maxLife = 100;
+
     private int actualClock = 1;
 
     private bool dashPerformed = false;
     private bool mattackPerformed = false;
     private bool canMove = true;
     private bool canHeavyAttack = true;
-
-    [SerializeField]
     private int combo = 0;
 
     private string currentControllScheme;
@@ -67,46 +86,7 @@ public class PlayerController : MonoBehaviour
         {
             playerInput.onControlsChanged += SwitchControls;
         }
-    }
 
-    private void OnEnable()
-    {
-        playerControlls.Standard.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerControlls.Standard.Disable();
-    }
-
-    private void FixedUpdate()
-    {
-     
-        if (esMirror)
-        {
-            moveInput = playerControlls.Standard.Movement.ReadValue<Vector2>();
-            moveInput.y *= -1;
-        }
-        else
-        {
-            moveInput = playerControlls.Standard.Movement.ReadValue<Vector2>();
-        }
-        if (canMove)
-        {
-            rbody.velocity = moveInput * speed;
-            if (moveInput.x < 0)
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
-            else if (moveInput.x > 0)
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-            playerAnim.SetFloat("dirX", moveInput.x);
-            playerAnim.SetFloat("dirY", moveInput.y);
-            clockAnim.SetFloat("dirX", moveInput.x);
-            clockAnim.SetFloat("dirY", moveInput.y);
-        }
         playerControlls.Standard.Dash.performed += context =>
         {
             if (context.interaction is TapInteraction)
@@ -188,7 +168,46 @@ public class PlayerController : MonoBehaviour
             resetBools();
             changeText();
         };
+    }
 
+    private void OnEnable()
+    {
+        playerControlls.Standard.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControlls.Standard.Disable();
+    }
+
+    private void FixedUpdate()
+    {
+     
+        if (esMirror)
+        {
+            moveInput = playerControlls.Standard.Movement.ReadValue<Vector2>();
+            moveInput.y *= -1;
+        }
+        else
+        {
+            moveInput = playerControlls.Standard.Movement.ReadValue<Vector2>();
+        }
+        if (canMove)
+        {
+            rbody.velocity = moveInput * speed;
+            if (moveInput.x < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else if (moveInput.x > 0)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            playerAnim.SetFloat("dirX", moveInput.x);
+            playerAnim.SetFloat("dirY", moveInput.y);
+            clockAnim.SetFloat("dirX", moveInput.x);
+            clockAnim.SetFloat("dirY", moveInput.y);
+        }
     }
 
     private void changeText()
@@ -220,19 +239,23 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator dash(Vector2 direction)
     {
-        canMove = false;
-        GetComponent<BoxCollider2D>().isTrigger = true;
-        playerAnim.SetBool("dashing", true);
-        if (direction == Vector2.zero)
+        if (!isDashing)
         {
-            direction = Vector2.left;
-        };
-        rbody.AddForce(direction * dashForce, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(0.3f);
-        playerAnim.SetBool("dashing", false);
-        canMove = true;
-        GetComponent<BoxCollider2D>().isTrigger = false;
-
+            isDashing = true;
+            canMove = false;
+            Physics2D.IgnoreLayerCollision(8, 9, true);
+            playerAnim.SetBool("dashing", true);
+            if (direction == Vector2.zero)
+            {
+                direction = Vector2.left;
+            };
+            rbody.AddForce(direction * dashForce, ForceMode2D.Impulse);
+            yield return new WaitForSeconds(0.3f);
+            playerAnim.SetBool("dashing", false);
+            canMove = true;
+            Physics2D.IgnoreLayerCollision(8, 9, false);
+            isDashing = false;
+        }
     }
 
     private IEnumerator attack()
@@ -323,14 +346,48 @@ public class PlayerController : MonoBehaviour
                     combo = 0;
                     return;
                 }
-                swordAnim.SetTrigger("ThirdAttack");
+                Vector3 pos = hammerStart.transform.position;
+                var swordTAttack = Instantiate(swordThird, pos, Quaternion.identity);
+                swordTAttack.GetComponent<SwordThirdController>().player = this.gameObject;
                 break;
             case "ThirdAttack":
                 Debug.Log("Enters");
+                if (!clockAnim.isActiveAndEnabled)
+                {
+                    Debug.Log("Animator disabled");
+                }
                 clockAnim.SetBool("MediumAttack", false);
                 combo = 0;
                 break;
         }
+    }
+
+    public void lostLife(int damage)
+    {
+        life -= damage;
+        if(life <= 0)
+        {
+            life = 0;
+            Debug.Log("Game Over");
+        }
+        lifeSlider.value = life;
+        lifeText.text = life.ToString();
+    }
+
+    public void heal(int healing)
+    {
+        life += healing;
+        if (life >= maxLife)
+        {
+            life = maxLife;
+        }
+        lifeSlider.value = life;
+        lifeText.text = life.ToString();
+    }
+
+    public void endSTA()
+    {
+        continueCombo("ThirdAttack");
     }
 
     private void SwitchControls(PlayerInput input)

@@ -13,6 +13,7 @@ public class HammerController : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy")
         {
+            Debug.Log("Attacking with Hammer");
             Debug.Log(col.gameObject.name + " touched");
             col.GetComponent<EnemyController>().changeLife(30);
         }

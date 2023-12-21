@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SandBomb_Script : MonoBehaviour
+public class SandBomb_Script : MonoBehaviour, EnemyLife
 {
 
     public float speed;

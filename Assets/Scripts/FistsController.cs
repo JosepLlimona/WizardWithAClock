@@ -20,11 +20,17 @@ public class FistsController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if(col == null)
+        {
+            Debug.Log("Coll null");
+        }
+
+
         if (col.gameObject.tag == "Enemy")
         {
             hit = true;
-            //Debug.Log(col.gameObject.name + " touched");
-            col.GetComponent<EnemyController>().changeLife(1);
+            Debug.Log("Attacking with fists");
+            col.GetComponent<EnemyLife>().changeLife(15);
             GetComponentInParent<PlayerController>().playPunchAudio(true);
         }
     }
