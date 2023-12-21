@@ -72,18 +72,26 @@ public class SFBossAI : MonoBehaviour
         if (!atack && !overload)
         {
             canmove = !canmove;
+            if (canmove)
+            {
+                BossAnim.SetBool("moving", true);
+            }
+            else
+            {
+                BossAnim.SetBool("moving", false);
+            }
         }
         if (!canmove && !overload)
         {
             rbody.velocity = Vector3.zero;
             rbody.angularVelocity = 0;
 
-            if (AtackOption >= 0 && AtackOption < 5 && !atack)
+            if (AtackOption >= 0 && AtackOption < 2 && !atack)
             {
                 portalPunch();
                 BossAnim.SetBool("PreparingPortalP", true);
             }
-            else if (AtackOption >= 5 && AtackOption < 8 && !atack)
+            else if (AtackOption >= 2 && AtackOption < 4 && !atack)
             {
                 TpPunchCharge();
             }

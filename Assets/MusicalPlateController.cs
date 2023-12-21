@@ -1,17 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.U2D;
-using Vector3 = UnityEngine.Vector3;
 
-public class PuzzleInteractable : PlateController
+public class MusicalPlateController : PlateController
 {
-
-    public GameObject mirrorPlayer;
-    public PlayerController player;
+    // Start is called before the first frame update
 
 
     void Start()
@@ -30,26 +23,12 @@ public class PuzzleInteractable : PlateController
         if (!estaPitjada)
         {
             estaPitjada = true;
-
+            activarPlaca();
+            ReproduirSo();
             Debug.Log("OntriggerEnter -> estic pitjada");
 
         }
-        if (PlacaIniciPuzzle)
-        {
-            //
-            activarPlaca();
-            if(mirrorPlayer.activeInHierarchy == false)
-            {
 
-                mirrorPlayer.transform.position = new Vector3(
-                    player.transform.position.x,
-                     -player.transform.position.y, // Inverteix la posició y del playe
-                player.transform.position.z);
-                mirrorPlayer.SetActive(true);   
-    
-            }
-
-        }
 
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -58,8 +37,7 @@ public class PuzzleInteractable : PlateController
         {
             Debug.Log("OnTriggerExit -> Ja no esta PITJADA");
             estaPitjada = false;
+            desactivarPlaca();
         }
     }
-
-
 }

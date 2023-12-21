@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &702509372565678974
+--- !u!1 &1435599999736558955
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,60 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7531294780302008211}
-  - component: {fileID: 2427904462097542812}
-  - component: {fileID: 8969794958890308971}
-  - component: {fileID: 4948045657205055783}
-  - component: {fileID: 5326381162577033770}
-  - component: {fileID: 6080542159147283699}
+  - component: {fileID: 8108405945678644126}
+  - component: {fileID: 6859845339232625462}
+  - component: {fileID: 7478074894288795926}
+  - component: {fileID: 3074525504871019288}
+  - component: {fileID: 7388117484369791354}
+  - component: {fileID: 6474316650936811056}
   m_Layer: 0
-  m_Name: PlacaPuzzle
+  m_Name: PlacaMusical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7531294780302008211
+--- !u!4 &8108405945678644126
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702509372565678974}
+  m_GameObject: {fileID: 1435599999736558955}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.957, y: 0.309, z: 0}
+  m_LocalPosition: {x: -4.4293823, y: -0.8622905, z: 0}
   m_LocalScale: {x: 0.18686114, y: 0.16096313, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2427904462097542812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702509372565678974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f4b900a1b4d89f4dbda3dcb0e5bd6f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  estaEncesa: 0
-  PlacaIniciPuzzle: 0
-  spriteON: {fileID: 21300000, guid: 184daf161a84fb946b25da2ce9a09537, type: 3}
-  spriteOFF: {fileID: 21300000, guid: 0cc912f29b470b944ae7e6da727f85c5, type: 3}
-  mirrorPlayer: {fileID: 6391547698706114718, guid: b16a26a2681f3fe40a956962b2b5efba, type: 3}
-  player: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
---- !u!61 &8969794958890308971
+--- !u!61 &6859845339232625462
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702509372565678974}
+  m_GameObject: {fileID: 1435599999736558955}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -100,26 +81,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2765777, y: 1.568971}
   m_EdgeRadius: 0
---- !u!114 &4948045657205055783
+--- !u!114 &7478074894288795926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702509372565678974}
+  m_GameObject: {fileID: 1435599999736558955}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59ef1aeeac6a1744897a1ac9a92d6689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   InicialmentVisualitzable: 1
---- !u!212 &5326381162577033770
+--- !u!212 &3074525504871019288
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702509372565678974}
+  m_GameObject: {fileID: 1435599999736558955}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -165,13 +146,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!82 &6080542159147283699
+--- !u!82 &7388117484369791354
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702509372565678974}
+  m_GameObject: {fileID: 1435599999736558955}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -261,3 +242,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6474316650936811056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435599999736558955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10216b4f35c58e4f8e443ef9e00cda9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  estaEncesa: 0
+  PlacaIniciPuzzle: 0
+  spriteON: {fileID: 21300000, guid: 184daf161a84fb946b25da2ce9a09537, type: 3}
+  spriteOFF: {fileID: 21300000, guid: 0cc912f29b470b944ae7e6da727f85c5, type: 3}

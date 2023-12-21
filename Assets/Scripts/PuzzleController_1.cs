@@ -9,6 +9,7 @@ public class PuzzleController_1 : PuzzleController
 
     [SerializeField] private List<PuzzleInteractuableBehavior> _plaquesPuzzle;
     [SerializeField] private PlayerController mirrorPlayer;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -31,10 +32,9 @@ public class PuzzleController_1 : PuzzleController
 
         }
 
-        if (puzzleStarted)
-        {
+      
             ControlarPlaquesPuzzle();
-        }
+        
     }
 
     private void OnMirrorPuzzleEnd()
