@@ -1249,7 +1249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui: {fileID: 192038992}
-  startPlate: {fileID: 2427904462737377762}
+  startPlate: {fileID: 1695076972}
   chest: {fileID: 2053940074}
   puzzleCompletedAudio: {fileID: 1522093148}
   puzzleStartedAudio: {fileID: 1522093147}
@@ -1258,6 +1258,7 @@ MonoBehaviour:
   - {fileID: 304432060}
   - {fileID: 148401243}
   mirrorPlayer: {fileID: 1187770324}
+  player: {fileID: 433753479}
 --- !u!82 &1522093147
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1512,6 +1513,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1695076969 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1152725114905105469, guid: 79e5e608f3eb693478e489b49b5d2e60, type: 3}
+  m_PrefabInstance: {fileID: 4381176867668679531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1695076972 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2058547475732455145, guid: 79e5e608f3eb693478e489b49b5d2e60, type: 3}
+  m_PrefabInstance: {fileID: 4381176867668679531}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263ebbe0c60184249a9c4f4e839dee00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1884287334
 GameObject:
   m_ObjectHideFlags: 0
@@ -2027,17 +2044,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 004b1b9ba53641f499e4eee70b7492cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2427904462737377762 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 620743282242161274, guid: 79e5e608f3eb693478e489b49b5d2e60, type: 3}
-  m_PrefabInstance: {fileID: 4381176867668679531}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f4b900a1b4d89f4dbda3dcb0e5bd6f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4381176867668679531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2062,6 +2068,14 @@ PrefabInstance:
       propertyPath: mirrorPlayer
       value: 
       objectReference: {fileID: 1187770323}
+    - target: {fileID: 2058547475732455145, guid: 79e5e608f3eb693478e489b49b5d2e60, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 1695076969}
+    - target: {fileID: 2058547475732455145, guid: 79e5e608f3eb693478e489b49b5d2e60, type: 3}
+      propertyPath: PlacaIniciPuzzle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5913194406565981266, guid: 79e5e608f3eb693478e489b49b5d2e60, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2

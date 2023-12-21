@@ -257,5 +257,7 @@ MonoBehaviour:
   id: 0
   estaEncesa: 0
   PlacaIniciPuzzle: 0
+  spriteRenderer: {fileID: 3074525504871019288}
   spriteON: {fileID: 21300000, guid: 184daf161a84fb946b25da2ce9a09537, type: 3}
   spriteOFF: {fileID: 21300000, guid: 0cc912f29b470b944ae7e6da727f85c5, type: 3}
+  idPlaca: 0

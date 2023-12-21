@@ -34,22 +34,7 @@ public class PuzzleInteractable : PlateController
             Debug.Log("OntriggerEnter -> estic pitjada");
 
         }
-        if (PlacaIniciPuzzle)
-        {
-            //
-            activarPlaca();
-            if(mirrorPlayer.activeInHierarchy == false)
-            {
 
-                mirrorPlayer.transform.position = new Vector3(
-                    player.transform.position.x,
-                     -player.transform.position.y, // Inverteix la posició y del playe
-                player.transform.position.z);
-                mirrorPlayer.SetActive(true);   
-    
-            }
-
-        }
 
     }
     private void OnTriggerExit2D(Collider2D collision)

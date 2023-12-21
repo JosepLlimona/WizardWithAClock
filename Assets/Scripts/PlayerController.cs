@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if (esMirror) { this.gameObject.SetActive(false); }
+        //if (esMirror) { this.gameObject.SetActive(false); }
         playerControlls = new PlayerControlls();
         rbody = GetComponent<Rigidbody2D>();
 
@@ -404,5 +404,5 @@ public class PlayerController : MonoBehaviour
            
         }
     }
-
+    
 }

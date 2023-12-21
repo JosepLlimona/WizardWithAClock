@@ -6,8 +6,9 @@ public class PuzzleController : MonoBehaviour
 {
 
     [SerializeField] protected UIController ui;
-    [SerializeField] protected PuzzleInteractable startPlate;
 
+
+    [SerializeField] protected PlateController startPlate;
 
     [SerializeField] protected Chest chest;
     [SerializeField] protected AudioSource puzzleCompletedAudio, puzzleStartedAudio;
@@ -35,6 +36,7 @@ public class PuzzleController : MonoBehaviour
         //AQUI HAURE DE FER SPAWN DEL COFRE
         Debug.Log("PuzzleCompletat");
         chest.EnableChest();
+        Destroy(startPlate);
         //Fer desapareixer al mirror player
  
         //reproduir so del cofre

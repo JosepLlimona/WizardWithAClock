@@ -5,7 +5,7 @@ using UnityEngine;
 public class MusicalPlateController : PlateController
 {
     // Start is called before the first frame update
-
+    [SerializeField] private int idPlaca;
 
     void Start()
     {
@@ -39,5 +39,11 @@ public class MusicalPlateController : PlateController
             estaPitjada = false;
             desactivarPlaca();
         }
+    }
+
+    public int getIdPlaca() { return idPlaca; }
+    public bool esMateixaPlacaPitjada(int idPlaca_PlacaQueHauriaDeSonar)
+    {
+        return idPlaca == idPlaca_PlacaQueHauriaDeSonar;
     }
 }
