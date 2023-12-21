@@ -55,6 +55,7 @@ public class PlateController : MonoBehaviour
     public void activarPlaca()
     {
         spriteRenderer.sprite = spriteON;
+
         estaEncesa = true;
     }
 

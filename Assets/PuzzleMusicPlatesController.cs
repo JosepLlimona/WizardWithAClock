@@ -15,6 +15,7 @@ public class PuzzleMusicPlatesController : PuzzleController
     int idPlacaActualPitjada = 0;
     bool playerHaPitjatPlaca = false; 
    bool revisarPlaques = true;
+    [SerializeField] private AudioSource ticSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,9 +77,33 @@ public class PuzzleMusicPlatesController : PuzzleController
                 Debug.Log("HANDLING PLAYER TURN");
                 playerHaPitjatPlaca = false;
                 Debug.Log("El player ha pitjar una placa i comprovem si es igual" + idPlacaActualPitjada + ordrePlaquesMusicals[placaActualHauriaSerPitjadaPerJugador]);
+
+
                 if (idPlacaActualPitjada == ordrePlaquesMusicals[placaActualHauriaSerPitjadaPerJugador])
                 {
                     placaActualHauriaSerPitjadaPerJugador++;
+                    Debug.Log("Sumem la placa acutal que estem mrian de la sequencia:" + placaActualHauriaSerPitjadaPerJugador);
+                    if (placaActualHauriaSerPitjadaPerJugador == indexRonda)
+                    {
+                        Debug.Log("hem passat de ronda");
+                        if (indexRonda == maximRondes)
+                        {
+                            //hem guanyat el puzzle
+                            isPlayerTurn = false;
+                            OnPuzzleEnd();
+                        }
+                        else
+                        {
+                            //encara queden rondes
+                            placaActualHauriaSerPitjadaPerJugador = 0;
+                            indexRonda++;
+                            isPlayerTurn = false;
+                            revisarPlaques = true;
+                            HandleTurns();
+                        }
+
+                    }
+                    revisarPlaques = true;
                 }
                 else
                 { //jugador ha fallat
@@ -89,27 +114,10 @@ public class PuzzleMusicPlatesController : PuzzleController
                     isPlayerTurn = false;
                     revisarPlaques = true;
                     HandleTurns();
-                    
+
                 }
-                if (placaActualHauriaSerPitjadaPerJugador == indexRonda)
-                {
-                    Debug.Log("hem passat de ronda");
-                    if (indexRonda == maximRondes)
-                    {
-                        //hem guanyat el puzzle
-                        isPlayerTurn = false;
-                        OnPuzzleEnd();
-                    }
-                    else
-                    {
-                        //encara queden rondes
-                        placaActualHauriaSerPitjadaPerJugador = 0;
-                        indexRonda++;
-                        isPlayerTurn = false;
-                        revisarPlaques = true;
-                        HandleTurns();
-                    }
-                }
+                    revisarPlaques = true;
+
             }
             
         }
@@ -136,11 +144,8 @@ public class PuzzleMusicPlatesController : PuzzleController
         Debug.Log("Getting New Sequence");
         int id;
         ordrePlaquesMusicals.Clear();
-        for(int i = 0; i < musicalPlates.Count; i++)
-        {
-            ferSonarPlaca(musicalPlates[i]);
-        }
-        for(int i = 0; i<maximRondes; i++)
+        StartCoroutine(ReproducirSecuencia());
+        for (int i = 0; i<maximRondes; i++)
         {
             id = GetRandomId();
             ordrePlaquesMusicals.Add(id);
@@ -152,6 +157,7 @@ public class PuzzleMusicPlatesController : PuzzleController
     private void ferSonarPlaca(MusicalPlateController placa)
     {
         placa.activarPlaca();
+        placa.ReproduirSo();
         placa.desactivarPlaca();
     }
     private int GetRandomId() //retorna una id de les plaques musicals aleatoria
@@ -163,16 +169,7 @@ public class PuzzleMusicPlatesController : PuzzleController
     private void HandleIATurn()
     {
         //cada vegada que sigui el torn de la ia he de fer sona totes les plaques fins el index de ronda
-        for(int i = 0; i < indexRonda; i++)
-        {
-            int idPlacaAcutal = ordrePlaquesMusicals[i];
-            Debug.Log("Id de la placa que hauria de sonar" + idPlacaAcutal);
-            Debug.Log(musicalPlates[idPlacaAcutal].getIdPlaca());
-            //ferSonarPlaca(musicalPlates[idPlacaAcutal]);
-            musicalPlates[idPlacaAcutal].activarPlaca();
-            musicalPlates[idPlacaAcutal].desactivarPlaca();
-            musicalPlates[idPlacaAcutal].ReproduirSo();
-        }
+        StartCoroutine(ReproducirSecuencia());
         isPlayerTurn = true;
     }
 
@@ -180,6 +177,10 @@ public class PuzzleMusicPlatesController : PuzzleController
 
     private void HandleTurns()
     {
+        
+        StartCoroutine(ReporduirTicsPrincipi());
+        //StartCoroutine(esperar());
+        
         if (!isPlayerTurn)
         { //el torn de la maquina
             Debug.Log("HANDLING IA TURN");
@@ -188,6 +189,41 @@ public class PuzzleMusicPlatesController : PuzzleController
         Debug.Log("Hanle turns -> despres del if ");
   
         
+    }
+
+    IEnumerator ReproducirSecuencia()
+    {
+
+        yield return new WaitForSeconds(3.5f); // Ajusta el tiempo entre cada placa en la secuencia.
+        for (int i = 0; i < indexRonda; i++)
+        {
+            int idPlacaAcutal = ordrePlaquesMusicals[i];
+            Debug.Log("Id de la placa que hauria de sonar" + idPlacaAcutal);
+            Debug.Log(musicalPlates[idPlacaAcutal].getIdPlaca());
+            ferSonarPlaca(musicalPlates[idPlacaAcutal]);
+
+            yield return new WaitForSeconds(0.7f); // Ajusta el tiempo entre cada placa en la secuencia.
+        }
+
+   
+
+    }
+
+    IEnumerator ReporduirTicsPrincipi()
+    {
+        yield return new WaitForSeconds(1f); // Ajusta el tiempo entre cada placa en la secuencia.
+        for (int i = 0; i<3; i++)
+        {
+            ticSound.Play();
+            yield return new WaitForSeconds(0.3f); // Ajusta el tiempo entre cada placa en la secuencia.
+        }
+        StartCoroutine(esperar());
+    }
+
+    IEnumerator esperar()
+    {
+        yield return new WaitForSeconds(2f); // Ajusta el tiempo entre cada placa en la secuencia.
+
     }
 
 
