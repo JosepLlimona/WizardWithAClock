@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class PuzzleMusicPlatesController : PuzzleController
@@ -49,28 +50,7 @@ public class PuzzleMusicPlatesController : PuzzleController
 
             puzzleStarted = true;
             OnMusicalPuzzleStart();
-        }
-
-
-        if (!puzzleStarted)
-        {
-            for (int i = 0; i < musicalPlates.Count; i++)
-            {
-                if (musicalPlates[i].EstaSiguentPitjada())
-                {
-                    //playerHaPitjatPlaca = true;
-                    //idPlacaActualPitjada = musicalPlates[i].getIdPlaca();
-                    ferSonarPlaca(musicalPlates[i]);
-
-                    Debug.Log("Abans de començar el puzzle id placa: " + musicalPlates[i].getIdPlaca());
-                    // revisarPlaques = false; //ja no fa falta revisar plaques
-
-                }
-            }
-        }
-
-
-      
+        }      
 
     }
 
@@ -105,9 +85,7 @@ public class PuzzleMusicPlatesController : PuzzleController
     }
     private void ferSonarPlaca(MusicalPlateController placa)
     {
-        placa.activarPlaca();
-        placa.ReproduirSo();
-        placa.desactivarPlaca();
+        StartCoroutine(ferSonarPlacaMusical(placa));
     }
     private int GetRandomId() //retorna una id de les plaques musicals aleatoria
     {
@@ -247,6 +225,14 @@ public class PuzzleMusicPlatesController : PuzzleController
     {
         yield return new WaitForSeconds(2f); // Ajusta el tiempo entre cada placa en la secuencia.
 
+    }
+
+    IEnumerator ferSonarPlacaMusical(MusicalPlateController placa)
+    {
+        placa.activarPlaca();
+        placa.ReproduirSo();
+        yield return new WaitForSeconds(0.5f);
+        placa.desactivarPlaca();
     }
 
 

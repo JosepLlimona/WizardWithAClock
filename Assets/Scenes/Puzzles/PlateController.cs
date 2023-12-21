@@ -13,8 +13,8 @@ public class PlateController : MonoBehaviour
     protected AudioSource audioSource;  // AudioSource per reproduir el so
     protected FadeObject fader;
     // Start is called before the first frame update
-    [SerializeField] private Sprite spriteON;  // Assenyala l'sprite quan la placa està en ON
-    [SerializeField] private Sprite spriteOFF;  // Assenyala l'sprite quan la placa està en OFF
+    [SerializeField] protected Sprite spriteON;  // Assenyala l'sprite quan la placa està en ON
+    [SerializeField] protected Sprite spriteOFF;  // Assenyala l'sprite quan la placa està en OFF
 
     
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class PlateController : MonoBehaviour
         else
         {
             activarPlaca();
-            desactivarPlaca();
+            //desactivarPlaca();
         }
     }
 
@@ -55,7 +55,7 @@ public class PlateController : MonoBehaviour
     public void activarPlaca()
     {
         spriteRenderer.sprite = spriteON;
-
+        Debug.Log("FicantSpriteOn");
         estaEncesa = true;
     }
 
@@ -63,6 +63,7 @@ public class PlateController : MonoBehaviour
     {
 
         spriteRenderer.sprite = spriteOFF;
+        Debug.Log("FicantSpriteOFF");
         estaEncesa = false;
     }
 
