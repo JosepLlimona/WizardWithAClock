@@ -17492,6 +17492,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cuadrat_Habitacions
       objectReference: {fileID: 0}
+    - target: {fileID: 8543627575508795747, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
+      propertyPath: m_Size.x
+      value: 6.890892
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543627575508795747, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
+      propertyPath: m_Size.y
+      value: 7.603257
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543627575508795747, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
+      propertyPath: m_Offset.x
+      value: 3.982408
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543627575508795747, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
+      propertyPath: m_Offset.y
+      value: 4.3195767
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

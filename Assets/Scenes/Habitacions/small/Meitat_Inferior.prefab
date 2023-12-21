@@ -1372,6 +1372,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Meitat_Inferior
       objectReference: {fileID: 0}
+    - target: {fileID: 2854025189349392592, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
+      propertyPath: m_Size.y
+      value: 2.064334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854025189349392592, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.5426433
+      objectReference: {fileID: 0}
     - target: {fileID: 6326063553285601642, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 50
@@ -2379,11 +2387,11 @@ PrefabInstance:
     - target: {fileID: 7151900529481786940, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: tileParetEsq
       value: 
-      objectReference: {fileID: 11400000, guid: 2e400df9e2c2e16428599a5b9ac01492, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7151900529481786940, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: tileParetDreta
       value: 
-      objectReference: {fileID: 11400000, guid: e13207f046be20545bf378ac6a9c63d1, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7151900529481786940, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: tilemapColisions
       value: 
@@ -2391,11 +2399,11 @@ PrefabInstance:
     - target: {fileID: 7151900529481786940, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: tileParetInferior
       value: 
-      objectReference: {fileID: 11400000, guid: 8acf28dc046afb7478f6656f3f118995, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7151900529481786940, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: tileParetSuperior
       value: 
-      objectReference: {fileID: 11400000, guid: a63d43673597e71409b4a57e802ded83, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7151900529481786940, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: posPortes.Array.size
       value: 3

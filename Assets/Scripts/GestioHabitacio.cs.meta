@@ -9,8 +9,10 @@ MonoImporter:
   - tileParetDreta: {fileID: 1129423310124026210, guid: 31cd38184e9b3cc40b7a198b4fbb5702, type: 3}
   - tileParetSuperior: {fileID: 1129423310124026210, guid: 886708d8afc94ff41b70df16018add01, type: 3}
   - tileParetInferior: {fileID: 1129423310124026210, guid: 4b2a0c14c8fd2074995ab5af0c99ecec, type: 3}
-  - tilePortaVertical: {fileID: 1129423310124026210, guid: 13f9c379d0850fc4b93fc5aa14d619f6, type: 3}
-  - tilePortaHoritzontal: {fileID: 1129423310124026210, guid: 05f00702dc68e3d4ca600ceafe32bfea, type: 3}
+  - tilePortaEsq: {fileID: 1129423310124026210, guid: 13f9c379d0850fc4b93fc5aa14d619f6, type: 3}
+  - tilePortaDreta: {fileID: 1129423310124026210, guid: f73218884f543044a9dde3a0127a3239, type: 3}
+  - tilePortaSuperior: {fileID: 1129423310124026210, guid: 05f00702dc68e3d4ca600ceafe32bfea, type: 3}
+  - tilePortaInferior: {fileID: 1129423310124026210, guid: 1a53e9db3440ccf419c89aed317dc307, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
