@@ -27,7 +27,7 @@ public class GestioHabitacio : MonoBehaviour
 
     void Start()
     {
-        TancarPortesAleatories();
+        //TancarPortesAleatories();
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -118,6 +118,7 @@ public class GestioHabitacio : MonoBehaviour
         return null;
     }
 
+
     void GenerarEnemics(){
         int nPerGenerar = Random.Range(5, 10);
         int nEnemicsGrans = 0;
@@ -147,7 +148,7 @@ public class GestioHabitacio : MonoBehaviour
         }
         
     }
-
+    
 
     void Update(){
         if (nEnemics == 0 && portesTancades){

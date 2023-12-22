@@ -21,9 +21,9 @@ public class EnemyController : MonoBehaviour, EnemyLife
     private bool isInAttackRange;
     private bool isProtecting = false;
     private bool isAttacking = false;
+
     private int Protect;
 
-    [SerializeField]
     private GameObject player;
 
     [SerializeField]
@@ -35,6 +35,9 @@ public class EnemyController : MonoBehaviour, EnemyLife
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        player = GameObject.Find("Player");
+        StartCoroutine(nums());
+
     }
 
     private void Update()
@@ -54,10 +57,10 @@ public class EnemyController : MonoBehaviour, EnemyLife
 
     private void FixedUpdate(){
 
-        Protect = Random.Range(0, 11);
-
+        
         dir = player.transform.position - transform.position;
-        if(Protect == 4 && !isAttacking){
+
+        if(Protect == 4 && !isAttacking && !isProtecting){
             rb.velocity = Vector2.zero;
             isProtecting = true;
             anim.SetBool("isProtecting", true);
@@ -84,6 +87,16 @@ public class EnemyController : MonoBehaviour, EnemyLife
         
     }
 
+    private void OnTriggerEnter2D(Collider2D col){
+
+       if(col.tag == "Player")
+        {
+            Debug.Log("pega");
+            player.GetComponent<PlayerController>().lostLife(15);
+        }
+   }
+
+
     public void changeLife(int damage)
     {
         if(!isProtecting){
@@ -96,5 +109,24 @@ public class EnemyController : MonoBehaviour, EnemyLife
         
     }
 
-  
+    public void AcabarProtect(){
+        isProtecting = false;
+        Debug.Log("acabarP");
+        Protect = Random.Range(0, 9);
+    }
+    
+    private IEnumerator nums(){
+    
+        while(true){
+
+            if(!isProtecting){
+                Protect = Random.Range(0, 9);
+                Debug.Log(Protect);
+            }
+
+            yield return new WaitForSeconds(2);
+
+        }
+      
+    }
 }

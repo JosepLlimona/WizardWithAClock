@@ -21,7 +21,6 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
     private bool isInAttackRange;
     private bool hit = false;
 
-    [SerializeField]
     private GameObject player;
 
     [SerializeField]
@@ -33,6 +32,7 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        player = GameObject.Find("Player");
     }
 
     private void Update()
