@@ -7,8 +7,9 @@ public class FadeUIScript : MonoBehaviour
 {
     [SerializeField] private CanvasGroup myUIGroup;
     [SerializeField] private CanvasGroup pressText;
+    [SerializeField] private CanvasGroup InstrText;
     [SerializeField] private bool esTextPress;
-    [SerializeField] private bool fadeIn = false;
+    [SerializeField] private bool fadeIn = true;
     [SerializeField] private bool fadeOut = false;
 
     public void ShowUI()
@@ -32,6 +33,7 @@ public class FadeUIScript : MonoBehaviour
 
     public void ShowPressTextUI()
     {
+        if (InstrText != null) InstrText.gameObject.SetActive(false);
         Debug.Log("Ara mostro el text press");
         myUIGroup.alpha = 0;
         fadeIn = true;
@@ -42,6 +44,8 @@ public class FadeUIScript : MonoBehaviour
     public void HidePressTextUI()
     {
         //myUIGroup.alpha = 1;
+
+        if (InstrText != null)  InstrText.gameObject.SetActive(true);
         fadeOut = true;
         StartCoroutine(esperarFade());
         fadeIn = false;
