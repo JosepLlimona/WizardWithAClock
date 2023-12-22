@@ -9,13 +9,20 @@ public class HammerController : MonoBehaviour
     [SerializeField]
     private AudioSource explosion;
 
+    private int damage = 30;
+
+    public void setDamage(int damage)
+    {
+        this.damage = damage;
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Enemy")
         {
             Debug.Log("Attacking with Hammer");
             Debug.Log(col.gameObject.name + " touched");
-            col.GetComponent<EnemyController>().changeLife(30);
+            col.GetComponent<EnemyLife>().changeLife(damage);
         }
     }
 

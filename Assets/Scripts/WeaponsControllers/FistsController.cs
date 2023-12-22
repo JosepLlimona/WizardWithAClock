@@ -5,17 +5,11 @@ using UnityEngine;
 public class FistsController : MonoBehaviour
 {
     private bool hit = false;
+    public int damage = 1;
 
-    // Start is called before the first frame update
-    void Start()
+    public void setDamage(int damage)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        this.damage += damage;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -30,7 +24,7 @@ public class FistsController : MonoBehaviour
         {
             hit = true;
             Debug.Log("Attacking with fists");
-            col.GetComponent<EnemyLife>().changeLife(15);
+            col.GetComponent<EnemyLife>().changeLife(damage);
             GetComponentInParent<PlayerController>().playPunchAudio(true);
         }
     }

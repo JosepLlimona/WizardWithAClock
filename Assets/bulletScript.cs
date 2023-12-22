@@ -10,17 +10,18 @@ public class bulletScript : MonoBehaviour
     [SerializeField]
     private Animator BulletAnim;
     private bool alreadyShot = false; 
+
+    public void setPlayer(GameObject player)
+    {
+        this.player = player;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void shoting()
     {
         if (!alreadyShot)
