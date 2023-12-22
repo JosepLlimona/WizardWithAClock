@@ -16238,6 +16238,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1024780998097256463, guid: 30e022c9967ca694b965c8a5c8d939a4, type: 3}
+      propertyPath: Boss
+      value: 
+      objectReference: {fileID: 9196378915961048284, guid: 20ff42540fd427247a3480b98afb88b9, type: 3}
+    - target: {fileID: 1024780998097256463, guid: 30e022c9967ca694b965c8a5c8d939a4, type: 3}
+      propertyPath: enemicsGrans.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1024780998097256463, guid: 30e022c9967ca694b965c8a5c8d939a4, type: 3}
+      propertyPath: enemicsNormal.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1024780998097256463, guid: 30e022c9967ca694b965c8a5c8d939a4, type: 3}
+      propertyPath: enemicsGrans.Array.data[0]
+      value: 
+      objectReference: {fileID: 6849006903880971975, guid: 3b93633673f61824e8f334fd468fbd7c, type: 3}
+    - target: {fileID: 1024780998097256463, guid: 30e022c9967ca694b965c8a5c8d939a4, type: 3}
+      propertyPath: enemicsNormal.Array.data[0]
+      value: 
+      objectReference: {fileID: 5510396735757818735, guid: 5cdd6053168271343b60cb592e6dce83, type: 3}
     - target: {fileID: 3821081505133367747, guid: 30e022c9967ca694b965c8a5c8d939a4, type: 3}
       propertyPath: tileParetEsq
       value: 

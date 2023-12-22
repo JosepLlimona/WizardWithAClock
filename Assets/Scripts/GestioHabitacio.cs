@@ -27,7 +27,7 @@ public class GestioHabitacio : MonoBehaviour
 
     void Start()
     {
-        TancarPortesAleatories();
+        //TancarPortesAleatories();
     }
 
     void OnTriggerEnter2D(Collider2D other){
