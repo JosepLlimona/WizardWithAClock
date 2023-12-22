@@ -1,12 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Overlays;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class CanvasController : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private CanvasController canva;
+    public static event Action onShowPuzzle;
+    public static event Action onHidePuzzle;
 
     void Start()
     {
@@ -36,15 +40,18 @@ public class CanvasController : MonoBehaviour
     }
     public void showPuzzleText()
     {
+         canva.showInteractText();
+        onShowPuzzle?.Invoke();
 
-
-        canva.showInteractText();
             
         
     }
     public void hidePuzzleText()
     {
-        canva.hideInteractText();
+        onHidePuzzle?.Invoke();
+
+
+        //canva.hideInteractText();
     }
 
     public bool isInstructionActive()

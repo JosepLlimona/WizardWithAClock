@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -12,6 +13,11 @@ public class UIController : MonoBehaviour
     private bool esPotMostrar = false;
     private bool mostrat = false;
     private bool puzzleComençat = false;
+
+    public static event Action OnShowText;
+    public static event Action OnDisableText;
+    public static event Action OnPressShowText;
+    public static event Action OnPressDisableText;
     // Start is called before the first frame update
     private void Start()
     {
@@ -21,8 +27,11 @@ public class UIController : MonoBehaviour
     {
         if (!puzzleComençat)
         {
-            pressSpaceToRead.showInteractText();
+            //pressSpaceToRead.showInteractText();
             esPotMostrar = true;
+            pressSpaceToRead.gameObject.SetActive(true);
+            //OnShowText?.Invoke();
+            OnPressShowText?.Invoke();
 
         }
 
@@ -32,8 +41,10 @@ public class UIController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         esPotMostrar = false;
-        pressSpaceToRead.hideInteractText();
-        pressSpaceToRead.hidePuzzleText();
+        //OnDisableText?.Invoke();
+        OnPressDisableText?.Invoke();
+        //pressSpaceToRead.hideInteractText();
+        //pressSpaceToRead.hidePuzzleText();
     }
     public void onShowCanva()
     {
