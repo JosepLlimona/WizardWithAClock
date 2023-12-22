@@ -140,7 +140,6 @@ public class SFBossAI : MonoBehaviour, EnemyLife
         Vector2 pos = new Vector2(posx, posy);
         GameObject punchInstance = Instantiate(punch, pos, Quaternion.identity);
         punchInstance.GetComponent<Animator>().SetTrigger("Attacking");
-        punchInstance.GetComponent<punchInstance>().setPlayer(player);
     }
     public void add_portal_punch()
     {
@@ -223,6 +222,7 @@ public class SFBossAI : MonoBehaviour, EnemyLife
     {
         if (collision.tag == "Player")
         {
+            Debug.Log("Tocant desde boss");
             player.GetComponent<PlayerController>().lostLife(50);
         }
     }

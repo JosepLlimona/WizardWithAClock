@@ -4,25 +4,6 @@ using UnityEngine;
 
 public class punchInstance : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject player;
-    private bool hit = false;
-    // Start is called before the first frame update
-    public void setPlayer(GameObject player)
-    {
-        this.player = player;
-    }
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    
     public void DestroyPunch()
     {
         print("destroying");
@@ -30,11 +11,10 @@ public class punchInstance : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player" && !hit)
+        if (other.tag == "Player")
         {
-            Debug.Log("ayuda");
-            player.GetComponent<PlayerController>().lostLife(5);
-            hit = true;
+            Debug.Log("Tocant desde puny");
+            other.gameObject.GetComponent<PlayerController>().lostLife(5);
         }
     }
 }
