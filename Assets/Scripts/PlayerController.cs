@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
                 fistAnim.SetBool("isAttacking", true);
                 clockAnim.SetBool("LightAttack", true);
                 fists.GetComponent<SpriteRenderer>().enabled = true;
-                ora.Play();
+                //ora.Play();
             }
         };
         playerControlls.Standard.Attack.canceled += context =>
@@ -139,8 +139,8 @@ public class PlayerController : MonoBehaviour
             {
                 mattackPerformed = false;
                 fists.GetComponent<SpriteRenderer>().enabled = false;
-                ora.Stop();
-                singleOra.Play();
+                /*ora.Stop();
+                singleOra.Play();*/
                 fistAnim.SetBool("isAttacking", false);
                 clockAnim.SetBool("LightAttack", false);
             }
@@ -203,6 +203,14 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             rbody.velocity = moveInput * speed;
+            if(moveInput == Vector2.zero)
+            {
+                playerAnim.SetBool("isWalking", false);
+            }
+            else
+            {
+                playerAnim.SetBool("isWalking", true);
+            }
             if (moveInput.x < 0)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
@@ -437,6 +445,15 @@ public class PlayerController : MonoBehaviour
         {
             hammerDamage += newDamage;
         }
+    }
+
+    public void moreLife(int life)
+    {
+        maxLife += life;
+        this.life += life;
+        lifeSlider.maxValue = maxLife;
+        lifeSlider.value = this.life;
+        lifeText.text = this.life.ToString();
     }
 
     private void SwitchControls(PlayerInput input)

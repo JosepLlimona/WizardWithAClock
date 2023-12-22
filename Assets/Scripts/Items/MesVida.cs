@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NivelMaza : MonoBehaviour, Items
+public class MesVida : MonoBehaviour, Items
 {
     public void activeItem(GameObject player)
     {
-        player.GetComponent<PlayerController>().changeWeaponDamage(30, "hammer");
+        player.GetComponent<PlayerController>().moreLife(25);
         Destroy(this.gameObject);
     }
 }
