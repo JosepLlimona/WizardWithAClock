@@ -21,7 +21,7 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
     private bool isInAttackRange;
     private bool hit = false;
 
-    private GameObject player;+
+    private GameObject player;
 
     [SerializeField]
     Slider life;
