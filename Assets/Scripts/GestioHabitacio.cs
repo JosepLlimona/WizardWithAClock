@@ -33,7 +33,7 @@ public class GestioHabitacio : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Player") && !portesTancades){
             Debug.Log("El jugador ha entrado en la habitacion");
-            //GenerarEnemics();
+            GenerarEnemics();
             TancarTotesLesPortes();
         }
     }
