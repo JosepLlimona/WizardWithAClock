@@ -119,7 +119,6 @@ public class GestioHabitacio : MonoBehaviour
     }
 
 
-    /*
     void GenerarEnemics(){
         int nPerGenerar = Random.Range(5, 10);
         int nEnemicsGrans = 0;
@@ -149,7 +148,7 @@ public class GestioHabitacio : MonoBehaviour
         }
         
     }
-    */
+    
 
     void Update(){
         if (nEnemics == 0 && portesTancades){
