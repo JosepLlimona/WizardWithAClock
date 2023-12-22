@@ -315,7 +315,6 @@ MonoBehaviour:
   layerPlayer:
     serializedVersion: 2
     m_Bits: 256
-  player: {fileID: 1468857693}
   life: {fileID: 541896719}
 --- !u!4 &202271619 stripped
 Transform:
@@ -610,7 +609,6 @@ MonoBehaviour:
   layerPlayer:
     serializedVersion: 2
     m_Bits: 256
-  player: {fileID: 1468857693}
   life: {fileID: 1058058053}
 --- !u!70 &415197844
 CapsuleCollider2D:
@@ -1036,7 +1034,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761546053}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a31a8c5fb898d74e82790dcc15da3ce, type: 3}
   m_Name: 
@@ -1318,7 +1316,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.23250592, y: -0.11700694}
@@ -1391,17 +1389,12 @@ CapsuleCollider2D:
   m_Offset: {x: -0.011719465, y: -0.039047897}
   m_Size: {x: 0.75783014, y: 0.7625179}
   m_Direction: 0
---- !u!1 &1468857693 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2517380927504100526, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
-  m_PrefabInstance: {fileID: 8241632657743746710}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1468857708 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
   m_PrefabInstance: {fileID: 8241632657743746710}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1468857693}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f5233ded71bad84794e057b98c02e07, type: 3}
@@ -1969,6 +1962,10 @@ PrefabInstance:
       propertyPath: text
       value: 
       objectReference: {fileID: 6803938002629682550}
+    - target: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
       propertyPath: lifeText
       value: 

@@ -21,7 +21,6 @@ public class EnemyController : MonoBehaviour, EnemyLife
     private bool isInAttackRange;
     private bool isProtecting = false;
     private bool isAttacking = false;
-    private bool hit = false;
 
     private int Protect;
 
@@ -37,6 +36,7 @@ public class EnemyController : MonoBehaviour, EnemyLife
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         player = GameObject.Find("Player");
+        StartCoroutine(nums());
 
     }
 
@@ -57,12 +57,9 @@ public class EnemyController : MonoBehaviour, EnemyLife
 
     private void FixedUpdate(){
 
-        if(!isProtecting){
-            Protect = Random.Range(0, 11);
-            dir = player.transform.position - transform.position;
-        }
-
+        
         dir = player.transform.position - transform.position;
+
         if(Protect == 4 && !isAttacking && !isProtecting){
             rb.velocity = Vector2.zero;
             isProtecting = true;
@@ -112,5 +109,24 @@ public class EnemyController : MonoBehaviour, EnemyLife
         
     }
 
-  
+    public void AcabarProtect(){
+        isProtecting = false;
+        Debug.Log("acabarP");
+        Protect = Random.Range(0, 9);
+    }
+    
+    private IEnumerator nums(){
+    
+        while(true){
+
+            if(!isProtecting){
+                Protect = Random.Range(0, 9);
+                Debug.Log(Protect);
+            }
+
+            yield return new WaitForSeconds(2);
+
+        }
+      
+    }
 }
