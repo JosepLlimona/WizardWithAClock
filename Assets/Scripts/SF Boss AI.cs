@@ -19,6 +19,10 @@ public class SFBossAI : MonoBehaviour
     private GameObject punch;
     [SerializeField]
     private Transform PunchStart;
+    [SerializeField]
+    private GameObject bullet;
+    [SerializeField]
+    private Transform bulletStart;
     private bool canmove = true;
     private bool atack = false;
     private int num1 = 0;
@@ -57,7 +61,7 @@ public class SFBossAI : MonoBehaviour
 
     private void moveboss()
     {
-        AtackOption = Random.Range(0, 11);
+        AtackOption = Random.Range(0, 15);
         num1 = Random.Range(-5, 6);
         num2 = Random.Range(-5, 6);
         if (num1 < 2 && num1 > -2)
@@ -95,9 +99,9 @@ public class SFBossAI : MonoBehaviour
             {
                 TpPunchCharge();
             }
-            else if (!atack)
+            if (!atack)
             {
-
+                BossAnim.SetTrigger("rasho");
                 RayGun();
             }
         }
@@ -105,18 +109,18 @@ public class SFBossAI : MonoBehaviour
 
     private void portalPunch()
     {
-        float place = numPortalPunch+1;
+        float place = numPortalPunch + 1;
         SummonInstance(PunchStart.transform.position.x + place / 3, PunchStart.transform.position.y + place / 3);
         SummonInstance(PunchStart.transform.position.x - place / 3, PunchStart.transform.position.y + place / 3);
         SummonInstance(PunchStart.transform.position.x + place / 3, PunchStart.transform.position.y - place / 3);
         SummonInstance(PunchStart.transform.position.x - place / 3, PunchStart.transform.position.y - place / 3);
 
-        SummonInstance(PunchStart.transform.position.x , PunchStart.transform.position.y + place / 2);
+        SummonInstance(PunchStart.transform.position.x, PunchStart.transform.position.y + place / 2);
         SummonInstance(PunchStart.transform.position.x - place / 2, PunchStart.transform.position.y);
         SummonInstance(PunchStart.transform.position.x + place / 2, PunchStart.transform.position.y);
-        SummonInstance(PunchStart.transform.position.x , PunchStart.transform.position.y - place / 2);
+        SummonInstance(PunchStart.transform.position.x, PunchStart.transform.position.y - place / 2);
 
-        if(2<= numPortalPunch)
+        if (2 <= numPortalPunch)
         {
             SummonInstance(PunchStart.transform.position.x + place / 2, PunchStart.transform.position.y + place / 4);
             SummonInstance(PunchStart.transform.position.x - place / 4, PunchStart.transform.position.y + place / 2);
@@ -172,6 +176,13 @@ public class SFBossAI : MonoBehaviour
     private void RayGun()
     {
         print("doing RayGun");
+        Vector2 pos = bulletStart.transform.position;
+        GameObject BulletInstance = Instantiate(bullet, pos, Quaternion.identity);
+        BulletInstance.GetComponent<Animator>().SetTrigger("Shot");
+        Vector2 direction = new Vector2(player.transform.position.x - bulletStart.transform.position.x, player.transform.position.y - bulletStart.transform.position.y);
+        Rigidbody2D rbodyBullet;
+        rbodyBullet = bullet.GetComponent<Rigidbody2D>();
+        rbodyBullet.velocity = direction.normalized * 5;
     }
 
     public void startAtack()
