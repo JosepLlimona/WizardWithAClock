@@ -20,6 +20,18 @@ public class MusicalPlateController : PlateController
         else { desactivarPlaca(); }
 
     }
+
+
+    private void OnEnable()
+    {
+        PuzzleMusicPlatesController.OnPlayerWrong += sonarPlaca;
+    }
+    private void OnDisable()
+    {
+        PuzzleMusicPlatesController.OnPlayerWrong -= sonarPlaca;
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!estaPitjada)

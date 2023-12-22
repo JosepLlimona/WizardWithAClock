@@ -34,7 +34,6 @@ public class PlateController : MonoBehaviour
         }
     }
 
-    // Mètode per comprovar si la placa està en ON
     public bool IsON()
     {
         return estaEncesa;
@@ -80,5 +79,17 @@ public class PlateController : MonoBehaviour
     public void FadeOutPlaca()
     {
         fader.startFadingOut();
+    }
+
+    public void sonarPlaca()
+    {
+        StartCoroutine(ferSonarPlaca());
+    }
+    IEnumerator ferSonarPlaca()
+    {
+        activarPlaca();
+        ReproduirSo();
+        yield return new WaitForSeconds(0.5f);
+        desactivarPlaca();
     }
 }

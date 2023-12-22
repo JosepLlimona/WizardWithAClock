@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+
 
 public class PuzzleMusicPlatesController : PuzzleController
 {
@@ -18,6 +20,8 @@ public class PuzzleMusicPlatesController : PuzzleController
    bool revisarPlaques = true;
     bool handlingPlayerTurn = false;
     [SerializeField] private AudioSource ticSound;
+    public static event Action OnPlayerWrong;
+    public static event Action OnPuzzleStarted;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +64,7 @@ public class PuzzleMusicPlatesController : PuzzleController
         OnPuzzleStart();
         Debug.Log("OnMusicStart -> Despres On Pu<zzleStart ");
         HandleTurns();
+        OnPuzzleStarted?.Invoke();
         // 3 tic i començar amb la primera placa
     }
 
@@ -89,7 +94,8 @@ public class PuzzleMusicPlatesController : PuzzleController
     }
     private int GetRandomId() //retorna una id de les plaques musicals aleatoria
     {
-        return Random.Range(0, musicalPlates.Count);
+        
+        return UnityEngine.Random.Range(0, musicalPlates.Count);
     }
 
 
@@ -107,16 +113,34 @@ public class PuzzleMusicPlatesController : PuzzleController
         {
             handlingPlayerTurn = true;
             Debug.Log("Provaaa" + idPlacaActualPitjada);
-            placaActualHauriaSerPitjadaPerJugador++;
+            if(idPlacaActualPitjada == musicalPlates[ordrePlaquesMusicals[placaActualHauriaSerPitjadaPerJugador]].getIdPlaca())
+            {
+                placaActualHauriaSerPitjadaPerJugador++;
 
-            if(placaActualHauriaSerPitjadaPerJugador == indexRonda) { 
-                indexRonda++;
-                placaActualHauriaSerPitjadaPerJugador = 0;  
-                isPlayerTurn = false; 
-                if(indexRonda == maximRondes+1) { OnPuzzleEnd(); }
-                else { HandleTurns(); }
-                
+                if (placaActualHauriaSerPitjadaPerJugador == indexRonda)
+                {
+                    indexRonda++;
+                    placaActualHauriaSerPitjadaPerJugador = 0;
+                    isPlayerTurn = false;
+                    if (indexRonda == maximRondes + 1) { OnPuzzleEnd(); }
+                    else { HandleTurns(); }
+
+                }
             }
+            else
+            {//ens hem equivocat
+
+                OnPlayerWrong?.Invoke();
+                Debug.Log("Player Equivocat");
+                handlingPlayerTurn = false;
+                isPlayerTurn = false;
+                placaActualHauriaSerPitjadaPerJugador = 0;
+                indexRonda = 1;
+                GetNewMusicalSequence();
+                HandleTurns();
+            }
+
+
             
             
           
@@ -175,7 +199,10 @@ public class PuzzleMusicPlatesController : PuzzleController
 
     }
 
-
+    public void sonarTicsIniciTornIA()
+    {
+        StartCoroutine(ReporduirTicsPrincipi());
+    }
     private void HandleTurns()
     {
 
@@ -185,6 +212,7 @@ public class PuzzleMusicPlatesController : PuzzleController
         if (!isPlayerTurn)
         { //el torn de la maquina
             Debug.Log("HANDLING IA TURN");
+            sonarTicsIniciTornIA();
             HandleIATurn();
         }
         Debug.Log("Hanle turns -> despres del if ");
@@ -195,10 +223,10 @@ public class PuzzleMusicPlatesController : PuzzleController
     IEnumerator ReproducirSecuencia()
     {
 
-        yield return new WaitForSeconds(3); // Ajusta el tiempo entre cada placa en la secuencia.
+        yield return new WaitForSeconds(4.1f); // Ajusta el tiempo entre cada placa en la secuencia.
         for (int i = 0; i < indexRonda; i++)
         {
-            yield return new WaitForSeconds(0.7f); // Ajusta el tiempo entre cada placa en la secuencia.
+            yield return new WaitForSeconds(1f); // Ajusta el tiempo entre cada placa en la secuencia.
             int idPlacaAcutal = ordrePlaquesMusicals[i];
             Debug.Log("IndexRonda" + indexRonda);
             Debug.Log(musicalPlates[idPlacaAcutal].getIdPlaca());
@@ -212,11 +240,12 @@ public class PuzzleMusicPlatesController : PuzzleController
 
     IEnumerator ReporduirTicsPrincipi()
     {
-        yield return new WaitForSeconds(1f); // Ajusta el tiempo entre cada placa en la secuencia.
+        //yield return new WaitForSeconds(1f); // Ajusta el tiempo entre cada placa en la secuencia.
+        yield return new WaitForSeconds(2); // Ajusta el tiempo entre cada placa en la secuencia.
         for (int i = 0; i<3; i++)
         {
             ticSound.Play();
-            yield return new WaitForSeconds(0.3f); // Ajusta el tiempo entre cada placa en la secuencia.
+            yield return new WaitForSeconds(0.8f); // Ajusta el tiempo entre cada placa en la secuencia.
         }
         StartCoroutine(esperar());
     }

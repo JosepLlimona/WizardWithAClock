@@ -11,6 +11,7 @@ public class FadeUIScript : MonoBehaviour
     [SerializeField] private bool esTextPress;
     [SerializeField] private bool fadeIn = true;
     [SerializeField] private bool fadeOut = false;
+    private bool activat = false;
 
     public void ShowUI()
     {
@@ -61,6 +62,7 @@ public class FadeUIScript : MonoBehaviour
         }
         UIController.OnPressShowText += ShowPressTextUI;
         UIController.OnPressDisableText += HidePressTextUI;
+        PuzzleMusicPlatesController.OnPuzzleStarted += puzzleActivat;
     }
 
     private void OnDisable()
@@ -73,6 +75,7 @@ public class FadeUIScript : MonoBehaviour
         }
         UIController.OnPressShowText -= ShowPressTextUI;
         UIController.OnPressDisableText -= HidePressTextUI;
+        PuzzleMusicPlatesController.OnPuzzleStarted -= puzzleActivat;
     }
     // Start is called before the first frame update
 
@@ -80,32 +83,36 @@ public class FadeUIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (fadeIn)
+        if (!activat)
         {
-            //if (esTextPress) { myUIGroup.alpha = 0; }
+
+            if (fadeIn)
+            {
+                //if (esTextPress) { myUIGroup.alpha = 0; }
                 if (myUIGroup.alpha < 1)
-            {
-                myUIGroup.alpha += Time.deltaTime*0.9f;
-                if(myUIGroup.alpha >= 1)
                 {
-                    fadeIn = false;
+                    myUIGroup.alpha += Time.deltaTime * 0.9f;
+                    if (myUIGroup.alpha >= 1)
+                    {
+                        fadeIn = false;
+                    }
+                }
+            }
+
+
+            if (fadeOut)
+            {
+                if (myUIGroup.alpha > 0)
+                {
+                    myUIGroup.alpha -= Time.deltaTime * 0.5f;
+                    if (myUIGroup.alpha <= 0)
+                    {
+                        fadeOut = false;
+                    }
                 }
             }
         }
 
-
-        if (fadeOut)
-        {
-            if (myUIGroup.alpha > 0)
-            {
-                myUIGroup.alpha -= Time.deltaTime*0.5f;
-                if (myUIGroup.alpha <= 0)
-                {
-                    fadeOut = false;
-                }
-            }
-        }
     }
 
     IEnumerator esperarFade()
@@ -114,6 +121,13 @@ public class FadeUIScript : MonoBehaviour
         yield return new WaitForSeconds(6f);
     }
 
+    public void puzzleActivat()
+    {
+        activat = true;
+        myUIGroup.gameObject.SetActive(false);
+        pressText.gameObject.SetActive(false);
+        InstrText.gameObject.SetActive(false);
+    }
     private void unableText()
     {
         if (esTextPress)
