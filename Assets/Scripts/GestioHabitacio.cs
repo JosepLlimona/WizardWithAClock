@@ -7,6 +7,8 @@ public class GestioHabitacio : MonoBehaviour
 {
     public Tilemap tilemapColisions;
     public GameObject[] posPortes;
+    public GameObject[] enemicsNormal;
+    public GameObject[] enemicsGrans;
     public GameObject tileParetEsq;
     public GameObject tileParetDreta;
     public GameObject tileParetSuperior;
@@ -28,7 +30,7 @@ public class GestioHabitacio : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other){
-        if(other.CompareTag("Player")){
+        if(other.CompareTag("Player") && !portesTancades){
             Debug.Log("El jugador ha entrado en la habitacion");
             GenerarEnemics();
             TancarTotesLesPortes();
@@ -116,16 +118,37 @@ public class GestioHabitacio : MonoBehaviour
     }
 
     void GenerarEnemics(){
-        Debug.Log("Se generan enemigos");
+        int nPerGenerar = Random.Range(5, 10);
+        int nEnemicsGrans = 0;
+        
+        for (int i = 0; i < nPerGenerar; i++){
+            BoxCollider2D colliderHabitacio = GetComponent<BoxCollider2D>();
+            
+            if (colliderHabitacio != null){
+                Vector2 puntRandom = new Vector2(Random.Range(colliderHabitacio.bounds.min.x, colliderHabitacio.bounds.max.x), Random.Range(colliderHabitacio.bounds.min.y, colliderHabitacio.bounds.max.y));
+            
+                GameObject enemicPerGenerar;
+                if (nEnemicsGrans >= nPerGenerar/3){
+                    enemicPerGenerar = enemicsNormal[Random.Range(0, enemicsNormal.Length)];
+                }
+                else{
+                    nEnemicsGrans++;
+                    enemicPerGenerar = enemicsGrans[Random.Range(0, enemicsGrans.Length)];
+                }
+                Instantiate(enemicPerGenerar, puntRandom, Quaternion.identity);
+                nEnemics++;
+            }
+        }
     }
 
+
     void Update(){
-        /*if (nEnemics == 0 && portesTancades){
-            ObrirTotesLesPortes();
-        }*/
-        if (Input.GetKeyDown(KeyCode.U)){
+        if (nEnemics == 0 && portesTancades){
             ObrirTotesLesPortes();
         }
+        /*if (Input.GetKeyDown(KeyCode.U)){
+            ObrirTotesLesPortes();
+        }*/
     }
 
 }
