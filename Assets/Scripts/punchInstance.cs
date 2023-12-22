@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class punchInstance : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject player;
     // Start is called before the first frame update
+    public void setPlayer(GameObject player)
+    {
+        this.player = player;
+    }
     void Start()
     {
 
