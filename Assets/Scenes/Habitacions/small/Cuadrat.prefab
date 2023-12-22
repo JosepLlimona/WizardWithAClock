@@ -147,6 +147,10 @@ MonoBehaviour:
   - {fileID: 5547446930803124640}
   - {fileID: 7645468703713603129}
   - {fileID: 647254989598898799}
+  enemicsNormal:
+  - {fileID: 5510396735757818735, guid: 5cdd6053168271343b60cb592e6dce83, type: 3}
+  enemicsGrans:
+  - {fileID: 6849006903880971975, guid: 3b93633673f61824e8f334fd468fbd7c, type: 3}
   tileParetEsq: {fileID: 0}
   tileParetDreta: {fileID: 0}
   tileParetSuperior: {fileID: 0}

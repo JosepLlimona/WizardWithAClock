@@ -21,4 +21,11 @@ public class punchInstance : MonoBehaviour
         print("destroying");
         Destroy(this.gameObject);
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            player.GetComponent<PlayerController>().lostLife(20);
+        }
+    }
 }

@@ -19,6 +19,7 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
 
     private bool isInChaseRange;
     private bool isInAttackRange;
+    private bool hit = false;
 
     [SerializeField]
     private GameObject player;
@@ -61,11 +62,33 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
         }
     }
 
-    private void Explode(){
-        Destroy(this.gameObject);
-        //afegir dany player
-    }
+    private void OnTriggerEnter2D(Collider2D col){
 
+       if(col.tag == "Player")
+        {
+            Debug.Log("entro");
+            hit = true;
+            player = col.gameObject;
+        }
+   }
+
+
+    private void OnTriggerExit2D(Collider2D col){
+
+       if(col.tag == "Player")
+        {
+            Debug.Log("entro");
+            hit = false;
+        }
+   }
+
+   public void Explode(){
+
+    if(hit){
+        player.GetComponent<PlayerController>().lostLife(26);
+    }
+    Destroy(this.gameObject);
+   }
 
     public void changeLife(int damage)
     {

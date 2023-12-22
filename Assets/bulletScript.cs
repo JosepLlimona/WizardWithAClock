@@ -26,10 +26,18 @@ public class bulletScript : MonoBehaviour
     {
         if (!alreadyShot)
         {
-            Vector2 pos = rbody.transform.position;
+            //Vector2 pos = rbody.transform.position;
             Vector2 direction = new Vector2(player.transform.position.x - rbody.transform.position.x, player.transform.position.y - rbody.transform.position.y);
             rbody.velocity = direction.normalized * 5;
             alreadyShot = true;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag=="Player")
+        {
+            Destroy(this.gameObject);
+            player.GetComponent<PlayerController>().lostLife(15);
         }
     }
 }
