@@ -6,6 +6,7 @@ public class punchInstance : MonoBehaviour
 {
     [SerializeField]
     private GameObject player;
+    private bool hit = false;
     // Start is called before the first frame update
     public void setPlayer(GameObject player)
     {
@@ -29,9 +30,11 @@ public class punchInstance : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !hit)
         {
-            player.GetComponent<PlayerController>().lostLife(20);
+            Debug.Log("ayuda");
+            player.GetComponent<PlayerController>().lostLife(5);
+            hit = true;
         }
     }
 }
