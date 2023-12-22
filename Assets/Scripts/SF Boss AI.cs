@@ -36,6 +36,7 @@ public class SFBossAI : MonoBehaviour, EnemyLife
     private int numOverloaded = 0;
     private float maximumPortalPunch = 3;
     private int numPortalPunch = 0;
+    private int LIFE = 1000;
 
     // Start is called before the first frame update
     void Start()
@@ -54,9 +55,18 @@ public class SFBossAI : MonoBehaviour, EnemyLife
         }
         if (canmove && !atack && !overload)
         {
-            Vector2 direction = objective;
-            rbody.velocity = direction.normalized * speed;
+            
         }
+    }
+    public void jumping()
+    {
+        Vector2 direction = objective;
+        rbody.velocity = direction.normalized * speed;
+    }
+    public void stop()
+    {
+        rbody.velocity = Vector3.zero;
+        rbody.angularVelocity = 0;
     }
 
     private void moveboss()
@@ -73,17 +83,10 @@ public class SFBossAI : MonoBehaviour, EnemyLife
             num2 = 2;
         }
         objective = new Vector2(player.transform.position.x + num1 - transform.position.x, player.transform.position.y + num2 - transform.position.y);
-        if (!atack && !overload)
+        canmove = !canmove;
+        if (canmove && !atack && !overload)
         {
-            canmove = !canmove;
-            if (canmove)
-            {
-                BossAnim.SetBool("moving", true);
-            }
-            else
-            {
-                BossAnim.SetBool("moving", false);
-            }
+            BossAnim.SetTrigger("jump");
         }
         if (!canmove && !overload)
         {
@@ -102,7 +105,6 @@ public class SFBossAI : MonoBehaviour, EnemyLife
             if (!atack)
             {
                 BossAnim.SetTrigger("rasho");
-                RayGun();
             }
         }
     }
@@ -138,6 +140,7 @@ public class SFBossAI : MonoBehaviour, EnemyLife
         Vector2 pos = new Vector2(posx, posy);
         GameObject punchInstance = Instantiate(punch, pos, Quaternion.identity);
         punchInstance.GetComponent<Animator>().SetTrigger("Attacking");
+        punchInstance.GetComponent<punchInstance>().setPlayer(player);
     }
     public void add_portal_punch()
     {
@@ -213,6 +216,14 @@ public class SFBossAI : MonoBehaviour, EnemyLife
 
     public void changeLife(int damage)
     {
-        //Perdre vida
+        LIFE = LIFE - damage;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            player.GetComponent<PlayerController>().lostLife(50);
+        }
     }
 }

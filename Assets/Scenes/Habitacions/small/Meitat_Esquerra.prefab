@@ -2872,6 +2872,22 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[55].second.m_TileSpriteIndex
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 6376905905775245296, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
+      propertyPath: posPortes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376905905775245296, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
+      propertyPath: posPortes.Array.data[0]
+      value: 
+      objectReference: {fileID: 35758978668518537}
+    - target: {fileID: 6376905905775245296, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
+      propertyPath: posPortes.Array.data[1]
+      value: 
+      objectReference: {fileID: 1234664305100730695}
+    - target: {fileID: 6376905905775245296, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
+      propertyPath: posPortes.Array.data[2]
+      value: 
+      objectReference: {fileID: 8341725444251395345}
     - target: {fileID: 7151900529481786940, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: tileParetEsq
       value: 
@@ -2906,6 +2922,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
+--- !u!1 &35758978668518537 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8883151775444780023, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
+  m_PrefabInstance: {fileID: 8878919110861594494}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1234664305100730695 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7645468703713603129, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
+  m_PrefabInstance: {fileID: 8878919110861594494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1839735485 &3238915700881303060 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 6326063553285601642, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}

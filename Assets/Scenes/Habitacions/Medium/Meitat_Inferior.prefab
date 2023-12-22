@@ -10380,6 +10380,14 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[117].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 6376905905775245296, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
+      propertyPath: posPortes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376905905775245296, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
+      propertyPath: posPortes.Array.data[2]
+      value: 
+      objectReference: {fileID: 6480990138841906140}
     - target: {fileID: 7151900529481786940, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: tileParetEsq
       value: 

@@ -87,8 +87,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2576840767008012571}
   - component: {fileID: 851065472131194991}
-  - component: {fileID: 7151900529481786940}
   - component: {fileID: 2854025189349392592}
+  - component: {fileID: 6376905905775245296}
   m_Layer: 0
   m_Name: Cuadrat
   m_TagString: Untagged
@@ -129,32 +129,6 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &7151900529481786940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2704241189179990617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 610f78a48fbaccf4ebe43da1fe95e607, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilemapColisions: {fileID: 6326063553285601642}
-  posPortes:
-  - {fileID: 8883151775444780023}
-  - {fileID: 5547446930803124640}
-  - {fileID: 7645468703713603129}
-  - {fileID: 647254989598898799}
-  tileParetEsq: {fileID: 0}
-  tileParetDreta: {fileID: 0}
-  tileParetSuperior: {fileID: 0}
-  tileParetInferior: {fileID: 0}
-  tilePortaEsq: {fileID: 1129423310124026210, guid: 13f9c379d0850fc4b93fc5aa14d619f6, type: 3}
-  tilePortaDreta: {fileID: 1129423310124026210, guid: f73218884f543044a9dde3a0127a3239, type: 3}
-  tilePortaSuperior: {fileID: 1129423310124026210, guid: 05f00702dc68e3d4ca600ceafe32bfea, type: 3}
-  tilePortaInferior: {fileID: 1129423310124026210, guid: 1a53e9db3440ccf419c89aed317dc307, type: 3}
 --- !u!61 &2854025189349392592
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -200,6 +174,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.0059853, y: 3.0607028}
   m_EdgeRadius: 0
+--- !u!114 &6376905905775245296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2704241189179990617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610f78a48fbaccf4ebe43da1fe95e607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemapColisions: {fileID: 0}
+  posPortes:
+  - {fileID: 8883151775444780023}
+  - {fileID: 5547446930803124640}
+  - {fileID: 7645468703713603129}
+  - {fileID: 647254989598898799}
+  enemicsNormal:
+  - {fileID: 5510396735757818735, guid: 5cdd6053168271343b60cb592e6dce83, type: 3}
+  enemicsGrans:
+  - {fileID: 6849006903880971975, guid: 3b93633673f61824e8f334fd468fbd7c, type: 3}
+  Boss: {fileID: 0}
+  tileParetEsq: {fileID: 1129423310124026210, guid: db5b4374f0ce01047accdb983e44b127, type: 3}
+  tileParetDreta: {fileID: 1129423310124026210, guid: 31cd38184e9b3cc40b7a198b4fbb5702, type: 3}
+  tileParetSuperior: {fileID: 1129423310124026210, guid: 886708d8afc94ff41b70df16018add01, type: 3}
+  tileParetInferior: {fileID: 1129423310124026210, guid: 4b2a0c14c8fd2074995ab5af0c99ecec, type: 3}
+  tilePortaEsq: {fileID: 1129423310124026210, guid: 13f9c379d0850fc4b93fc5aa14d619f6, type: 3}
+  tilePortaDreta: {fileID: 1129423310124026210, guid: f73218884f543044a9dde3a0127a3239, type: 3}
+  tilePortaSuperior: {fileID: 1129423310124026210, guid: 05f00702dc68e3d4ca600ceafe32bfea, type: 3}
+  tilePortaInferior: {fileID: 1129423310124026210, guid: 1a53e9db3440ccf419c89aed317dc307, type: 3}
 --- !u!1 &3820002869583263134
 GameObject:
   m_ObjectHideFlags: 0

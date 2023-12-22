@@ -9,6 +9,7 @@ public class GestioHabitacio : MonoBehaviour
     public GameObject[] posPortes;
     public GameObject[] enemicsNormal;
     public GameObject[] enemicsGrans;
+    public GameObject Boss;
     public GameObject tileParetEsq;
     public GameObject tileParetDreta;
     public GameObject tileParetSuperior;
@@ -26,7 +27,7 @@ public class GestioHabitacio : MonoBehaviour
 
     void Start()
     {
-        TancarPortesAleatories();
+        //TancarPortesAleatories();
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -122,9 +123,13 @@ public class GestioHabitacio : MonoBehaviour
     void GenerarEnemics(){
         int nPerGenerar = Random.Range(5, 10);
         int nEnemicsGrans = 0;
-        
-        for (int i = 0; i < nPerGenerar; i++){
-            BoxCollider2D colliderHabitacio = GetComponent<BoxCollider2D>();
+        BoxCollider2D colliderHabitacio = GetComponent<BoxCollider2D>();
+        if (gameObject.CompareTag("Habitacio Boss")){
+            Vector2 spawnPoint = new Vector2(colliderHabitacio.bounds.center.x, colliderHabitacio.bounds.center.y);
+            Instantiate(Boss, spawnPoint, Quaternion.identity);
+        }
+        else{
+            for (int i = 0; i < nPerGenerar; i++){
             
             if (colliderHabitacio != null){
                 Vector2 puntRandom = new Vector2(Random.Range(colliderHabitacio.bounds.min.x, colliderHabitacio.bounds.max.x), Random.Range(colliderHabitacio.bounds.min.y, colliderHabitacio.bounds.max.y));
@@ -141,6 +146,8 @@ public class GestioHabitacio : MonoBehaviour
                 nEnemics++;
             }
         }
+        }
+        
     }
     */
 
