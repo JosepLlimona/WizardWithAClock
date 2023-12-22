@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
-public class SFBossAI : MonoBehaviour
+public class SFBossAI : MonoBehaviour, EnemyLife
 {
     private Rigidbody2D rbody;
     [SerializeField]
@@ -178,11 +178,8 @@ public class SFBossAI : MonoBehaviour
         print("doing RayGun");
         Vector2 pos = bulletStart.transform.position;
         GameObject BulletInstance = Instantiate(bullet, pos, Quaternion.identity);
-        BulletInstance.GetComponent<Animator>().SetTrigger("Shot");
-        Vector2 direction = new Vector2(player.transform.position.x - bulletStart.transform.position.x, player.transform.position.y - bulletStart.transform.position.y);
-        Rigidbody2D rbodyBullet;
-        rbodyBullet = bullet.GetComponent<Rigidbody2D>();
-        rbodyBullet.velocity = direction.normalized * 5;
+        BulletInstance.GetComponent<bulletScript>().setPlayer(player);
+        BulletInstance.GetComponent<Animator>().SetTrigger("Shot");     
     }
 
     public void startAtack()
@@ -212,5 +209,10 @@ public class SFBossAI : MonoBehaviour
         BossAnim.SetBool("overload", false);
         overload = false;
         numOverloaded = 0;
+    }
+
+    public void changeLife(int damage)
+    {
+        //Perdre vida
     }
 }

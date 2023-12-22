@@ -80,6 +80,15 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Grab"",
+                    ""type"": ""Button"",
+                    ""id"": ""aa27d2bf-9cda-4ffd-9244-7c485d8e280b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -346,6 +355,28 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
                     ""action"": ""ShowCanvas"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""470d96e1-0629-425c-9197-1b8e36605c49"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""77ff05eb-1527-48a5-859c-2ebe5748fc5f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -383,6 +414,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         m_Standard_NextClock = m_Standard.FindAction("NextClock", throwIfNotFound: true);
         m_Standard_LastClock = m_Standard.FindAction("LastClock", throwIfNotFound: true);
         m_Standard_ShowCanvas = m_Standard.FindAction("ShowCanvas", throwIfNotFound: true);
+        m_Standard_Grab = m_Standard.FindAction("Grab", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -450,6 +482,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Standard_NextClock;
     private readonly InputAction m_Standard_LastClock;
     private readonly InputAction m_Standard_ShowCanvas;
+    private readonly InputAction m_Standard_Grab;
     public struct StandardActions
     {
         private @PlayerControlls m_Wrapper;
@@ -460,6 +493,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         public InputAction @NextClock => m_Wrapper.m_Standard_NextClock;
         public InputAction @LastClock => m_Wrapper.m_Standard_LastClock;
         public InputAction @ShowCanvas => m_Wrapper.m_Standard_ShowCanvas;
+        public InputAction @Grab => m_Wrapper.m_Standard_Grab;
         public InputActionMap Get() { return m_Wrapper.m_Standard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -487,6 +521,9 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
             @ShowCanvas.started += instance.OnShowCanvas;
             @ShowCanvas.performed += instance.OnShowCanvas;
             @ShowCanvas.canceled += instance.OnShowCanvas;
+            @Grab.started += instance.OnGrab;
+            @Grab.performed += instance.OnGrab;
+            @Grab.canceled += instance.OnGrab;
         }
 
         private void UnregisterCallbacks(IStandardActions instance)
@@ -509,6 +546,9 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
             @ShowCanvas.started -= instance.OnShowCanvas;
             @ShowCanvas.performed -= instance.OnShowCanvas;
             @ShowCanvas.canceled -= instance.OnShowCanvas;
+            @Grab.started -= instance.OnGrab;
+            @Grab.performed -= instance.OnGrab;
+            @Grab.canceled -= instance.OnGrab;
         }
 
         public void RemoveCallbacks(IStandardActions instance)
@@ -552,5 +592,6 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         void OnNextClock(InputAction.CallbackContext context);
         void OnLastClock(InputAction.CallbackContext context);
         void OnShowCanvas(InputAction.CallbackContext context);
+        void OnGrab(InputAction.CallbackContext context);
     }
 }

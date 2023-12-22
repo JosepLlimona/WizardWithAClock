@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5176875273608212406}
   - component: {fileID: 1413130049961349384}
   - component: {fileID: 2266199286231605711}
-  - component: {fileID: 1301755518466087051}
   m_Layer: 8
   m_Name: Fists
   m_TagString: Untagged
@@ -124,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba259b77f4fd8694b8a1ded89ee142f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
 --- !u!50 &2266199286231605711
 Rigidbody2D:
   serializedVersion: 4
@@ -151,18 +151,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1301755518466087051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 108549430072566982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba259b77f4fd8694b8a1ded89ee142f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1241653803343867569
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5233ded71bad84794e057b98c02e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 1
   esMirror: 0
   dashForce: 2
   playerAnim: {fileID: 8874270791730765656}
@@ -362,6 +350,7 @@ MonoBehaviour:
   - {fileID: 767181130548017296}
   lifeSlider: {fileID: 0}
   lifeText: {fileID: 0}
+  canHeavyAttack: 1
 --- !u!82 &5253628420434043893
 AudioSource:
   m_ObjectHideFlags: 0

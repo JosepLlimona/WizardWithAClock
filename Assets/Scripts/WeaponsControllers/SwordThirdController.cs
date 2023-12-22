@@ -5,14 +5,25 @@ using UnityEngine;
 public class SwordThirdController : MonoBehaviour
 {
 
-    public GameObject player;
+    private GameObject player;
+    private int damage = 15;
+
+    public void setPlayer(GameObject player)
+    {
+        this.player = player;
+    }
+
+    public void setDamage(int damage)
+    {
+        this.damage += damage;
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Enemy" && col != null)
         {
             Debug.Log("Attacking with Sword");
-            col.GetComponent<EnemyLife>().changeLife(15);
+            col.GetComponent<EnemyLife>().changeLife(damage);
         }
     }
 

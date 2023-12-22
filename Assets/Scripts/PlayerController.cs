@@ -69,8 +69,13 @@ public class PlayerController : MonoBehaviour
     private bool dashPerformed = false;
     private bool mattackPerformed = false;
     private bool canMove = true;
-    private bool canHeavyAttack = true;
+    [SerializeField] private bool canHeavyAttack = true;
     private int combo = 0;
+
+    private bool grabItem = false;
+    private GameObject itemGrabed = null;
+    private int swordDamage = 15;
+    private int hammerDamage = 30;
 
     private string currentControllScheme;
 
@@ -99,7 +104,6 @@ public class PlayerController : MonoBehaviour
                 dashPerformed = true;
                 speed *= 2;
                 playerAnim.speed = 2;
-                Debug.Log("Running");
             }
         };
         playerControlls.Standard.Dash.canceled += context =>
@@ -109,22 +113,19 @@ public class PlayerController : MonoBehaviour
                 speed /= 2;
                 playerAnim.speed = 1;
                 dashPerformed = false;
-                Debug.Log("End Running. Speed: " + speed);
             }
         };
         playerControlls.Standard.Attack.performed += context =>
         {
             if (context.interaction is TapInteraction)
             {
-                Debug.Log("Attacking");
-                if (canHeavyAttack)
+                if (canHeavyAttack || actualClock != 3)
                 {
                     StartCoroutine(attack());
                 }
             }
             else if (context.interaction is HoldInteraction && actualClock == 1)
             {
-                Debug.Log("Starting attacking");
                 mattackPerformed = true;
                 fistAnim.SetBool("isAttacking", true);
                 clockAnim.SetBool("LightAttack", true);
@@ -136,7 +137,6 @@ public class PlayerController : MonoBehaviour
         {
             if (context.interaction is HoldInteraction && mattackPerformed && actualClock == 1)
             {
-                Debug.Log("Attack stoped");
                 mattackPerformed = false;
                 fists.GetComponent<SpriteRenderer>().enabled = false;
                 ora.Stop();
@@ -155,7 +155,6 @@ public class PlayerController : MonoBehaviour
             StopAllCoroutines();
             resetBools();
             changeText();
-            Debug.Log("Actual Clock: " + actualClock);
         };
         playerControlls.Standard.LastClock.performed += context =>
         {
@@ -167,6 +166,15 @@ public class PlayerController : MonoBehaviour
             StopAllCoroutines();
             resetBools();
             changeText();
+        };
+
+        playerControlls.Standard.Grab.performed += context =>
+        {
+            if (grabItem)
+            {
+                Debug.Log("Agafat");
+                itemGrabed.GetComponent<Items>().activeItem(this.gameObject);
+            }
         };
     }
 
@@ -210,6 +218,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.tag == "Item")
+        {
+            Debug.Log("Entro");
+            grabItem = true;
+            itemGrabed = col.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.tag == "Item")
+        {
+            Debug.Log("Surto");
+            grabItem = false;
+            itemGrabed = null;
+        }
+    }
+
     private void changeText()
     {
         if (actualClock == 1)
@@ -233,6 +261,7 @@ public class PlayerController : MonoBehaviour
         clockAnim.SetBool("MediumAttack", false);
         clockAnim.SetBool("HeavyAttack", false);
         mattackPerformed = false;
+        canHeavyAttack = true;
         ora.Stop();
         singleOra.Stop();
         fists.GetComponent<SpriteRenderer>().enabled = false;
@@ -284,6 +313,7 @@ public class PlayerController : MonoBehaviour
             canHeavyAttack = false;
             Vector3 pos = hammerStart.transform.position;
             GameObject hammerInstance = Instantiate(hammer, pos, Quaternion.identity);
+            hammerInstance.GetComponent<HammerController>().setDamage(hammerDamage);
             clockAnim.SetBool("HeavyAttack", true);
             hammerInstance.GetComponent<Animator>().SetTrigger("Attacking");
             yield return new WaitForSeconds(2f);
@@ -327,7 +357,6 @@ public class PlayerController : MonoBehaviour
 
     public void continueCombo(string actual)
     {
-        Debug.Log("Entering with: " + actual);
         switch (actual)
         {
             case "FirstAttack": 
@@ -348,14 +377,10 @@ public class PlayerController : MonoBehaviour
                 }
                 Vector3 pos = hammerStart.transform.position;
                 var swordTAttack = Instantiate(swordThird, pos, Quaternion.identity);
-                swordTAttack.GetComponent<SwordThirdController>().player = this.gameObject;
+                swordTAttack.GetComponent<SwordThirdController>().setPlayer(this.gameObject);
+                swordTAttack.GetComponent<SwordThirdController>().setDamage(swordDamage);
                 break;
             case "ThirdAttack":
-                Debug.Log("Enters");
-                if (!clockAnim.isActiveAndEnabled)
-                {
-                    Debug.Log("Animator disabled");
-                }
                 clockAnim.SetBool("MediumAttack", false);
                 combo = 0;
                 break;
@@ -388,6 +413,30 @@ public class PlayerController : MonoBehaviour
     public void endSTA()
     {
         continueCombo("ThirdAttack");
+    }
+
+
+    //Item functions
+    public void changeSpeed(int newSpeed)
+    {
+        this.speed = newSpeed;
+    }
+
+    public void changeWeaponDamage(int newDamage, string weapon)
+    {
+        if(weapon == "fists")
+        {
+            transform.Find("Fists").GetComponent<FistsController>().setDamage(newDamage);
+        }
+        else if(weapon == "sword")
+        {
+            transform.Find("Sword").GetComponent<SwordController>().setDamage(newDamage);
+            swordDamage = newDamage;
+        }
+        else if(weapon == "hammer")
+        {
+            hammerDamage += newDamage;
+        }
     }
 
     private void SwitchControls(PlayerInput input)
