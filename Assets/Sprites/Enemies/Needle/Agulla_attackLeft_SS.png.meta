@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8abcf8ead8624af419f405a711057691
+guid: 9cde6ce12c28a1c42bab0bcae2328e01
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Agulla_move_SS_0
+      name: Agulla_attackLeft_SS_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b44791609213f9b408b372a1cb9545bd
-      internalID: 1329261674
+      spriteID: acce322c93766dc4d800e67272450ab2
+      internalID: -1983561299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Agulla_move_SS_1
+      name: Agulla_attackLeft_SS_1
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ca97a5baf6f3e346a6775ea68a435a9
-      internalID: -891650475
+      spriteID: 2abc70a5774bb2c4dbba59a7bd71918d
+      internalID: 1467240735
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Agulla_move_SS_2
+      name: Agulla_attackLeft_SS_2
       rect:
         serializedVersion: 2
         x: 64
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bfa06b94717c3c438176bbb728670aa
-      internalID: -1843069488
+      spriteID: b00c4b1debcf2774787145d79ea75273
+      internalID: 1554228571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Agulla_move_SS_3
+      name: Agulla_attackLeft_SS_3
       rect:
         serializedVersion: 2
         x: 96
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7250432c6862e024085a9203e82dadd3
-      internalID: -402180085
+      spriteID: 73be7b4bfffeaae4f8a90a36447c575f
+      internalID: 160330347
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Agulla_move_SS_4
+      name: Agulla_attackLeft_SS_4
       rect:
         serializedVersion: 2
         x: 128
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a7ba456d9b9e0c499176983dfb82a74
-      internalID: 1432292780
+      spriteID: 22e81dda9185da14180fbf5640adc383
+      internalID: -1699696502
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Agulla_move_SS_5
+      name: Agulla_attackLeft_SS_5
       rect:
         serializedVersion: 2
         x: 160
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3aaa10bdd8b2cba4d92b76e2953c6334
-      internalID: 111194890
+      spriteID: bc11c0bc4133ea5449166475ae679df7
+      internalID: 2031380965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Agulla_move_SS_6
+      name: Agulla_attackLeft_SS_6
       rect:
         serializedVersion: 2
         x: 192
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7191c9d69e230dc468588e2ed81162b5
-      internalID: 1264304033
+      spriteID: d4b02d26201944943bed3adfea8543f7
+      internalID: 1253350402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Agulla_move_SS_7
+      name: Agulla_attackLeft_SS_7
       rect:
         serializedVersion: 2
         x: 224
@@ -271,8 +271,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84d94f6a8950ecb45a405856de6b0cc4
-      internalID: -91552836
+      spriteID: 2885e7f4790e559479c41be19710344c
+      internalID: 1085198047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Agulla_attackLeft_SS_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c73f2455490e80c4381602c62bd611b0
+      internalID: -198739187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Agulla_attackLeft_SS_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68c6e242dfe13d44eb0a7ed7dee0d679
+      internalID: 184846584
       vertices: []
       indices: 
       edges: []
@@ -288,14 +330,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Agulla_move_SS_0: 1329261674
-      Agulla_move_SS_1: -891650475
-      Agulla_move_SS_2: -1843069488
-      Agulla_move_SS_3: -402180085
-      Agulla_move_SS_4: 1432292780
-      Agulla_move_SS_5: 111194890
-      Agulla_move_SS_6: 1264304033
-      Agulla_move_SS_7: -91552836
+      Agulla_attackLeft_SS_0: -1983561299
+      Agulla_attackLeft_SS_1: 1467240735
+      Agulla_attackLeft_SS_2: 1554228571
+      Agulla_attackLeft_SS_3: 160330347
+      Agulla_attackLeft_SS_4: -1699696502
+      Agulla_attackLeft_SS_5: 2031380965
+      Agulla_attackLeft_SS_6: 1253350402
+      Agulla_attackLeft_SS_7: 1085198047
+      Agulla_attackLeft_SS_8: -198739187
+      Agulla_attackLeft_SS_9: 184846584
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

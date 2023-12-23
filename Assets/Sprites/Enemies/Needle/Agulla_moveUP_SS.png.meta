@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8abcf8ead8624af419f405a711057691
+guid: 083677df93452e841b610611eb0b49c2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Agulla_move_SS_0
+      name: Agulla_moveUP_SS_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b44791609213f9b408b372a1cb9545bd
-      internalID: 1329261674
+      spriteID: df2536158653d64458e6005e20794db0
+      internalID: 513373466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Agulla_move_SS_1
+      name: Agulla_moveUP_SS_1
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ca97a5baf6f3e346a6775ea68a435a9
-      internalID: -891650475
+      spriteID: 15d4a0246df2be844bed30b27202f66e
+      internalID: 1203941400
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Agulla_move_SS_2
+      name: Agulla_moveUP_SS_2
       rect:
         serializedVersion: 2
         x: 64
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bfa06b94717c3c438176bbb728670aa
-      internalID: -1843069488
+      spriteID: 64f3c1d9e6289ad42a7f9e52d20cc889
+      internalID: 1682551799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Agulla_move_SS_3
+      name: Agulla_moveUP_SS_3
       rect:
         serializedVersion: 2
         x: 96
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7250432c6862e024085a9203e82dadd3
-      internalID: -402180085
+      spriteID: 1300ae9424f695a4f8f8917ea879b121
+      internalID: -569185018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Agulla_move_SS_4
+      name: Agulla_moveUP_SS_4
       rect:
         serializedVersion: 2
         x: 128
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a7ba456d9b9e0c499176983dfb82a74
-      internalID: 1432292780
+      spriteID: 8a0ad9f80a1c18e4185e3ab2bb95518f
+      internalID: -361553970
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Agulla_move_SS_5
+      name: Agulla_moveUP_SS_5
       rect:
         serializedVersion: 2
         x: 160
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3aaa10bdd8b2cba4d92b76e2953c6334
-      internalID: 111194890
+      spriteID: 80c19b23399646646a7573cfdeca6ed2
+      internalID: -190369112
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Agulla_move_SS_6
+      name: Agulla_moveUP_SS_6
       rect:
         serializedVersion: 2
         x: 192
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7191c9d69e230dc468588e2ed81162b5
-      internalID: 1264304033
+      spriteID: 0dad9be2f66faf446b2e3afe4500bbe0
+      internalID: 588623061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Agulla_move_SS_7
+      name: Agulla_moveUP_SS_7
       rect:
         serializedVersion: 2
         x: 224
@@ -271,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84d94f6a8950ecb45a405856de6b0cc4
-      internalID: -91552836
+      spriteID: 2771d1a6150e61e46bb94e1ac885da08
+      internalID: -1314187815
       vertices: []
       indices: 
       edges: []
@@ -288,14 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Agulla_move_SS_0: 1329261674
-      Agulla_move_SS_1: -891650475
-      Agulla_move_SS_2: -1843069488
-      Agulla_move_SS_3: -402180085
-      Agulla_move_SS_4: 1432292780
-      Agulla_move_SS_5: 111194890
-      Agulla_move_SS_6: 1264304033
-      Agulla_move_SS_7: -91552836
+      Agulla_moveUP_SS_0: 513373466
+      Agulla_moveUP_SS_1: 1203941400
+      Agulla_moveUP_SS_2: 1682551799
+      Agulla_moveUP_SS_3: -569185018
+      Agulla_moveUP_SS_4: -361553970
+      Agulla_moveUP_SS_5: -190369112
+      Agulla_moveUP_SS_6: 588623061
+      Agulla_moveUP_SS_7: -1314187815
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

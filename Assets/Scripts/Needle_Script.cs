@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dummy_Script : MonoBehaviour, EnemyLife
+public class Needle_Script : MonoBehaviour, EnemyLife
 {
 
     public float speed;
@@ -76,7 +76,7 @@ public class Dummy_Script : MonoBehaviour, EnemyLife
        if(col.tag == "Player")
         {
             Debug.Log("danya");
-            player.GetComponent<PlayerController>().lostLife(9);
+            player.GetComponent<PlayerController>().lostLife(4);
         }
    }
 
