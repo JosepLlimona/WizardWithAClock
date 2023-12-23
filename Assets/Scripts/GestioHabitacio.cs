@@ -151,12 +151,12 @@ public class GestioHabitacio : MonoBehaviour
     
 
     void Update(){
-        if (nEnemics == 0 && portesTancades){
+        if (nEnemics <= 0 && portesTancades){
             ObrirTotesLesPortes();
         }
-        /*if (Input.GetKeyDown(KeyCode.U)){
+        if (Input.GetKeyDown(KeyCode.U)){
             ObrirTotesLesPortes();
-        }*/
+        }
     }
 
 }
