@@ -23,7 +23,7 @@ public class GestioHabitacio : MonoBehaviour
     private List<Vector3> posPortesTancades = new List<Vector3>();
     private List<GameObject> portaColocada = new List<GameObject>();
     private bool portesTancades = false;
-    private int nEnemics = 0;
+    public int nEnemics = 0;
 
     void Start()
     {
@@ -141,7 +141,8 @@ public class GestioHabitacio : MonoBehaviour
                     nEnemicsGrans++;
                     enemicPerGenerar = enemicsGrans[Random.Range(0, enemicsGrans.Length)];
                 }
-                Instantiate(enemicPerGenerar, puntRandom, Quaternion.identity);
+                GameObject enemicInstanciat = Instantiate(enemicPerGenerar, puntRandom, Quaternion.identity);
+                enemicInstanciat.GetComponent<EnemyLife>().Habitacio = this.gameObject;
                 nEnemics++;
             }
         }
@@ -151,6 +152,7 @@ public class GestioHabitacio : MonoBehaviour
     
 
     void Update(){
+        Debug.Log("Enemics" + nEnemics);
         if (nEnemics <= 0 && portesTancades){
             ObrirTotesLesPortes();
         }

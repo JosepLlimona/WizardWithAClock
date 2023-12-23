@@ -26,6 +26,8 @@ public class EnemyController : MonoBehaviour, EnemyLife
 
     private GameObject player;
 
+    public GameObject habitacio;
+
     [SerializeField]
     Slider life;
 
@@ -103,6 +105,7 @@ public class EnemyController : MonoBehaviour, EnemyLife
             life.value -= damage;
             if(life.value <= 0 ) 
             {
+                habitacio.GetComponent<GestioHabitacio>().nEnemics--;
                 Destroy(this.gameObject);
             }
         }
@@ -128,5 +131,14 @@ public class EnemyController : MonoBehaviour, EnemyLife
 
         }
       
+    }
+
+    public GameObject Habitacio{
+        get{
+            return habitacio;
+        }
+        set{
+            habitacio = value;
+        }
     }
 }

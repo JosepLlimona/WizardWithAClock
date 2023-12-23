@@ -38,6 +38,8 @@ public class SFBossAI : MonoBehaviour, EnemyLife
     private int numPortalPunch = 0;
     private int LIFE = 1000;
 
+    public GameObject habitacio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -224,6 +226,15 @@ public class SFBossAI : MonoBehaviour, EnemyLife
         {
             Debug.Log("Tocant desde boss");
             player.GetComponent<PlayerController>().lostLife(20);
+        }
+    }
+
+    public GameObject Habitacio{
+        get{
+            return habitacio;
+        }
+        set{
+            habitacio = value;
         }
     }
 }

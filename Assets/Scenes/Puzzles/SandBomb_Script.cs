@@ -22,6 +22,7 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
     private bool hit = false;
 
     private GameObject player;
+    public GameObject habitacio;
 
     [SerializeField]
     Slider life;
@@ -87,6 +88,7 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
     if(hit){
         player.GetComponent<PlayerController>().lostLife(26);
     }
+    habitacio.GetComponent<GestioHabitacio>().nEnemics--;
     Destroy(this.gameObject);
    }
 
@@ -95,10 +97,19 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
         life.value -= damage;
         if(life.value <= 0 ) 
         {
+            habitacio.GetComponent<GestioHabitacio>().nEnemics--;
             Destroy(this.gameObject);
         }
         
     }
 
+    public GameObject Habitacio{
+        get{
+            return habitacio;
+        }
+        set{
+            habitacio = value;
+        }
+    }
   
 }

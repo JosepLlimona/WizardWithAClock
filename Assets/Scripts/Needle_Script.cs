@@ -22,6 +22,7 @@ public class Needle_Script : MonoBehaviour, EnemyLife
     private bool isAttacking = false;
 
     private GameObject player;
+    public GameObject habitacio;
 
     [SerializeField]
     Slider life;
@@ -87,8 +88,18 @@ public class Needle_Script : MonoBehaviour, EnemyLife
         life.value -= damage;
         if(life.value <= 0 ) 
         {
+            habitacio.GetComponent<GestioHabitacio>().nEnemics--;
             Destroy(this.gameObject);
         }
     
+    }
+
+    public GameObject Habitacio{
+        get{
+            return habitacio;
+        }
+        set{
+            habitacio = value;
+        }
     }
 }
