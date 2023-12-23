@@ -37,7 +37,7 @@ public class bulletScript : MonoBehaviour
         if (other.tag=="Player")
         {
             Debug.Log("Tocant desde bala");
-            player.GetComponent<PlayerController>().lostLife(15);
+            player.GetComponent<PlayerController>().lostLife(10);
             Destroy(this.gameObject);
         }
     }
