@@ -223,7 +223,7 @@ public class SFBossAI : MonoBehaviour, EnemyLife
         if (collision.tag == "Player")
         {
             Debug.Log("Tocant desde boss");
-            player.GetComponent<PlayerController>().lostLife(50);
+            player.GetComponent<PlayerController>().lostLife(20);
         }
     }
 }
