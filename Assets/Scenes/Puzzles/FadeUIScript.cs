@@ -46,7 +46,7 @@ public class FadeUIScript : MonoBehaviour
     {
         //myUIGroup.alpha = 1;
 
-        if (InstrText != null)  InstrText.gameObject.SetActive(true);
+        //if (InstrText != null) InstrText.gameObject.SetActive(true);
         fadeOut = true;
         StartCoroutine(esperarFade());
         fadeIn = false;
