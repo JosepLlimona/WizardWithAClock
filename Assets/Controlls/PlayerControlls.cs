@@ -89,6 +89,15 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""1df67a1f-d0dd-4a41-bac8-6978cc6f4cc2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -432,6 +441,28 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
                     ""action"": ""Grab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86eb862d-8811-484b-9f89-70f066b6da06"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2b5cc20-f81c-475c-8e45-98b83a046233"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox;Playstation"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -481,6 +512,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         m_Standard_LastClock = m_Standard.FindAction("LastClock", throwIfNotFound: true);
         m_Standard_ShowCanvas = m_Standard.FindAction("ShowCanvas", throwIfNotFound: true);
         m_Standard_Grab = m_Standard.FindAction("Grab", throwIfNotFound: true);
+        m_Standard_Pause = m_Standard.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -549,6 +581,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Standard_LastClock;
     private readonly InputAction m_Standard_ShowCanvas;
     private readonly InputAction m_Standard_Grab;
+    private readonly InputAction m_Standard_Pause;
     public struct StandardActions
     {
         private @PlayerControlls m_Wrapper;
@@ -560,6 +593,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         public InputAction @LastClock => m_Wrapper.m_Standard_LastClock;
         public InputAction @ShowCanvas => m_Wrapper.m_Standard_ShowCanvas;
         public InputAction @Grab => m_Wrapper.m_Standard_Grab;
+        public InputAction @Pause => m_Wrapper.m_Standard_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Standard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -590,6 +624,9 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
             @Grab.started += instance.OnGrab;
             @Grab.performed += instance.OnGrab;
             @Grab.canceled += instance.OnGrab;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IStandardActions instance)
@@ -615,6 +652,9 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
             @Grab.started -= instance.OnGrab;
             @Grab.performed -= instance.OnGrab;
             @Grab.canceled -= instance.OnGrab;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IStandardActions instance)
@@ -668,5 +708,6 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         void OnLastClock(InputAction.CallbackContext context);
         void OnShowCanvas(InputAction.CallbackContext context);
         void OnGrab(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

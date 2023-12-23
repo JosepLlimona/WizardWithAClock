@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Overlays;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class CanvasController : MonoBehaviour

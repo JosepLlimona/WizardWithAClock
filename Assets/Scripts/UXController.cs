@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UXController : MonoBehaviour
@@ -16,6 +17,12 @@ public class UXController : MonoBehaviour
     private GameObject lastButtonObj;
     [SerializeField]
     private GameObject dashButtonObj;
+    [SerializeField]
+    private GameObject continueButton;
+    [SerializeField]
+    private GameObject exitButton;
+    [SerializeField]
+    private GameObject closeButton;
 
 
     [Header("Xbox")]
@@ -54,6 +61,31 @@ public class UXController : MonoBehaviour
     [SerializeField]
     private Sprite grabButtonPC;
 
+    private bool paused = false;
+
+    private PlayerControlls playerControlls;
+
+    private void Awake()
+    {
+        playerControlls = new PlayerControlls();
+
+        playerControlls.Standard.Pause.performed += context =>
+        {
+            continueGame();
+        };
+    }
+
+    private void OnEnable()
+    {
+        playerControlls.Standard.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControlls.Standard.Disable();
+    }
+
+
     public void activeGrabButton()
     {
         grabButtonObj.SetActive(!grabButtonObj.activeInHierarchy);
@@ -85,5 +117,32 @@ public class UXController : MonoBehaviour
             dashButtonObj.GetComponent<Image>().sprite = dashButtonP;
             grabButtonObj.GetComponent<Image>().sprite = grabButtonP;
         }
+    }
+
+    public void continueGame()
+    {
+        paused = !paused;
+        if (paused)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+        continueButton.SetActive(paused);
+        exitButton.SetActive(paused);
+        closeButton.SetActive(paused);
+    }
+
+    public void exitGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+    }
+
+    public void closeGame()
+    {
+        Application.Quit();
     }
 }
