@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
         // Assegura't que playerInput estigui inicialitzat
         if (playerInput != null)
         {
+            Debug.Log("Afegint");
             playerInput.onControlsChanged += SwitchControls;
         }
 
@@ -230,6 +231,7 @@ public class PlayerController : MonoBehaviour
     {
         if(col.tag == "Item")
         {
+            GameObject.Find("HUD").GetComponent<UXController>().activeGrabButton();
             Debug.Log("Entro");
             grabItem = true;
             itemGrabed = col.gameObject;
@@ -240,6 +242,7 @@ public class PlayerController : MonoBehaviour
     {
         if(col.tag == "Item")
         {
+            GameObject.Find("HUD").GetComponent<UXController>().activeGrabButton();
             Debug.Log("Surto");
             grabItem = false;
             itemGrabed = null;
@@ -460,6 +463,7 @@ public class PlayerController : MonoBehaviour
     {
         currentControllScheme = input.currentControlScheme;
         Debug.Log("Device is now: " + currentControllScheme);
+        GameObject.Find("HUD").GetComponent<UXController>().changeHUD(currentControllScheme);
     }
 
     public void disableMirrorPlayer()
