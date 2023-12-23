@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour
         {
             //pressSpaceToRead.showInteractText();
             esPotMostrar = true;
-            pressSpaceToRead.gameObject.SetActive(true);
+            //pressSpaceToRead.gameObject.SetActive(true);
             //OnShowText?.Invoke();
             OnPressShowText?.Invoke();
 
