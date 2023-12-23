@@ -193,9 +193,11 @@ MonoBehaviour:
   - {fileID: 7645468703713603129}
   - {fileID: 647254989598898799}
   enemicsNormal:
-  - {fileID: 5510396735757818735, guid: 5cdd6053168271343b60cb592e6dce83, type: 3}
+  - {fileID: 5012179895904154142, guid: f5941dfc6a6a32048be17380d926c9f2, type: 3}
+  - {fileID: 5248684733074358311, guid: c471d9f532a10654999b9593e2e47eef, type: 3}
+  - {fileID: 6934835644439331325, guid: 897083ed320d99c4baa68a83f6bb8f87, type: 3}
   enemicsGrans:
-  - {fileID: 6849006903880971975, guid: 3b93633673f61824e8f334fd468fbd7c, type: 3}
+  - {fileID: 7986023810608080630, guid: 7d27ed5b4d51dfe43a2fb280b977e136, type: 3}
   Boss: {fileID: 0}
   tileParetEsq: {fileID: 1129423310124026210, guid: db5b4374f0ce01047accdb983e44b127, type: 3}
   tileParetDreta: {fileID: 1129423310124026210, guid: 31cd38184e9b3cc40b7a198b4fbb5702, type: 3}
@@ -205,6 +207,7 @@ MonoBehaviour:
   tilePortaDreta: {fileID: 1129423310124026210, guid: f73218884f543044a9dde3a0127a3239, type: 3}
   tilePortaSuperior: {fileID: 1129423310124026210, guid: 05f00702dc68e3d4ca600ceafe32bfea, type: 3}
   tilePortaInferior: {fileID: 1129423310124026210, guid: 1a53e9db3440ccf419c89aed317dc307, type: 3}
+  nEnemics: 0
 --- !u!1 &3820002869583263134
 GameObject:
   m_ObjectHideFlags: 0

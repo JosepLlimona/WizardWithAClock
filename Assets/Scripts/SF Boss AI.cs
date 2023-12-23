@@ -9,7 +9,6 @@ using UnityEngine.InputSystem.Interactions;
 public class SFBossAI : MonoBehaviour, EnemyLife
 {
     private Rigidbody2D rbody;
-    [SerializeField]
     private GameObject player;
     [SerializeField]
     private int speed = 3;
@@ -46,6 +45,7 @@ public class SFBossAI : MonoBehaviour, EnemyLife
         AtackOption = Random.Range(0, 20);
         rbody = GetComponent<Rigidbody2D>();
         InvokeRepeating("moveboss", 0f, timemove);
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame

@@ -719,6 +719,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Needle
       objectReference: {fileID: 0}
+    - target: {fileID: 8620187751838860388, guid: 897083ed320d99c4baa68a83f6bb8f87, type: 3}
+      propertyPath: m_Value
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620187751838860388, guid: 897083ed320d99c4baa68a83f6bb8f87, type: 3}
+      propertyPath: m_MaxValue
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -98,6 +98,15 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Heal"",
+                    ""type"": ""Button"",
+                    ""id"": ""cd096970-1748-4e5e-b6bb-404ef7db24a7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -415,7 +424,18 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""ShowCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""412001d7-2a0b-428a-a62c-f8663542f340"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox;Playstation"",
                     ""action"": ""ShowCanvas"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -461,6 +481,28 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Xbox;Playstation"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac100c99-4fd0-4895-a2dc-e49bd6d07a4a"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bcebb82b-b497-41fc-b095-ebaab7319f5c"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox;Playstation"",
+                    ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -513,6 +555,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         m_Standard_ShowCanvas = m_Standard.FindAction("ShowCanvas", throwIfNotFound: true);
         m_Standard_Grab = m_Standard.FindAction("Grab", throwIfNotFound: true);
         m_Standard_Pause = m_Standard.FindAction("Pause", throwIfNotFound: true);
+        m_Standard_Heal = m_Standard.FindAction("Heal", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -582,6 +625,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Standard_ShowCanvas;
     private readonly InputAction m_Standard_Grab;
     private readonly InputAction m_Standard_Pause;
+    private readonly InputAction m_Standard_Heal;
     public struct StandardActions
     {
         private @PlayerControlls m_Wrapper;
@@ -594,6 +638,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         public InputAction @ShowCanvas => m_Wrapper.m_Standard_ShowCanvas;
         public InputAction @Grab => m_Wrapper.m_Standard_Grab;
         public InputAction @Pause => m_Wrapper.m_Standard_Pause;
+        public InputAction @Heal => m_Wrapper.m_Standard_Heal;
         public InputActionMap Get() { return m_Wrapper.m_Standard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -627,6 +672,9 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @Heal.started += instance.OnHeal;
+            @Heal.performed += instance.OnHeal;
+            @Heal.canceled += instance.OnHeal;
         }
 
         private void UnregisterCallbacks(IStandardActions instance)
@@ -655,6 +703,9 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @Heal.started -= instance.OnHeal;
+            @Heal.performed -= instance.OnHeal;
+            @Heal.canceled -= instance.OnHeal;
         }
 
         public void RemoveCallbacks(IStandardActions instance)
@@ -709,5 +760,6 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         void OnShowCanvas(InputAction.CallbackContext context);
         void OnGrab(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnHeal(InputAction.CallbackContext context);
     }
 }

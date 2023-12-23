@@ -177,6 +177,11 @@ public class PlayerController : MonoBehaviour
                 itemGrabed.GetComponent<Items>().activeItem(this.gameObject);
             }
         };
+
+        playerControlls.Standard.Heal.performed += context =>
+        {
+            heal(20);
+        };
     }
 
     private void OnEnable()
@@ -405,6 +410,7 @@ public class PlayerController : MonoBehaviour
         {
             life = 0;
             Debug.Log("Game Over");
+            Application.Quit();
         }
         lifeSlider.value = life;
         lifeText.text = life.ToString();

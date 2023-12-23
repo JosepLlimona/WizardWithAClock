@@ -83,9 +83,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 15
+  m_MaxValue: 65
   m_WholeNumbers: 0
-  m_Value: 15
+  m_Value: 65
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -636,4 +636,5 @@ MonoBehaviour:
   layerPlayer:
     serializedVersion: 2
     m_Bits: 256
+  habitacio: {fileID: 0}
   life: {fileID: 8620187751838860388}
