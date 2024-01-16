@@ -27,7 +27,7 @@ public class GestioHabitacio : MonoBehaviour
 
     void Start()
     {
-        //TancarPortesAleatories();
+        TancarPortesAleatories();
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -63,14 +63,14 @@ public class GestioHabitacio : MonoBehaviour
         int i = 0;
         while (i <  posPortes.Length){
             Vector3 posicio = posPortes[i].transform.position;
-            //if (!posPortesTancades.Contains(posicio)){   ESTO HACE QUE NO SE SUPERPONGAN PAREDES PERO PARA LA DEMO PUEDE DAR ERROR Y NO CERRRAR ALGUNAS PUERTAS
+            if (!posPortesTancades.Contains(posicio)){  
                 string lloc = posPortes[i].name;
                 GameObject portaPerColocar = ObtenirPortaPerNom(lloc);
                 if(portaPerColocar != null){
                     GameObject porta = Instantiate(portaPerColocar, posicio, Quaternion.identity);
                     portaColocada.Add(porta);
                 }
-            //}
+            }
             i++;
         }
     portesTancades = true;

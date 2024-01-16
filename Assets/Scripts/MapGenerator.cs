@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MapGenerator : MonoBehaviour
 {
+    public Tilemap tilemapMapa;
+    public Tile terraPassadis;
 
     public GameObject[] habPetita;
     private List<int> petitaUsades = new List<int>();
@@ -26,6 +29,8 @@ public class MapGenerator : MonoBehaviour
     public float separacioHabitacions = 1f;
     private int anterior = 0; 
 
+    private Dictionary<int, List<Vector2>> posPortesPerHabitacio = new Dictionary<int, List<Vector2>>(); //llenar esto mañana crack
+
 
     void Start()
     {
@@ -35,6 +40,10 @@ public class MapGenerator : MonoBehaviour
     void GenerateMap(){
 
         List<Vector3> posUsades = new List<Vector3>();
+        List<GestioHabitacio> habitacionsGenerades = new List<GestioHabitacio>();
+        float tileSize = tilemapMapa.cellSize.x;
+        
+
         for (int i = 0; i < habitacionsMapa; i++){
                 
             int tipus; 
@@ -46,7 +55,7 @@ public class MapGenerator : MonoBehaviour
             float x = Random.Range(-ampladaMapa + ampladaHabitacio, ampladaMapa - ampladaHabitacio);
             float y = Random.Range(-alturaMapa + alturaHabitacio, alturaMapa - alturaHabitacio);
 
-            Vector3 spawnPosition = new Vector3(x,y,0);
+            Vector3 spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
             
             bool ocupada = PosicioOcupada(spawnPosition, posUsades, tipus);
             int intentos = 0;
@@ -54,7 +63,7 @@ public class MapGenerator : MonoBehaviour
             while(ocupada && intentos < 100){ //comporbar que spawnPosition es buida
                 x = Random.Range(-ampladaMapa + ampladaHabitacio, ampladaMapa - ampladaHabitacio);
                 y = Random.Range(-alturaMapa + alturaHabitacio, alturaMapa - alturaHabitacio);
-                spawnPosition = new Vector3(x,y,0);
+                spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
 
                 ocupada = PosicioOcupada(spawnPosition, posUsades, tipus);
                 intentos++;
@@ -65,9 +74,15 @@ public class MapGenerator : MonoBehaviour
 
             GameObject habitacioRandom = ObtenirHabitacioRandom(tipus);
             GameObject instaciarHabitacio = Instantiate(habitacioRandom, spawnPosition, Quaternion.identity);
+            habitacionsGenerades.Add(instanciarHabitacio.GetComponent<GestioHabitacio>());
         }
+
+        FerPassadis(habitacionsGenerades);
         
     }
+
+
+    
 
     void ObtenirTipusHabitacio(out int tipus, out float ampladaHabitacio, out float alturaHabitacio){
         tipus = Random.Range(1,4);
@@ -151,8 +166,14 @@ public class MapGenerator : MonoBehaviour
             amplada = granAmplada;
             altura = granAltura;
         }
+
+        float tileX = Mathf.Round(pos.x / tilemapMapa.cellSize.x) * tilemapMapa.cellSize.x;
+        float tileY = Mathf.Round(pos.y / tilemapMapa.cellSize.x) * tilemapMapa.cellSize.y;
+
+        Vector3 tilePos = new Vector3(tileX, tileY, 0);
+
         foreach (Vector3 usada in posUsades){
-            if (Vector3.Distance(pos, usada) < amplada + separacioHabitacions){
+            if (Vector3.Distance(tilePos, usada) < amplada + separacioHabitacions){
                 return true;
             }
         }
