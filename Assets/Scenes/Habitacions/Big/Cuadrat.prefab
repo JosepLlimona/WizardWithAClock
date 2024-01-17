@@ -15640,6 +15640,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cuadrat
       objectReference: {fileID: 0}
+    - target: {fileID: 8398647893813273578, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
+      propertyPath: m_TagString
+      value: HabitacioGran
+      objectReference: {fileID: 0}
     - target: {fileID: 8543627575508795747, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
       propertyPath: m_Size.x
       value: 6.864267

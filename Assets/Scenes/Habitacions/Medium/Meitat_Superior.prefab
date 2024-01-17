@@ -7800,6 +7800,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Meitat_Superior
       objectReference: {fileID: 0}
+    - target: {fileID: 2704241189179990617, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
+      propertyPath: m_TagString
+      value: HabitacioMitjana
+      objectReference: {fileID: 0}
     - target: {fileID: 2854025189349392592, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
       propertyPath: m_Size.x
       value: 5.005288

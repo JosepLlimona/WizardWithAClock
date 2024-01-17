@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8655598384589769104}
   m_Layer: 0
   m_Name: PortaInferior
-  m_TagString: Untagged
+  m_TagString: PortaHoritzontal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 6376905905775245296}
   m_Layer: 0
   m_Name: Cuadrat
-  m_TagString: Untagged
+  m_TagString: HabitacioPetita
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,6 +208,7 @@ MonoBehaviour:
   tilePortaSuperior: {fileID: 1129423310124026210, guid: 05f00702dc68e3d4ca600ceafe32bfea, type: 3}
   tilePortaInferior: {fileID: 1129423310124026210, guid: 1a53e9db3440ccf419c89aed317dc307, type: 3}
   nEnemics: 0
+  posicionsPortes: []
 --- !u!1 &3820002869583263134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,7 +2095,7 @@ GameObject:
   - component: {fileID: 7216733056493563493}
   m_Layer: 0
   m_Name: PortaDreta
-  m_TagString: Untagged
+  m_TagString: PortaVertical
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2996,7 +2997,7 @@ GameObject:
   - component: {fileID: 4744326191418227954}
   m_Layer: 0
   m_Name: PortaSuperior
-  m_TagString: Untagged
+  m_TagString: PortaHoritzontal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3073,7 +3074,7 @@ GameObject:
   - component: {fileID: 2819849581124911568}
   m_Layer: 0
   m_Name: PortaEsq
-  m_TagString: Untagged
+  m_TagString: PortaVertical
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -7,6 +7,11 @@ TagManager:
   - Enemy
   - Item
   - Habitacio Boss
+  - HabitacioGran
+  - HabitacioMitjana
+  - HabitacioPetita
+  - PortaVertical
+  - PortaHoritzontal
   layers:
   - Default
   - TransparentFX

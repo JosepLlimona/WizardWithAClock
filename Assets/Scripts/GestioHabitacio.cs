@@ -25,6 +25,8 @@ public class GestioHabitacio : MonoBehaviour
     private bool portesTancades = false;
     public int nEnemics = 0;
 
+    public List<Vector3> posicionsPortes = new List<Vector3>();
+
     void Start()
     {
         TancarPortesAleatories();
@@ -57,6 +59,7 @@ public class GestioHabitacio : MonoBehaviour
             }
             i++;
         }
+        posicionsPortes = PosicioPortes();
     }
 
     void TancarTotesLesPortes(){
@@ -148,6 +151,27 @@ public class GestioHabitacio : MonoBehaviour
         }
         }
         
+    }
+
+    List<Vector3> PosicioPortes(){
+        List<Vector3> portes = new List<Vector3>();
+
+        for (int i = 0; i < posPortes.Length; i++){
+            GameObject porta = posPortes[i];
+            Vector3 posicio = porta.transform.position;
+            if (!posPortesTancades.Contains(posicio)){  
+                portes.Add(posicio);
+                if (porta.name == "PortaEsq" || porta.name == "PortaDreta"){
+                    porta.tag = "PortaVertical";
+                }
+                else{
+                    porta.tag = "PortaHoritzontal";
+                }
+                porta.name = (i).ToString();
+
+            }
+        } 
+        return portes;
     }
     
 

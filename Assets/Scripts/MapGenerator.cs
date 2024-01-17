@@ -29,12 +29,14 @@ public class MapGenerator : MonoBehaviour
     public float separacioHabitacions = 1f;
     private int anterior = 0; 
 
-    private Dictionary<int, List<Vector2>> posPortesPerHabitacio = new Dictionary<int, List<Vector2>>(); //llenar esto mañana crack
+    private List<List<Vector3>> posPortesPerHabitacio = new List<List<Vector3>>();
+    private Dictionary<int, HashSet<int>> portesUsades = new Dictionary<int, HashSet<int>>();
 
 
     void Start()
     {
         GenerateMap();
+        FerPassadis();
     }
 
     void GenerateMap(){
@@ -73,15 +75,38 @@ public class MapGenerator : MonoBehaviour
             anterior = tipus;
 
             GameObject habitacioRandom = ObtenirHabitacioRandom(tipus);
-            GameObject instaciarHabitacio = Instantiate(habitacioRandom, spawnPosition, Quaternion.identity);
-            habitacionsGenerades.Add(instanciarHabitacio.GetComponent<GestioHabitacio>());
-        }
+            GameObject instanciarHabitacio = Instantiate(habitacioRandom, spawnPosition, Quaternion.identity);
 
-        FerPassadis(habitacionsGenerades);
-        
+            instanciarHabitacio.name = i.ToString();
+
+            List<Vector3> posPortes = instanciarHabitacio.GetComponent<GestioHabitacio>().posicionsPortes;
+            posPortesPerHabitacio.Add(posPortes);
+        }
     }
 
+    void FerPassadis(){
+        foreach (List<Vector3> posPortes in posPortesPerHabitacio){
+            for (int i = 0; i < posPortes.Count; i++){
+                for (int j = i+1; j < posPortes.Count; j++){
+                    Vector3 porta1 = posPortes[i];
+                    Vector3 porta2 = posPortes[j];
 
+                    int habitacio1 = int.Parse(porta1.z.ToString());
+                    int habitacio2 = int.Parse(porta2.z.ToString());
+
+                    if (!PortaUsada(habitacio1, i) && !PortaUsada(habitacio2,j)){
+                        ConnectarPortes(porta1,porta2);
+                        AfegirPortaUsada(habitacio1,i);
+                        AfegirPortaUsada(habitacio2,j);
+                    }
+                }
+            }
+        }
+    }
+
+    void ConnectarPortes(Vector3 porta1, Vector3 porta2){
+        
+    }
     
 
     void ObtenirTipusHabitacio(out int tipus, out float ampladaHabitacio, out float alturaHabitacio){
@@ -179,4 +204,19 @@ public class MapGenerator : MonoBehaviour
         }
         return false;
     }
+
+    void AfegirPortaUsada(int habitacio, int porta){
+        if (!portesUsades.ContainsKey(habitacio)){
+            portesUsades[habitacio] = new HashSet<int>();
+        }
+        portesUsades[habitacio].Add(porta);
+    }
+
+    bool PortaUsada(int habitacio, int porta){
+        if (portesUsades.ContainsKey(habitacio)){
+            return portesUsades[habitacio].Contains(porta);
+        }
+        return false;
+    }
+
 }
