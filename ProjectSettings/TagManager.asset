@@ -10,8 +10,11 @@ TagManager:
   - HabitacioGran
   - HabitacioMitjana
   - HabitacioPetita
+  - PortaDreta
+  - PortaEsq
+  - PortaSuperior
+  - PortaInferior
   - PortaVertical
-  - PortaHoritzontal
   layers:
   - Default
   - TransparentFX

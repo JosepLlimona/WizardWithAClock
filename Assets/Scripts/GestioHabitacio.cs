@@ -25,24 +25,25 @@ public class GestioHabitacio : MonoBehaviour
     private bool portesTancades = false;
     public int nEnemics = 0;
 
+    private List<string> habitacionsVisitades = new List<string>(); 
+
     public List<Vector3> posicionsPortes = new List<Vector3>();
 
-    void Start()
-    {
-        TancarPortesAleatories();
-    }
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Player") && !portesTancades){
             Debug.Log("El jugador ha entrado en la habitacion");
-            GenerarEnemics();
-            TancarTotesLesPortes();
+            if (!habitacionsVisitades.Contains(gameObject.name)){
+                TancarTotesLesPortes();
+                GenerarEnemics();
+            }
+            
         }
     }
 
-    void TancarPortesAleatories(){
+    public void TancarPortesAleatories(){
         int i = 0;
-       while (i < posPortes.Length && tancades < posPortes.Length / 2){
+        while (i < posPortes.Length && tancades < posPortes.Length / 2){
             float nRandom = Random.Range(0f,1f);
 
             if (nRandom < 0.5f){
@@ -55,20 +56,22 @@ public class GestioHabitacio : MonoBehaviour
                     Instantiate(paretPerColocar, posicio, Quaternion.identity);
                     posPortesTancades.Add(posicio);
                     tancades++;
-                }
+                } 
             }
             i++;
         }
-        posicionsPortes = PosicioPortes();
+        PosicioPortes();
     }
 
     void TancarTotesLesPortes(){
         int i = 0;
         while (i <  posPortes.Length){
             Vector3 posicio = posPortes[i].transform.position;
+
             if (!posPortesTancades.Contains(posicio)){  
-                string lloc = posPortes[i].name;
+                string lloc = posPortes[i].tag;
                 GameObject portaPerColocar = ObtenirPortaPerNom(lloc);
+                
                 if(portaPerColocar != null){
                     GameObject porta = Instantiate(portaPerColocar, posicio, Quaternion.identity);
                     portaColocada.Add(porta);
@@ -86,6 +89,7 @@ public class GestioHabitacio : MonoBehaviour
         }
         portesTancades = false;
         portaColocada.Clear();
+        habitacionsVisitades.Add(gameObject.name);
     }
 
     GameObject ObtenirParetPerNom(string lloc){
@@ -123,7 +127,7 @@ public class GestioHabitacio : MonoBehaviour
 
 
     void GenerarEnemics(){
-        int nPerGenerar = Random.Range(5, 10);
+        int nPerGenerar;
         int nEnemicsGrans = 0;
         BoxCollider2D colliderHabitacio = GetComponent<BoxCollider2D>();
         if (gameObject.CompareTag("Habitacio Boss")){
@@ -131,29 +135,38 @@ public class GestioHabitacio : MonoBehaviour
             Instantiate(Boss, spawnPoint, Quaternion.identity);
         }
         else{
+            if (gameObject.tag == "HabitacioPetita"){
+                nPerGenerar = Random.Range(3, 6);
+            }
+            else if (gameObject.tag == "HabitacioMitjana"){
+                nPerGenerar = Random.Range(5, 9);
+            }
+            else{
+                nPerGenerar = Random.Range(7, 10);
+            }
             for (int i = 0; i < nPerGenerar; i++){
             
-            if (colliderHabitacio != null){
-                Vector2 puntRandom = new Vector2(Random.Range(colliderHabitacio.bounds.min.x, colliderHabitacio.bounds.max.x), Random.Range(colliderHabitacio.bounds.min.y, colliderHabitacio.bounds.max.y));
+                if (colliderHabitacio != null){
+                    Vector2 puntRandom = new Vector2(Random.Range(colliderHabitacio.bounds.min.x, colliderHabitacio.bounds.max.x), Random.Range(colliderHabitacio.bounds.min.y, colliderHabitacio.bounds.max.y));
             
-                GameObject enemicPerGenerar;
-                if (nEnemicsGrans >= nPerGenerar/3){
-                    enemicPerGenerar = enemicsNormal[Random.Range(0, enemicsNormal.Length)];
+                    GameObject enemicPerGenerar;
+                    if (nEnemicsGrans >= nPerGenerar/3){
+                        enemicPerGenerar = enemicsNormal[Random.Range(0, enemicsNormal.Length)];
+                    }
+                    else{
+                        nEnemicsGrans++;
+                        enemicPerGenerar = enemicsGrans[Random.Range(0, enemicsGrans.Length)];
+                    }
+                    GameObject enemicInstanciat = Instantiate(enemicPerGenerar, puntRandom, Quaternion.identity);
+                    enemicInstanciat.GetComponent<EnemyLife>().Habitacio = this.gameObject;
+                    nEnemics++;
                 }
-                else{
-                    nEnemicsGrans++;
-                    enemicPerGenerar = enemicsGrans[Random.Range(0, enemicsGrans.Length)];
-                }
-                GameObject enemicInstanciat = Instantiate(enemicPerGenerar, puntRandom, Quaternion.identity);
-                enemicInstanciat.GetComponent<EnemyLife>().Habitacio = this.gameObject;
-                nEnemics++;
             }
-        }
         }
         
     }
 
-    List<Vector3> PosicioPortes(){
+    public void PosicioPortes(){
         List<Vector3> portes = new List<Vector3>();
 
         for (int i = 0; i < posPortes.Length; i++){
@@ -161,28 +174,18 @@ public class GestioHabitacio : MonoBehaviour
             Vector3 posicio = porta.transform.position;
             if (!posPortesTancades.Contains(posicio)){  
                 portes.Add(posicio);
-                if (porta.name == "PortaEsq" || porta.name == "PortaDreta"){
-                    porta.tag = "PortaVertical";
-                }
-                else{
-                    porta.tag = "PortaHoritzontal";
-                }
                 porta.name = (i).ToString();
 
             }
         } 
-        return portes;
+        posicionsPortes = portes;
     }
     
 
     void Update(){
-        Debug.Log("Enemics" + nEnemics);
+        Debug.Log(nEnemics);
         if (nEnemics <= 0 && portesTancades){
             ObrirTotesLesPortes();
         }
-        if (Input.GetKeyDown(KeyCode.U)){
-            ObrirTotesLesPortes();
-        }
     }
-
 }

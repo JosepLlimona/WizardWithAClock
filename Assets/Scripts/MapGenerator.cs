@@ -36,7 +36,6 @@ public class MapGenerator : MonoBehaviour
     void Start()
     {
         GenerateMap();
-        FerPassadis();
     }
 
     void GenerateMap(){
@@ -79,25 +78,34 @@ public class MapGenerator : MonoBehaviour
 
             instanciarHabitacio.name = i.ToString();
 
-            List<Vector3> posPortes = instanciarHabitacio.GetComponent<GestioHabitacio>().posicionsPortes;
+            GestioHabitacio aux = instanciarHabitacio.GetComponent<GestioHabitacio>();
+            
+            aux.TancarPortesAleatories();
+            aux.PosicioPortes();
+            
+
+            List<Vector3> posPortes = aux.posicionsPortes;
             posPortesPerHabitacio.Add(posPortes);
         }
+        FerPassadis();
     }
 
+
     void FerPassadis(){
-        foreach (List<Vector3> posPortes in posPortesPerHabitacio){
-            for (int i = 0; i < posPortes.Count; i++){
-                for (int j = i+1; j < posPortes.Count; j++){
-                    Vector3 porta1 = posPortes[i];
-                    Vector3 porta2 = posPortes[j];
+        for (int i = 0; i < posPortesPerHabitacio.Count; i++){
+            for (int j = 0; j < posPortesPerHabitacio.Count; j++){
+                if(i != j){
+                    int habitacio1 = i;
+                    int habitacio2 = j;
+                    int rand1 = Random.Range(0,posPortesPerHabitacio[habitacio1].Count);
+                    int rand2 = Random.Range(0,posPortesPerHabitacio[habitacio2].Count);
 
-                    int habitacio1 = int.Parse(porta1.z.ToString());
-                    int habitacio2 = int.Parse(porta2.z.ToString());
-
-                    if (!PortaUsada(habitacio1, i) && !PortaUsada(habitacio2,j)){
+                    Vector3 porta1 = posPortesPerHabitacio[habitacio1][rand1];
+                    Vector3 porta2 = posPortesPerHabitacio[habitacio2][rand2];
+                    if (!PortaUsada(habitacio1, rand1) && !PortaUsada(habitacio2,rand2)){
                         ConnectarPortes(porta1,porta2);
-                        AfegirPortaUsada(habitacio1,i);
-                        AfegirPortaUsada(habitacio2,j);
+                        AfegirPortaUsada(habitacio1,rand1);
+                        AfegirPortaUsada(habitacio2,rand2);
                     }
                 }
             }
@@ -105,7 +113,8 @@ public class MapGenerator : MonoBehaviour
     }
 
     void ConnectarPortes(Vector3 porta1, Vector3 porta2){
-        
+        Vector3Int tilePos1 = tilemapMapa.WorldToCell(porta1);
+        Vector3Int tilePos2 = tilemapMapa.WorldToCell(porta2);
     }
     
 
