@@ -93,28 +93,77 @@ public class MapGenerator : MonoBehaviour
 
     void FerPassadis(){
         for (int i = 0; i < posPortesPerHabitacio.Count; i++){
-            for (int j = 0; j < posPortesPerHabitacio.Count; j++){
-                if(i != j){
-                    int habitacio1 = i;
-                    int habitacio2 = j;
-                    int rand1 = Random.Range(0,posPortesPerHabitacio[habitacio1].Count);
-                    int rand2 = Random.Range(0,posPortesPerHabitacio[habitacio2].Count);
-
-                    Vector3 porta1 = posPortesPerHabitacio[habitacio1][rand1];
-                    Vector3 porta2 = posPortesPerHabitacio[habitacio2][rand2];
-                    if (!PortaUsada(habitacio1, rand1) && !PortaUsada(habitacio2,rand2)){
+            int habitacio = i;
+            for (int j = 0; j < posPortesPerHabitacio[i].Count; j++){
+                Vector3 porta1 = posPortesPerHabitacio[i][j];
+                int[] indexPorta2 = TrobarPortaMesPropera(habitacio,porta1);
+                Vector3 porta2 = new Vector3();
+                if (indexPorta2[0] != -1 && indexPorta2[1] != -1){
+                    porta2 = posPortesPerHabitacio[indexPorta2[0]][indexPorta2[1]];
+                     if (porta1 != Vector3.zero && porta2 != Vector3.zero){
                         ConnectarPortes(porta1,porta2);
-                        AfegirPortaUsada(habitacio1,rand1);
-                        AfegirPortaUsada(habitacio2,rand2);
+                        AfegirPortaUsada(habitacio, j);
+                        AfegirPortaUsada(indexPorta2[0], indexPorta2[1]);
+                    }
+                }
+
+               
+            }
+        }
+    }
+
+    int[] TrobarPortaMesPropera(int habitacio, Vector3 portaRef){
+        int[] indexPortaSeleccionada = {-1, -1};
+        float distanciaMinima = float.MaxValue;
+
+        for (int i = 0; i < posPortesPerHabitacio.Count; i++){
+            if (i != habitacio){
+                List<Vector3> posPortesHabitacio = posPortesPerHabitacio[i];
+                foreach (Vector3 porta in posPortesHabitacio){
+                    int indexPorta = posPortesPerHabitacio[i].IndexOf(porta);
+                    if (!portesUsades.ContainsKey(i) || (portesUsades.ContainsKey(i) && !portesUsades[i].Contains(indexPorta))){
+                        float distancia = Vector3.Distance(portaRef, porta);
+                        if (distancia < distanciaMinima){
+                            distanciaMinima = distancia;
+                            indexPortaSeleccionada[0] = i;
+                            indexPortaSeleccionada[1] = indexPorta;
+                        }
                     }
                 }
             }
         }
+        return indexPortaSeleccionada;
     }
 
     void ConnectarPortes(Vector3 porta1, Vector3 porta2){
         Vector3Int tilePos1 = tilemapMapa.WorldToCell(porta1);
         Vector3Int tilePos2 = tilemapMapa.WorldToCell(porta2);
+
+        tilemapMapa.SetTile(tilePos1, terraPassadis);
+
+        int startX = tilePos1.x;
+        int startY = tilePos1.y;
+        int endX = tilePos2.x;
+        int endY = tilePos2.y;
+
+        int directionX = (startX < endX) ? 1 : -1;
+        int directionY = (startY < endY) ? 1 : -1;
+
+        // Dibuja una línea horizontal entre las dos puertas
+        for (int x = startX; x != endX; x += directionX) {
+            Vector3Int tilePos = new Vector3Int(x, startY, 0);
+            if (!PosicioTileMapOcupada(tilePos) && !PosicioOcupada(tilemapMapa.GetCellCenterWorld(tilePos), new List<Vector3>(), 0)) {
+                tilemapMapa.SetTile(tilePos, terraPassadis);
+            }
+        }
+
+        // Dibuja una línea vertical entre las dos puertas
+        for (int y = startY; y != endY; y += directionY) {
+            Vector3Int tilePos = new Vector3Int(endX, y, 0);
+            if (!PosicioTileMapOcupada(tilePos) && !PosicioOcupada(tilemapMapa.GetCellCenterWorld(tilePos), new List<Vector3>(), 0)) {
+                tilemapMapa.SetTile(tilePos, terraPassadis);
+            }
+        }    
     }
     
 
@@ -226,6 +275,11 @@ public class MapGenerator : MonoBehaviour
             return portesUsades[habitacio].Contains(porta);
         }
         return false;
+    }
+
+    bool PosicioTileMapOcupada(Vector3Int pos){
+        TileBase tile = tilemapMapa.GetTile(pos);
+        return tile != null;
     }
 
 }
