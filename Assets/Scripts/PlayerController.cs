@@ -327,7 +327,8 @@ public class PlayerController : MonoBehaviour
         else if (actualClock == 3)
         {
             canHeavyAttack = false;
-            Vector3 pos = hammerStart.transform.position;
+
+            Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
             GameObject hammerInstance = Instantiate(hammer, pos, Quaternion.identity);
             hammerInstance.GetComponent<HammerController>().setDamage(hammerDamage);
             clockAnim.SetBool("HeavyAttack", true);
@@ -405,6 +406,7 @@ public class PlayerController : MonoBehaviour
 
     public void lostLife(int damage)
     {
+        playerAnim.SetTrigger("Hurt");
         life -= damage;
         if(life <= 0)
         {
