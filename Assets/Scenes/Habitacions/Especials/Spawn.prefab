@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2618392823349132945}
   - component: {fileID: 332173138660045543}
-  - component: {fileID: 4228902519713786142}
+  - component: {fileID: 2024199124167391233}
   m_Layer: 0
   m_Name: Spawn
   m_TagString: Untagged
@@ -37,6 +37,7 @@ Transform:
   - {fileID: 4566365465363553787}
   - {fileID: 6616928131897734999}
   - {fileID: 6668526201766145782}
+  - {fileID: 8423166410036401570}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &332173138660045543
@@ -51,7 +52,7 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &4228902519713786142
+--- !u!114 &2024199124167391233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,21 +61,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 1377601311556964377}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 610f78a48fbaccf4ebe43da1fe95e607, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e7da1cd2434775449ddf04691a8294e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemapColisions: {fileID: 4084501430862974858}
+  posSpawn: {fileID: 2118310796489640704}
   posPortes:
   - {fileID: 4178577104231374913}
   - {fileID: 8119468094621993930}
   - {fileID: 8366845794030699833}
   - {fileID: 7675226837031346240}
-  tileParetEsq: {fileID: 0}
-  tileParetDreta: {fileID: 0}
-  tileParetSuperior: {fileID: 0}
-  tileParetInferior: {fileID: 0}
-  tilePortaVertical: {fileID: 1129423310124026210, guid: 13f9c379d0850fc4b93fc5aa14d619f6, type: 3}
-  tilePortaHoritzontal: {fileID: 1129423310124026210, guid: 05f00702dc68e3d4ca600ceafe32bfea, type: 3}
+  tileParetEsq: {fileID: 1129423310124026210, guid: db5b4374f0ce01047accdb983e44b127, type: 3}
+  tileParetDreta: {fileID: 1129423310124026210, guid: 31cd38184e9b3cc40b7a198b4fbb5702, type: 3}
+  tileParetSuperior: {fileID: 1129423310124026210, guid: 886708d8afc94ff41b70df16018add01, type: 3}
+  tileParetInferior: {fileID: 1129423310124026210, guid: 4b2a0c14c8fd2074995ab5af0c99ecec, type: 3}
+  posicionsPortes: []
+--- !u!1 &2118310796489640704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8423166410036401570}
+  m_Layer: 0
+  m_Name: PosicioSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8423166410036401570
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118310796489640704}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.427, y: 1.416, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2618392823349132945}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4178577104231374913
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,7 +117,7 @@ GameObject:
   - component: {fileID: 1920655546538342474}
   m_Layer: 0
   m_Name: PortaEsq
-  m_TagString: Untagged
+  m_TagString: PortaEsq
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +131,7 @@ Transform:
   m_GameObject: {fileID: 4178577104231374913}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -117,7 +148,7 @@ GameObject:
   - component: {fileID: 6668526201766145782}
   m_Layer: 0
   m_Name: PortaInferior
-  m_TagString: Untagged
+  m_TagString: PortaInferior
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 7675226837031346240}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6, y: 0, z: 0}
+  m_LocalPosition: {x: 0.97, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -148,7 +179,7 @@ GameObject:
   - component: {fileID: 4566365465363553787}
   m_Layer: 0
   m_Name: PortaDreta
-  m_TagString: Untagged
+  m_TagString: PortaDreta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 8119468094621993930}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.84, y: 1.6, z: 0}
+  m_LocalPosition: {x: 2.56, y: 0.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -804,7 +835,7 @@ GameObject:
   - component: {fileID: 6616928131897734999}
   m_Layer: 0
   m_Name: PortaSuperior
-  m_TagString: Untagged
+  m_TagString: PortaSuperior
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -818,7 +849,7 @@ Transform:
   m_GameObject: {fileID: 8366845794030699833}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6, y: 3.84, z: 0}
+  m_LocalPosition: {x: 0.97, y: 2.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

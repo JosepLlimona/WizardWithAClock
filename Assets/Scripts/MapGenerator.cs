@@ -6,7 +6,15 @@ using UnityEngine.Tilemaps;
 public class MapGenerator : MonoBehaviour
 {
     public Tilemap tilemapMapa;
+    public Tilemap tilemapDecoracio;
+    public Tilemap tilemapCollision;
     public Tile terraPassadis;
+    public Tile paretEsq;
+    public Tile paretDrt;
+    public Tile paretInf;
+    public Tile paretSup;
+    public Tile paretSupD;
+    public Tile error;
 
     public GameObject[] habPetita;
     private List<int> petitaUsades = new List<int>();
@@ -15,22 +23,32 @@ public class MapGenerator : MonoBehaviour
     public GameObject[] habGran;
     private List<int> granUsades = new List<int>();
 
+    public GameObject habitacioSpawn;
+
     public int habitacionsMapa;
-    public float alturaMapa;
-    public float ampladaMapa;
 
-    private float petitaAmplada = 7f;
-    private float petitaAltura = 7f;
-    private float mitjanaAmplada = 8f;
-    private float mitjanaAltura = 8f;
-    private float granAmplada = 9f;
-    private float granAltura = 9f;
+    private static float tileSize = 0.32f;
 
-    public float separacioHabitacions = 1f;
+    private float alturaMapa = 27;
+    private float ampladaMapa = 27;
+
+
+    private float petitaAmplada = 5;
+    private float petitaAltura = 5;
+    private float mitjanaAmplada = 7;
+    private float mitjanaAltura = 7;
+    private float granAmplada = 8;
+    private float granAltura = 8;
+
+    private float separacioHabitacions = 2;
     private int anterior = 0; 
 
     private List<List<Vector3>> posPortesPerHabitacio = new List<List<Vector3>>();
     private Dictionary<int, HashSet<int>> portesUsades = new Dictionary<int, HashSet<int>>();
+
+    private List<Vector3> posUsades = new List<Vector3>();
+
+    private List<GameObject> habitacionsInstanciades = new List<GameObject>();
 
 
     void Start()
@@ -40,10 +58,7 @@ public class MapGenerator : MonoBehaviour
 
     void GenerateMap(){
 
-        List<Vector3> posUsades = new List<Vector3>();
-        List<GestioHabitacio> habitacionsGenerades = new List<GestioHabitacio>();
-        float tileSize = tilemapMapa.cellSize.x;
-        
+        GenerarHabitacionsEspecials();
 
         for (int i = 0; i < habitacionsMapa; i++){
                 
@@ -53,10 +68,14 @@ public class MapGenerator : MonoBehaviour
 
             ObtenirTipusHabitacio(out tipus, out ampladaHabitacio, out alturaHabitacio);
 
-            float x = Random.Range(-ampladaMapa + ampladaHabitacio, ampladaMapa - ampladaHabitacio);
-            float y = Random.Range(-alturaMapa + alturaHabitacio, alturaMapa - alturaHabitacio);
+            float x, y;
+            Vector3 spawnPosition;
 
-            Vector3 spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
+            
+            x = Random.Range(-ampladaMapa + ampladaHabitacio, ampladaMapa - ampladaHabitacio);
+            y = Random.Range(-alturaMapa + alturaHabitacio, alturaMapa - alturaHabitacio);
+
+            spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
             
             bool ocupada = PosicioOcupada(spawnPosition, posUsades, tipus);
             int intentos = 0;
@@ -76,6 +95,8 @@ public class MapGenerator : MonoBehaviour
             GameObject habitacioRandom = ObtenirHabitacioRandom(tipus);
             GameObject instanciarHabitacio = Instantiate(habitacioRandom, spawnPosition, Quaternion.identity);
 
+            habitacionsInstanciades.Add(instanciarHabitacio);
+
             instanciarHabitacio.name = i.ToString();
 
             GestioHabitacio aux = instanciarHabitacio.GetComponent<GestioHabitacio>();
@@ -88,6 +109,43 @@ public class MapGenerator : MonoBehaviour
             posPortesPerHabitacio.Add(posPortes);
         }
         FerPassadis();
+    }
+
+    void GenerarHabitacionsEspecials(){
+
+        float x, y;
+        Vector3 spawnPosition;
+
+        
+        x = Random.Range(-ampladaMapa + petitaAmplada, ampladaMapa - petitaAmplada);
+        y = Random.Range(-alturaMapa + petitaAltura, alturaMapa - petitaAmplada);
+
+        spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
+            
+        bool ocupada = PosicioOcupada(spawnPosition, posUsades, 1);
+        int intentos = 0;
+
+        while(ocupada && intentos < 100){ //comporbar que spawnPosition es buida
+            x = Random.Range(-ampladaMapa + petitaAmplada, ampladaMapa - petitaAmplada);
+            y = Random.Range(-alturaMapa + petitaAltura, alturaMapa - petitaAltura);
+            spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
+
+            ocupada = PosicioOcupada(spawnPosition, posUsades, 1);
+            intentos++;
+        }
+
+        posUsades.Add(spawnPosition);
+
+        GameObject instanciarHabitacio = Instantiate(habitacioSpawn, spawnPosition, Quaternion.identity);
+        habitacionsInstanciades.Add(instanciarHabitacio);
+
+        GestioSpawn aux = instanciarHabitacio.GetComponent<GestioSpawn>();
+            
+        aux.TancarPortesAleatories();
+        aux.PosicioPortes();
+            
+        List<Vector3> posPortes = aux.posicionsPortes;
+        posPortesPerHabitacio.Add(posPortes);
     }
 
 
@@ -139,8 +197,6 @@ public class MapGenerator : MonoBehaviour
         Vector3Int tilePos1 = tilemapMapa.WorldToCell(porta1);
         Vector3Int tilePos2 = tilemapMapa.WorldToCell(porta2);
 
-        tilemapMapa.SetTile(tilePos1, terraPassadis);
-
         int startX = tilePos1.x;
         int startY = tilePos1.y;
         int endX = tilePos2.x;
@@ -149,23 +205,47 @@ public class MapGenerator : MonoBehaviour
         int directionX = (startX < endX) ? 1 : -1;
         int directionY = (startY < endY) ? 1 : -1;
 
-        // Dibuja una línea horizontal entre las dos puertas
         for (int x = startX; x != endX; x += directionX) {
             Vector3Int tilePos = new Vector3Int(x, startY, 0);
-            if (!PosicioTileMapOcupada(tilePos) && !PosicioOcupada(tilemapMapa.GetCellCenterWorld(tilePos), new List<Vector3>(), 0)) {
-                tilemapMapa.SetTile(tilePos, terraPassadis);
+            if (!PosicioTileMapOcupada(tilePos) && !PosicioOcupada(new Vector3(x, startY, 0), posUsades, 0)) {
+                ColocarPassadisHoritzontal(tilePos);
             }
         }
 
-        // Dibuja una línea vertical entre las dos puertas
         for (int y = startY; y != endY; y += directionY) {
             Vector3Int tilePos = new Vector3Int(endX, y, 0);
-            if (!PosicioTileMapOcupada(tilePos) && !PosicioOcupada(tilemapMapa.GetCellCenterWorld(tilePos), new List<Vector3>(), 0)) {
-                tilemapMapa.SetTile(tilePos, terraPassadis);
+            if (!PosicioTileMapOcupada(tilePos) && !PosicioOcupada(new Vector3(endX, y, 0), posUsades, 0)) {
+                ColocarPassadisVertical(tilePos);
             }
         }    
     }
     
+    void ColocarPassadisHoritzontal(Vector3Int tilePos){
+        tilemapMapa.SetTile(tilePos, terraPassadis);
+
+        /*Vector3Int paretInfPos = new Vector3Int(tilePos.x, tilePos.y - 1, 0);
+        tilemapCollision.SetTile(paretInfPos, paretInf);
+        tilemapMapa.SetTile(paretInfPos, terraPassadis);
+
+        Vector3Int paretSupDPos = new Vector3Int(tilePos.x, tilePos.y + 1, 0);
+        tilemapDecoracio.SetTile(paretSupDPos, paretSupD);
+        tilemapMapa.SetTile(paretSupDPos, terraPassadis);
+
+        Vector3Int paretSupPos = new Vector3Int(tilePos.x, tilePos.y + 2, 0);
+        tilemapCollision.SetTile(paretSupPos, paretSup);*/
+    }
+
+    void ColocarPassadisVertical(Vector3Int tilePos){
+        tilemapMapa.SetTile(tilePos, terraPassadis);
+
+        /*Vector3Int paretEsqPos = new Vector3Int(tilePos.x -1 , tilePos.y, 0);
+        tilemapCollision.SetTile(paretEsqPos, paretEsq);
+        tilemapMapa.SetTile(paretEsqPos, terraPassadis);
+
+        Vector3Int paretDrtPos = new Vector3Int(tilePos.x + 1, tilePos.y, 0);
+        tilemapCollision.SetTile(paretDrtPos, paretDrt);
+        tilemapMapa.SetTile(paretDrtPos, terraPassadis);*/
+    }
 
     void ObtenirTipusHabitacio(out int tipus, out float ampladaHabitacio, out float alturaHabitacio){
         tipus = Random.Range(1,4);
@@ -250,13 +330,22 @@ public class MapGenerator : MonoBehaviour
             altura = granAltura;
         }
 
-        float tileX = Mathf.Round(pos.x / tilemapMapa.cellSize.x) * tilemapMapa.cellSize.x;
-        float tileY = Mathf.Round(pos.y / tilemapMapa.cellSize.x) * tilemapMapa.cellSize.y;
-
-        Vector3 tilePos = new Vector3(tileX, tileY, 0);
-
         foreach (Vector3 usada in posUsades){
-            if (Vector3.Distance(tilePos, usada) < amplada + separacioHabitacions){
+            float minX = usada.x - separacioHabitacions;
+            float maxX = usada.x + granAmplada + separacioHabitacions;
+            float minY = usada.y - separacioHabitacions;
+            float maxY = usada.y + granAltura;
+
+            if (pos.x >= minX && pos.x <= maxX && pos.y >= minY && pos.y <= maxY){
+                return true;
+            }
+            if (pos.x + amplada >= minX && pos.x + amplada <= maxX && pos.y >= minY && pos.y <= maxY){
+                return true;
+            }
+            if (pos.x >= minX && pos.x <= maxX && pos.y + altura >= minY && pos.y + altura <= maxY){
+                return true;
+            }
+            if (pos.x + amplada >= minX && pos.x + amplada <= maxX && pos.y + altura >= minY && pos.y + altura <= maxY){
                 return true;
             }
         }
@@ -280,6 +369,41 @@ public class MapGenerator : MonoBehaviour
     bool PosicioTileMapOcupada(Vector3Int pos){
         TileBase tile = tilemapMapa.GetTile(pos);
         return tile != null;
+    }
+
+    void ClearMap(){
+        
+        GestioSpawn auxS = habitacionsInstanciades[0].GetComponent<GestioSpawn>();
+        auxS.ClearSpawn();
+        Destroy(habitacionsInstanciades[0]);
+
+        for (int i = 1; i < habitacionsInstanciades.Count; i++){
+            GestioHabitacio aux = habitacionsInstanciades[i].GetComponent<GestioHabitacio>();
+            if (aux != null){
+                aux.ClearHabitacio();
+                Destroy(habitacionsInstanciades[i]);
+            }
+            
+        }
+
+        tilemapMapa.ClearAllTiles();
+        tilemapDecoracio.ClearAllTiles();
+        tilemapCollision.ClearAllTiles();
+
+        posUsades.Clear();
+        petitaUsades.Clear();
+        mitjanaUsades.Clear();
+        granUsades.Clear();
+        posPortesPerHabitacio.Clear();
+        portesUsades.Clear();
+        habitacionsInstanciades.Clear();
+    }
+
+    void Update(){
+        if (Input.GetKeyDown(KeyCode.P)){
+            ClearMap();
+            GenerateMap();
+        }
     }
 
 }

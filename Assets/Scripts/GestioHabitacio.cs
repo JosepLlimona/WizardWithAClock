@@ -29,6 +29,8 @@ public class GestioHabitacio : MonoBehaviour
 
     public List<Vector3> posicionsPortes = new List<Vector3>();
 
+    private List<GameObject> portesAleatoriesTancades = new List<GameObject>();
+
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Player") && !portesTancades){
@@ -53,8 +55,9 @@ public class GestioHabitacio : MonoBehaviour
                 GameObject paretPerColocar = ObtenirParetPerNom(lloc);
 
                 if (paretPerColocar != null){
-                    Instantiate(paretPerColocar, posicio, Quaternion.identity);
+                    GameObject portaInstanciada = Instantiate(paretPerColocar, posicio, Quaternion.identity);
                     posPortesTancades.Add(posicio);
+                    portesAleatoriesTancades.Add(portaInstanciada);
                     tancades++;
                 } 
             }
@@ -85,7 +88,7 @@ public class GestioHabitacio : MonoBehaviour
 
     void ObrirTotesLesPortes(){
         foreach (GameObject porta in portaColocada){
-            porta.SetActive(false);
+            Destroy(porta);
         }
         portesTancades = false;
         portaColocada.Clear();
@@ -179,6 +182,20 @@ public class GestioHabitacio : MonoBehaviour
             }
         } 
         posicionsPortes = portes;
+    }
+
+    public void ClearHabitacio(){
+        ObrirTotesLesPortes();
+        nEnemics = 0;
+
+        foreach (GameObject porta in portesAleatoriesTancades){
+            Destroy(porta);
+        }
+        tancades = 0;
+        posPortesTancades.Clear();
+        portaColocada.Clear();
+        portesAleatoriesTancades.Clear();
+        portesTancades = false;
     }
     
 
