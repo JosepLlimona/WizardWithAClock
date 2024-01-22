@@ -21,6 +21,20 @@ public class PlayerController : MonoBehaviour
     private float dashForce;
     private bool isDashing = false;
 
+    [Header("Positions")]
+    [SerializeField]
+    private GameObject leftPos;
+    [SerializeField]
+    private GameObject downPos;
+    [SerializeField]
+    private GameObject rightPos;
+    [SerializeField]
+    private GameObject upPos;
+    [SerializeField]
+    private GameObject upDPos;
+    [SerializeField]
+    private GameObject downDPos;
+
     [Header("Animators")]
     [SerializeField]
     private Animator playerAnim;
@@ -44,6 +58,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject fists;
     [SerializeField]
+    private GameObject sword;
     private Transform hammerStart;
 
     [Header("Audio")]
@@ -219,12 +234,68 @@ public class PlayerController : MonoBehaviour
             }
             if (moveInput.x < 0)
             {
+                fists.transform.position = leftPos.transform.position;
+                fists.transform.rotation = leftPos.transform.rotation;
+                fists.transform.localScale = leftPos.transform.localScale;
+                sword.transform.position = leftPos.transform.position;
+                sword.transform.rotation = leftPos.transform.rotation;
+                sword.transform.localScale = leftPos.transform.localScale;
+                hammerStart = leftPos.transform;
                 transform.localScale = new Vector3(-1, 1, 1);
             }
             else if (moveInput.x > 0)
             {
+                fists.transform.position = leftPos.transform.position;
+                fists.transform.rotation = leftPos.transform.rotation;
+                fists.transform.localScale = leftPos.transform.localScale;
+                sword.transform.position = leftPos.transform.position;
+                sword.transform.rotation = leftPos.transform.rotation;
+                sword   .transform.localScale = leftPos.transform.localScale;
+                hammerStart = leftPos.transform;
                 transform.localScale = new Vector3(1, 1, 1);
             }
+            if(moveInput.y > 0)
+            {
+                fists.transform.position = upPos.transform.position;
+                fists.transform.rotation = upPos.transform.rotation;
+                fists.transform.localScale = upPos.transform.localScale;
+                sword.transform.position = upPos.transform.position;
+                sword.transform.rotation = upPos.transform.rotation;
+                sword.transform.localScale = upPos.transform.localScale;
+                hammerStart = upPos.transform;
+            }
+            else if(moveInput.y < 0)
+            {
+                fists.transform.position = downPos.transform.position;
+                fists.transform.rotation = downPos.transform.rotation;
+                fists.transform.localScale = downPos.transform.localScale;
+                sword.transform.position = downPos.transform.position;
+                sword.transform.rotation = downPos.transform.rotation;
+                sword.transform.localScale = downPos.transform.localScale;
+                hammerStart = downPos.transform;
+            }
+            
+            if((moveInput.x > 0 || moveInput.x < 0) && moveInput.y > 0)
+            {
+                fists.transform.position = upDPos.transform.position;
+                fists.transform.rotation = upDPos.transform.rotation;
+                fists.transform.localScale = upDPos.transform.localScale;
+                sword.transform.position = upDPos.transform.position;
+                sword.transform.rotation = upDPos.transform.rotation;
+                sword.transform.localScale = upDPos.transform.localScale;
+                hammerStart = upDPos.transform;
+            }
+            else if((moveInput.x > 0 || moveInput.x < 0) && moveInput.y < 0)
+            {
+                fists.transform.position = downDPos.transform.position;
+                fists.transform.rotation = downDPos.transform.rotation;
+                fists.transform.localScale = downDPos.transform.localScale;
+                sword.transform.position = downDPos.transform.position;
+                sword.transform.rotation = downDPos.transform.rotation;
+                sword.transform.localScale = downDPos.transform.localScale;
+                hammerStart = downDPos.transform;
+            }
+
             playerAnim.SetFloat("dirX", moveInput.x);
             playerAnim.SetFloat("dirY", moveInput.y);
             clockAnim.SetFloat("dirX", moveInput.x);
@@ -327,7 +398,8 @@ public class PlayerController : MonoBehaviour
         else if (actualClock == 3)
         {
             canHeavyAttack = false;
-            Vector3 pos = hammerStart.transform.position;
+
+            Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
             GameObject hammerInstance = Instantiate(hammer, pos, Quaternion.identity);
             hammerInstance.GetComponent<HammerController>().setDamage(hammerDamage);
             clockAnim.SetBool("HeavyAttack", true);
@@ -405,6 +477,7 @@ public class PlayerController : MonoBehaviour
 
     public void lostLife(int damage)
     {
+        playerAnim.SetTrigger("Hurt");
         life -= damage;
         if(life <= 0)
         {
