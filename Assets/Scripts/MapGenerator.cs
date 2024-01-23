@@ -43,10 +43,8 @@ public class MapGenerator : MonoBehaviour
     private float separacioHabitacions = 2;
     private int anterior = 0; 
 
-    private List<List<Vector3>> posPortesPerHabitacio = new List<List<Vector3>>();
+    private List<List<GameObject>> posPortesPerHabitacio = new List<List<GameObject>>();
     private Dictionary<int, HashSet<int>> portesUsades = new Dictionary<int, HashSet<int>>();
-
-    private List<Vector3> posUsades = new List<Vector3>();
 
     private List<GameObject> habitacionsInstanciades = new List<GameObject>();
 
@@ -77,7 +75,7 @@ public class MapGenerator : MonoBehaviour
 
             spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
             
-            bool ocupada = PosicioOcupada(spawnPosition, posUsades, tipus);
+            bool ocupada = PosicioOcupada(spawnPosition, habitacionsInstanciades, tipus);
             int intentos = 0;
 
             while(ocupada && intentos < 100){ //comporbar que spawnPosition es buida
@@ -85,11 +83,10 @@ public class MapGenerator : MonoBehaviour
                 y = Random.Range(-alturaMapa + alturaHabitacio, alturaMapa - alturaHabitacio);
                 spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
 
-                ocupada = PosicioOcupada(spawnPosition, posUsades, tipus);
+                ocupada = PosicioOcupada(spawnPosition, habitacionsInstanciades, tipus);
                 intentos++;
             }
 
-            posUsades.Add(spawnPosition);
             anterior = tipus;
 
             GameObject habitacioRandom = ObtenirHabitacioRandom(tipus);
@@ -105,7 +102,7 @@ public class MapGenerator : MonoBehaviour
             aux.PosicioPortes();
             
 
-            List<Vector3> posPortes = aux.posicionsPortes;
+            List<GameObject> posPortes = aux.posicionsPortes;
             posPortesPerHabitacio.Add(posPortes);
         }
         FerPassadis();
@@ -122,7 +119,7 @@ public class MapGenerator : MonoBehaviour
 
         spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
             
-        bool ocupada = PosicioOcupada(spawnPosition, posUsades, 1);
+        bool ocupada = PosicioOcupada(spawnPosition, habitacionsInstanciades, 1);
         int intentos = 0;
 
         while(ocupada && intentos < 100){ //comporbar que spawnPosition es buida
@@ -130,11 +127,10 @@ public class MapGenerator : MonoBehaviour
             y = Random.Range(-alturaMapa + petitaAltura, alturaMapa - petitaAltura);
             spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
 
-            ocupada = PosicioOcupada(spawnPosition, posUsades, 1);
+            ocupada = PosicioOcupada(spawnPosition, habitacionsInstanciades, 1);
             intentos++;
         }
 
-        posUsades.Add(spawnPosition);
 
         GameObject instanciarHabitacio = Instantiate(habitacioSpawn, spawnPosition, Quaternion.identity);
         habitacionsInstanciades.Add(instanciarHabitacio);
@@ -144,7 +140,7 @@ public class MapGenerator : MonoBehaviour
         aux.TancarPortesAleatories();
         aux.PosicioPortes();
             
-        List<Vector3> posPortes = aux.posicionsPortes;
+        List<GameObject> posPortes = aux.posicionsPortes;
         posPortesPerHabitacio.Add(posPortes);
     }
 
@@ -153,12 +149,12 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < posPortesPerHabitacio.Count; i++){
             int habitacio = i;
             for (int j = 0; j < posPortesPerHabitacio[i].Count; j++){
-                Vector3 porta1 = posPortesPerHabitacio[i][j];
+                GameObject porta1 = posPortesPerHabitacio[i][j];
                 int[] indexPorta2 = TrobarPortaMesPropera(habitacio,porta1);
-                Vector3 porta2 = new Vector3();
+                GameObject porta2 = new GameObject();
                 if (indexPorta2[0] != -1 && indexPorta2[1] != -1){
                     porta2 = posPortesPerHabitacio[indexPorta2[0]][indexPorta2[1]];
-                     if (porta1 != Vector3.zero && porta2 != Vector3.zero){
+                     if (porta1.transform.position != Vector3.zero && porta2.transform.position != Vector3.zero){
                         ConnectarPortes(porta1,porta2);
                         AfegirPortaUsada(habitacio, j);
                         AfegirPortaUsada(indexPorta2[0], indexPorta2[1]);
@@ -170,18 +166,18 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    int[] TrobarPortaMesPropera(int habitacio, Vector3 portaRef){
+    int[] TrobarPortaMesPropera(int habitacio, GameObject portaRef){
         int[] indexPortaSeleccionada = {-1, -1};
         float distanciaMinima = float.MaxValue;
 
         for (int i = 0; i < posPortesPerHabitacio.Count; i++){
             if (i != habitacio){
-                List<Vector3> posPortesHabitacio = posPortesPerHabitacio[i];
-                foreach (Vector3 porta in posPortesHabitacio){
+                List<GameObject> posPortesHabitacio = posPortesPerHabitacio[i];
+                foreach (GameObject porta in posPortesHabitacio){
                     int indexPorta = posPortesPerHabitacio[i].IndexOf(porta);
                     if (!portesUsades.ContainsKey(i) || (portesUsades.ContainsKey(i) && !portesUsades[i].Contains(indexPorta))){
-                        float distancia = Vector3.Distance(portaRef, porta);
-                        if (distancia < distanciaMinima){
+                        float distancia = Vector3.Distance(portaRef.transform.position, porta.transform.position);
+                        if (distancia < distanciaMinima && PortesAlineades(portaRef, porta)){
                             distanciaMinima = distancia;
                             indexPortaSeleccionada[0] = i;
                             indexPortaSeleccionada[1] = indexPorta;
@@ -193,56 +189,71 @@ public class MapGenerator : MonoBehaviour
         return indexPortaSeleccionada;
     }
 
-    void ConnectarPortes(Vector3 porta1, Vector3 porta2){
-        Vector3Int tilePos1 = tilemapMapa.WorldToCell(porta1);
-        Vector3Int tilePos2 = tilemapMapa.WorldToCell(porta2);
+    bool PortesAlineades(GameObject porta1, GameObject porta2){
+        if ((porta1.tag == "PortaEsq" && porta2.tag == "PortaDreta") || (porta1.tag == "PortaDreta" && porta2.tag == "PortaEsq") || (porta1.tag == "PortaDreta" && porta2.tag == "PortaDreta") || (porta1.tag == "PortaEsq" && porta2.tag == "PortaEsq")){
+            return true;
+        }
+        else if ((porta1.tag == "PortaSuperior" && porta2.tag == "PortaInferior") || (porta1.tag == "PortaInferior" && porta2.tag == "PortaSuperior") || (porta1.tag == "PortaInferior" && porta2.tag == "PortaInferior") || (porta1.tag == "PortaSuperior" && porta2.tag == "PortaSuperior")){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    void ConnectarPortes(GameObject porta1, GameObject porta2){
+        Vector3Int tilePos1 = tilemapMapa.WorldToCell(porta1.transform.position);
+        Vector3Int tilePos2 = tilemapMapa.WorldToCell(porta2.transform.position);
 
         int startX = tilePos1.x;
         int startY = tilePos1.y;
         int endX = tilePos2.x;
         int endY = tilePos2.y;
 
+        tilemapMapa.SetTile(tilePos1, error);
+        tilemapMapa.SetTile(tilePos2, error);
         int directionX = (startX < endX) ? 1 : -1;
         int directionY = (startY < endY) ? 1 : -1;
 
         for (int x = startX; x != endX; x += directionX) {
             Vector3Int tilePos = new Vector3Int(x, startY, 0);
-            if (!PosicioTileMapOcupada(tilePos) && !PosicioOcupada(new Vector3(x, startY, 0), posUsades, 0)) {
+            if (!PosicioTileMapOcupada(tilePos) && !PosicioOcupada(new Vector3(x, startY, 0), habitacionsInstanciades, 0)) {
                 ColocarPassadisHoritzontal(tilePos);
             }
         }
 
         for (int y = startY; y != endY; y += directionY) {
             Vector3Int tilePos = new Vector3Int(endX, y, 0);
-            if (!PosicioTileMapOcupada(tilePos) && !PosicioOcupada(new Vector3(endX, y, 0), posUsades, 0)) {
+            if (!PosicioTileMapOcupada(tilePos) && !PosicioOcupada(new Vector3(endX, y, 0), habitacionsInstanciades, 0)) {
                 ColocarPassadisVertical(tilePos);
             }
-        }    
+        }  
     }
     
     void ColocarPassadisHoritzontal(Vector3Int tilePos){
         tilemapMapa.SetTile(tilePos, terraPassadis);
+        tilemapCollision.SetTile(tilePos, paretInf);
 
-        /*Vector3Int paretInfPos = new Vector3Int(tilePos.x, tilePos.y - 1, 0);
-        tilemapCollision.SetTile(paretInfPos, paretInf);
+        /*Vector3Int paretInfPos = new Vector3Int(tilePos.x, tilePos.y + 1, 0);
         tilemapMapa.SetTile(paretInfPos, terraPassadis);
 
-        Vector3Int paretSupDPos = new Vector3Int(tilePos.x, tilePos.y + 1, 0);
+        Vector3Int paretSupDPos = new Vector3Int(tilePos.x, tilePos.y + 2, 0);
         tilemapDecoracio.SetTile(paretSupDPos, paretSupD);
         tilemapMapa.SetTile(paretSupDPos, terraPassadis);
 
-        Vector3Int paretSupPos = new Vector3Int(tilePos.x, tilePos.y + 2, 0);
+        Vector3Int paretSupPos = new Vector3Int(tilePos.x, tilePos.y + 3, 0);
         tilemapCollision.SetTile(paretSupPos, paretSup);*/
     }
 
     void ColocarPassadisVertical(Vector3Int tilePos){
         tilemapMapa.SetTile(tilePos, terraPassadis);
+        tilemapCollision.SetTile(tilePos, paretEsq);
 
-        /*Vector3Int paretEsqPos = new Vector3Int(tilePos.x -1 , tilePos.y, 0);
-        tilemapCollision.SetTile(paretEsqPos, paretEsq);
+        /*Vector3Int paretEsqPos = new Vector3Int(tilePos.x + 1 , tilePos.y, 0);
+        
         tilemapMapa.SetTile(paretEsqPos, terraPassadis);
 
-        Vector3Int paretDrtPos = new Vector3Int(tilePos.x + 1, tilePos.y, 0);
+        Vector3Int paretDrtPos = new Vector3Int(tilePos.x + 2, tilePos.y, 0);
         tilemapCollision.SetTile(paretDrtPos, paretDrt);
         tilemapMapa.SetTile(paretDrtPos, terraPassadis);*/
     }
@@ -313,7 +324,7 @@ public class MapGenerator : MonoBehaviour
         return habitacio;
     }
 
-    bool PosicioOcupada(Vector3 pos, List<Vector3> posUsades, int tipus){
+    bool PosicioOcupada(Vector3 pos, List<GameObject> habitacionsInstanciades, int tipus){
         float amplada;
         float altura; 
         
@@ -330,11 +341,12 @@ public class MapGenerator : MonoBehaviour
             altura = granAltura;
         }
 
-        foreach (Vector3 usada in posUsades){
-            float minX = usada.x - separacioHabitacions;
-            float maxX = usada.x + granAmplada + separacioHabitacions;
-            float minY = usada.y - separacioHabitacions;
-            float maxY = usada.y + granAltura;
+        foreach (GameObject habitacio in habitacionsInstanciades){
+            
+            float minX = habitacio.transform.position.x - separacioHabitacions;
+            float maxX = habitacio.transform.position.x + granAmplada + separacioHabitacions;
+            float minY = habitacio.transform.position.y - separacioHabitacions;
+            float maxY = habitacio.transform.position.y + granAltura;
 
             if (pos.x >= minX && pos.x <= maxX && pos.y >= minY && pos.y <= maxY){
                 return true;
@@ -367,8 +379,19 @@ public class MapGenerator : MonoBehaviour
     }
 
     bool PosicioTileMapOcupada(Vector3Int pos){
-        TileBase tile = tilemapMapa.GetTile(pos);
-        return tile != null;
+        int i = -3;
+        bool HiHaPassadis = false;
+        while(i <=3 && !HiHaPassadis){
+            TileBase tile = tilemapMapa.GetTile(pos + new Vector3Int(i,0,0));
+            TileBase tile1= tilemapMapa.GetTile(pos + new Vector3Int(0,i,0));
+            TileBase tile2 = tilemapMapa.GetTile(pos + new Vector3Int(i,i,0));
+            TileBase tile3 = tilemapMapa.GetTile(pos + new Vector3Int(i,-i,0));
+            if (tile != null || tile1 != null || tile2 != null || tile3 != null){
+                HiHaPassadis = true;
+            }
+            i++;
+        }
+        return HiHaPassadis;
     }
 
     void ClearMap(){
@@ -390,7 +413,6 @@ public class MapGenerator : MonoBehaviour
         tilemapDecoracio.ClearAllTiles();
         tilemapCollision.ClearAllTiles();
 
-        posUsades.Clear();
         petitaUsades.Clear();
         mitjanaUsades.Clear();
         granUsades.Clear();

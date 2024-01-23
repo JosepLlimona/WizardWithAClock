@@ -13,7 +13,7 @@ public class GestioSpawn : MonoBehaviour{
     private int tancades = 0;
     private List<Vector3> posPortesTancades = new List<Vector3>();
     private bool portesTancades = false;
-    public List<Vector3> posicionsPortes = new List<Vector3>();
+    public List<GameObject> posicionsPortes = new List<GameObject>();
 
      private List<GameObject> portesAleatoriesTancades = new List<GameObject>();
 
@@ -56,13 +56,13 @@ public class GestioSpawn : MonoBehaviour{
         return null;
     }
     public void PosicioPortes(){
-        List<Vector3> portes = new List<Vector3>();
+        List<GameObject> portes = new List<GameObject>();
 
         for (int i = 0; i < posPortes.Length; i++){
             GameObject porta = posPortes[i];
             Vector3 posicio = porta.transform.position;
             if (!posPortesTancades.Contains(posicio)){  
-                portes.Add(posicio);
+                portes.Add(porta);
                 porta.name = (i).ToString();
 
             }

@@ -27,7 +27,7 @@ public class GestioHabitacio : MonoBehaviour
 
     private List<string> habitacionsVisitades = new List<string>(); 
 
-    public List<Vector3> posicionsPortes = new List<Vector3>();
+    public List<GameObject> posicionsPortes = new List<GameObject>();
 
     private List<GameObject> portesAleatoriesTancades = new List<GameObject>();
 
@@ -45,7 +45,7 @@ public class GestioHabitacio : MonoBehaviour
 
     public void TancarPortesAleatories(){
         int i = 0;
-        while (i < posPortes.Length && tancades < posPortes.Length / 2){
+        while (i < posPortes.Length && tancades < posPortes.Length /2){
             float nRandom = Random.Range(0f,1f);
 
             if (nRandom < 0.5f){
@@ -170,13 +170,13 @@ public class GestioHabitacio : MonoBehaviour
     }
 
     public void PosicioPortes(){
-        List<Vector3> portes = new List<Vector3>();
+        List<GameObject> portes = new List<GameObject>();
 
         for (int i = 0; i < posPortes.Length; i++){
             GameObject porta = posPortes[i];
             Vector3 posicio = porta.transform.position;
             if (!posPortesTancades.Contains(posicio)){  
-                portes.Add(posicio);
+                portes.Add(porta);
                 porta.name = (i).ToString();
 
             }
@@ -200,7 +200,6 @@ public class GestioHabitacio : MonoBehaviour
     
 
     void Update(){
-        Debug.Log(nEnemics);
         if (nEnemics <= 0 && portesTancades){
             ObrirTotesLesPortes();
         }
