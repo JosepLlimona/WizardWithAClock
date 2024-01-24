@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b8e490b8e7cf2de41a8a9c5813e6cf6e
+guid: 3270783a12b43ab48ad5bda9a81946bf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Digital_SS_Num3_0
+      name: Digital_Idle_SS_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddc8f7c1b34a4244bb6eec2696799736
-      internalID: -219048124
+      spriteID: bd5178bb31402f64b9b2f009aa6c6fac
+      internalID: -1469874703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Digital_SS_Num3_1
+      name: Digital_Idle_SS_1
       rect:
         serializedVersion: 2
         x: 64
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0efb2d09c8cdc5a47894f270e606059e
-      internalID: 948266193
+      spriteID: d00f8cead3e89ec4ab00488db1ced3d8
+      internalID: -338657347
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Digital_SS_Num3_2
+      name: Digital_Idle_SS_2
       rect:
         serializedVersion: 2
         x: 128
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb0a4c26211c17c47ba2b390b53d9176
-      internalID: 2081446793
+      spriteID: 35194b15796057f4dbed6f489f0dcc69
+      internalID: 1499968000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Digital_SS_Num3_3
+      name: Digital_Idle_SS_3
       rect:
         serializedVersion: 2
         x: 192
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f237b9a5e533464186f80f12123fbe2
-      internalID: 648498911
+      spriteID: eee2df601f0f87e40bacd08a683d2c83
+      internalID: 1415529737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Digital_SS_Num3_4
+      name: Digital_Idle_SS_4
       rect:
         serializedVersion: 2
         x: 256
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ee680772a00e4448b46eb3eb7ca0b72
-      internalID: -243339973
+      spriteID: aad85e4bf1f116b43ae0027929378d34
+      internalID: -499278368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Digital_SS_Num3_5
+      name: Digital_Idle_SS_5
       rect:
         serializedVersion: 2
         x: 320
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 566a9ac56bcd0e24c892a01b931bc022
-      internalID: -1904478910
+      spriteID: 14c69139779a83249b0f43290aa8b51b
+      internalID: -406810257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Digital_SS_Num3_6
+      name: Digital_Idle_SS_6
       rect:
         serializedVersion: 2
         x: 384
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da5c9bfab0827864ea20c5cfc455801c
-      internalID: 1291857448
+      spriteID: 4c12171cb28adbf4897088ac4a353daa
+      internalID: -1331644949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Digital_SS_Num3_7
+      name: Digital_Idle_SS_7
       rect:
         serializedVersion: 2
         x: 448
@@ -271,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 617859fd709216a4f81d3a335e781226
-      internalID: 1518728743
+      spriteID: 218bb0fa889b02845a39260eba5bd416
+      internalID: -1720459016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Digital_SS_Num3_8
+      name: Digital_Idle_SS_8
       rect:
         serializedVersion: 2
         x: 512
@@ -292,92 +292,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ddcd4d9ec7970c4f863b201d6686c6e
-      internalID: -97780997
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Digital_SS_Num3_9
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0d766998fd218474f840ba705c4c1d0d
-      internalID: 1424560985
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Digital_SS_Num3_10
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: afdf8702e6202b640aedcbc6cff09d82
-      internalID: 1312740832
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Digital_SS_Num3_11
-      rect:
-        serializedVersion: 2
-        x: 704
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 580909a3066704b4eacf7096eaa063dd
-      internalID: -2063192951
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Digital_SS_Num3_12
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0f597700e9b8fc04089d9ba4014b7ddd
-      internalID: -1714396338
+      spriteID: d9173c8d4b21f414b8d485428df846e7
+      internalID: -1720285662
       vertices: []
       indices: 
       edges: []
@@ -393,19 +309,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Digital_SS_Num3_0: -219048124
-      Digital_SS_Num3_1: 948266193
-      Digital_SS_Num3_10: 1312740832
-      Digital_SS_Num3_11: -2063192951
-      Digital_SS_Num3_12: -1714396338
-      Digital_SS_Num3_2: 2081446793
-      Digital_SS_Num3_3: 648498911
-      Digital_SS_Num3_4: -243339973
-      Digital_SS_Num3_5: -1904478910
-      Digital_SS_Num3_6: 1291857448
-      Digital_SS_Num3_7: 1518728743
-      Digital_SS_Num3_8: -97780997
-      Digital_SS_Num3_9: 1424560985
+      Digital_Idle_SS_0: -1469874703
+      Digital_Idle_SS_1: -338657347
+      Digital_Idle_SS_2: 1499968000
+      Digital_Idle_SS_3: 1415529737
+      Digital_Idle_SS_4: -499278368
+      Digital_Idle_SS_5: -406810257
+      Digital_Idle_SS_6: -1331644949
+      Digital_Idle_SS_7: -1720459016
+      Digital_Idle_SS_8: -1720285662
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
