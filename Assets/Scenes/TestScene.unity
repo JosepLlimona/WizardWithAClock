@@ -191,12 +191,12 @@ MonoBehaviour:
   tilemapMapa: {fileID: 688351158}
   tilemapDecoracio: {fileID: 1335119164}
   tilemapCollision: {fileID: 838995286}
-  terraPassadis: {fileID: 11400000, guid: ffa6c9993ad9c74409359a2df728a35a, type: 2}
-  paretEsq: {fileID: 11400000, guid: 2e400df9e2c2e16428599a5b9ac01492, type: 2}
-  paretDrt: {fileID: 11400000, guid: e13207f046be20545bf378ac6a9c63d1, type: 2}
-  paretInf: {fileID: 11400000, guid: 8acf28dc046afb7478f6656f3f118995, type: 2}
-  paretSup: {fileID: 11400000, guid: 8e6fbf5cd22f85b47aac607e812302f9, type: 2}
-  paretSupD: {fileID: 11400000, guid: 0e73779401d3fd0428bc1c1b8071f97d, type: 2}
+  terraPassadis: {fileID: 11400000, guid: f9c73ca77ed874b4aac38c611ffde4bb, type: 2}
+  paretEsq: {fileID: 11400000, guid: 3ca49cf255fb66d4fb3d0896c72dd18d, type: 2}
+  paretDrt: {fileID: 11400000, guid: 1ac4306c111ed524895ac23590908b48, type: 2}
+  paretInf: {fileID: 11400000, guid: 5afd7fb3cbce31447954e755e4157ba9, type: 2}
+  paretSup: {fileID: 11400000, guid: c6cda26560eab0049a6b0396d128de0a, type: 2}
+  paretSupD: {fileID: 11400000, guid: 9ca4edb8ae328df48b49555bbc088abd, type: 2}
   error: {fileID: 11400000, guid: 37e62f0bccc534a468e12132417a38c4, type: 2}
   habPetita:
   - {fileID: 2704241189179990617, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
@@ -208,13 +208,12 @@ MonoBehaviour:
   - {fileID: 1080430604109331132, guid: 8ceb876e179858946a231c516616f320, type: 3}
   habMitjana:
   - {fileID: 8398647893813273578, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
-  - {fileID: 8398647893813273578, guid: 57ebba60f9a2c864c8b7910ba59ce47f, type: 3}
+  - {fileID: 8398647893813273578, guid: 1294c4d7b427ea145b49d31897581226, type: 3}
   - {fileID: 8398647893813273578, guid: 0926b0f882e8a724cbd6605ffc97977f, type: 3}
   - {fileID: 8398647893813273578, guid: 5057ad2cb56d2794695c6ac9a2190480, type: 3}
   - {fileID: 8398647893813273578, guid: ca0cc510002605148b3be02c467c984a, type: 3}
   - {fileID: 8398647893813273578, guid: 0f40b7d850f67e24db65dcb1bc6de525, type: 3}
   - {fileID: 8398647893813273578, guid: e8bc32106510c934090643142508fd70, type: 3}
-  - {fileID: 8398647893813273578, guid: 1294c4d7b427ea145b49d31897581226, type: 3}
   habGran:
   - {fileID: 8340938953758021030, guid: 30e022c9967ca694b965c8a5c8d939a4, type: 3}
   - {fileID: 8340938953758021030, guid: 451f6e6953c348948953300a145c5e1a, type: 3}
@@ -667,6 +666,7 @@ GameObject:
   - component: {fileID: 838995284}
   - component: {fileID: 838995286}
   - component: {fileID: 838995285}
+  - component: {fileID: 838995287}
   m_Layer: 0
   m_Name: Tilemap_Collision
   m_TagString: Untagged
@@ -800,6 +800,42 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &838995287
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838995283}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1 &1335119161
 GameObject:
   m_ObjectHideFlags: 0

@@ -124,11 +124,11 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 2781b4328fbd2714ba9c34969031f857, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 8acf28dc046afb7478f6656f3f118995, type: 2}
+    m_Data: {fileID: 11400000, guid: 5afd7fb3cbce31447954e755e4157ba9, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 694861f39fa19e54b8f45efb812b7c95, type: 2}
+    m_Data: {fileID: 11400000, guid: 432dc2ce3f4a6a14cb01edb0bcca0219, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 48d4c10988a2d07498add7e03057fff6, type: 2}
+    m_Data: {fileID: 11400000, guid: 842cb9c6bbb851a4dbda444380707464, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -169,11 +169,11 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -328632728, guid: 14bf98e759e8f154f8624dad0905a3fc, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 1690708606, guid: 14bf98e759e8f154f8624dad0905a3fc, type: 3}
+    m_Data: {fileID: 21300000, guid: 13bb4f3380385094a80d24df3e818f05, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 1056030776, guid: 14bf98e759e8f154f8624dad0905a3fc, type: 3}
+    m_Data: {fileID: 21300000, guid: 0a9bede26c9346b41b4e7c1e3377e84f, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 859383042, guid: 14bf98e759e8f154f8624dad0905a3fc, type: 3}
+    m_Data: {fileID: 21300000, guid: 08c52f5cd88df03428d325e2e1528275, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 4
     m_Data:
@@ -423,61 +423,31 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 0, y: 1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 2, y: 1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 3, y: 1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: d7f3a4666bfc20344be7cb66dd4263ba, type: 2}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 34f0bc14bdfb6c24c897203809499cd9, type: 2}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 54c346c130b494f43bff97cc9e5e4b85, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 2781b4328fbd2714ba9c34969031f857, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: da72ce1593fffff4aa7459d6e5be9479, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 1
-    m_Data: {fileID: -1263019668, guid: 14bf98e759e8f154f8624dad0905a3fc, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -464419586, guid: 14bf98e759e8f154f8624dad0905a3fc, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 1453700034, guid: 14bf98e759e8f154f8624dad0905a3fc, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: -328632728, guid: 14bf98e759e8f154f8624dad0905a3fc, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -1107129488, guid: 14bf98e759e8f154f8624dad0905a3fc, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 6
+  - m_RefCount: 3
     m_Data:
       e00: 1
       e01: 0
@@ -496,7 +466,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 6
+  - m_RefCount: 3
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
