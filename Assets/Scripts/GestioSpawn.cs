@@ -13,18 +13,14 @@ public class GestioSpawn : MonoBehaviour{
     private int tancades = 0;
     private List<Vector3> posPortesTancades = new List<Vector3>();
     private bool portesTancades = false;
-    public List<GameObject> posicionsPortes = new List<GameObject>();
 
      private List<GameObject> portesAleatoriesTancades = new List<GameObject>();
 
-    public void TancarPortesAleatories(){
-        int i = 0;
-        while (i < posPortes.Length && tancades < posPortes.Length / 2){
-            float nRandom = Random.Range(0f,1f);
-
-            if (nRandom < 0.5f){
-                Vector3 posicio = posPortes[i].transform.position;
-                string lloc = posPortes[i].name;
+    public void TancarPortesAleatories(List<Vector3[]> posicionsPortes){
+        foreach (GameObject porta in posPortes){
+            if (!PosicioEnLlista(porta.transform.position, posicionsPortes)){
+                Vector3 posicio = porta.transform.position;
+                string lloc = porta.name;
                 
                 GameObject paretPerColocar = ObtenirParetPerNom(lloc);
 
@@ -35,9 +31,15 @@ public class GestioSpawn : MonoBehaviour{
                     tancades++;
                 } 
             }
-            i++;
         }
-        PosicioPortes();
+    }
+    bool PosicioEnLlista(Vector3 posicio, List<Vector3[]> posicionsPortes){
+        foreach(Vector3[] parella in posicionsPortes){
+            if (posicio == parella[0] || posicio == parella[1]){
+                return true;
+            }
+        }
+        return false;
     }
 
     GameObject ObtenirParetPerNom(string lloc){
@@ -55,19 +57,10 @@ public class GestioSpawn : MonoBehaviour{
         }
         return null;
     }
-    public void PosicioPortes(){
-        List<GameObject> portes = new List<GameObject>();
 
-        for (int i = 0; i < posPortes.Length; i++){
-            GameObject porta = posPortes[i];
-            Vector3 posicio = porta.transform.position;
-            if (!posPortesTancades.Contains(posicio)){  
-                portes.Add(porta);
-                porta.name = (i).ToString();
-
-            }
-        } 
-        posicionsPortes = portes;
+    public GameObject PortaAleatoria(){
+        GameObject porta = posPortes[Random.Range(0,posPortes.Length)];
+        return porta;
     }
 
     public void ClearSpawn(){

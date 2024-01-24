@@ -43,7 +43,7 @@ public class MapGenerator : MonoBehaviour
     private float separacioHabitacions = 2;
     private int anterior = 0; 
 
-    private List<List<GameObject>> posPortesPerHabitacio = new List<List<GameObject>>();
+    private List<Vector3[]> parellesPortes = new List<Vector3[]>(); //vector3[2] indica el tipus: si (0,0,0) = horitzontal, si (1,1,1) = vertical;
     private Dictionary<int, HashSet<int>> portesUsades = new Dictionary<int, HashSet<int>>();
 
     private List<GameObject> habitacionsInstanciades = new List<GameObject>();
@@ -56,185 +56,185 @@ public class MapGenerator : MonoBehaviour
 
     void GenerateMap(){
 
-        GenerarHabitacionsEspecials();
+        float x = Random.Range(-ampladaMapa + petitaAmplada, ampladaMapa - petitaAmplada);
+        float y = Random.Range(-alturaMapa + petitaAltura, alturaMapa - petitaAltura);
+        Vector3 spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
+        GameObject spawn = Instantiate(habitacioSpawn, spawnPosition, Quaternion.identity);
+
+        habitacionsInstanciades.Add(spawn);
 
         for (int i = 0; i < habitacionsMapa; i++){
-                
-            int tipus; 
+            int tipus;
             float ampladaHabitacio;
             float alturaHabitacio;
 
             ObtenirTipusHabitacio(out tipus, out ampladaHabitacio, out alturaHabitacio);
 
-            float x, y;
-            Vector3 spawnPosition;
+            bool ocupada = true;
+            int intents = 0;
+            Vector3[] parella = new Vector3[3];
+            string tipusPorta = "";
 
-            
-            x = Random.Range(-ampladaMapa + ampladaHabitacio, ampladaMapa - ampladaHabitacio);
-            y = Random.Range(-alturaMapa + alturaHabitacio, alturaMapa - alturaHabitacio);
+            while (ocupada && intents < 1000){
 
-            spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
-            
-            bool ocupada = PosicioOcupada(spawnPosition, habitacionsInstanciades, tipus);
-            int intentos = 0;
+                int iHabitacio = Random.Range(0, habitacionsInstanciades.Count);
+                GameObject habitacioExistent = habitacionsInstanciades[iHabitacio];
+                GameObject portaOrigen;
+                if (iHabitacio == 0){
+                    GestioSpawn gestioS = habitacioExistent.GetComponent<GestioSpawn>();
+                    portaOrigen = gestioS.PortaAleatoria();
+                }
+                else{ 
+                    GestioHabitacio gestio = habitacioExistent.GetComponent<GestioHabitacio>();
+                    portaOrigen = gestio.PortaAleatoria();
+                }
 
-            while(ocupada && intentos < 100){ //comporbar que spawnPosition es buida
-                x = Random.Range(-ampladaMapa + ampladaHabitacio, ampladaMapa - ampladaHabitacio);
-                y = Random.Range(-alturaMapa + alturaHabitacio, alturaMapa - alturaHabitacio);
+                parella[0] = portaOrigen.transform.position;
+                
+                
+                if (portaOrigen.tag == "PortaEsq"){
+                    x = Random.Range(habitacioExistent.transform.position.x - 10f, habitacioExistent.transform.position.x - 15f);
+                    y = PosicioHabitacioNovaY(portaOrigen, tipus);
+                    tipusPorta = "PortaDreta";
+                    parella[2] = new Vector3(0,0,0);
+                }
+                else if (portaOrigen.tag == "PortaDreta"){
+                    x = Random.Range(habitacioExistent.transform.position.x + 10f, habitacioExistent.transform.position.x + 15f);
+                    y = PosicioHabitacioNovaY(portaOrigen, tipus);
+                    tipusPorta = "PortaEsq";
+                    parella[2] = new Vector3(0,0,0);
+                }
+                else if (portaOrigen.tag == "PortaSuperior"){
+                    x = PosicioHabitacioNovaX(portaOrigen, tipus);;
+                    y = Random.Range(habitacioExistent.transform.position.y + 10f, habitacioExistent.transform.position.y + 15f);
+                    tipusPorta = "PortaInferior";
+                    parella[2] = new Vector3(1,1,1);
+                }
+                else{
+                    x = PosicioHabitacioNovaX(portaOrigen, tipus);;
+                    y = Random.Range(habitacioExistent.transform.position.y - 10f, habitacioExistent.transform.position.y - 15f);
+                    tipusPorta = "PortaSuperior";
+                    parella[2] = new Vector3(1,1,1);
+                }
+
                 spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
 
                 ocupada = PosicioOcupada(spawnPosition, habitacionsInstanciades, tipus);
-                intentos++;
+                intents++;
             }
 
-            anterior = tipus;
+            if (!ocupada){
+                anterior = tipus;
 
-            GameObject habitacioRandom = ObtenirHabitacioRandom(tipus);
-            GameObject instanciarHabitacio = Instantiate(habitacioRandom, spawnPosition, Quaternion.identity);
+                GameObject habitacioRandom = ObtenirHabitacioRandom(tipus);
+                GameObject habitacioNova = Instantiate(habitacioRandom, spawnPosition, Quaternion.identity);
 
-            habitacionsInstanciades.Add(instanciarHabitacio);
+                habitacionsInstanciades.Add(habitacioNova);
 
-            instanciarHabitacio.name = i.ToString();
+                habitacioNova.name = i.ToString();
 
-            GestioHabitacio aux = instanciarHabitacio.GetComponent<GestioHabitacio>();
-            
-            aux.TancarPortesAleatories();
-            aux.PosicioPortes();
-            
+                GestioHabitacio aux = habitacioNova.GetComponent<GestioHabitacio>();
 
-            List<GameObject> posPortes = aux.posicionsPortes;
-            posPortesPerHabitacio.Add(posPortes);
+                parella[1] = aux.PosicioPortaPerTipus(tipusPorta);
+
+                parellesPortes.Add(parella);
+            }
         }
+        GestioSpawn auxS = habitacionsInstanciades[0].GetComponent<GestioSpawn>();
+        auxS.TancarPortesAleatories(parellesPortes);
+
+        for (int i = 1; i < habitacionsInstanciades.Count; i++){
+            GestioHabitacio aux = habitacionsInstanciades[i].GetComponent<GestioHabitacio>();
+            aux.TancarPortesAleatories(parellesPortes);
+        }
+
         FerPassadis();
     }
-
-    void GenerarHabitacionsEspecials(){
-
-        float x, y;
-        Vector3 spawnPosition;
-
-        
-        x = Random.Range(-ampladaMapa + petitaAmplada, ampladaMapa - petitaAmplada);
-        y = Random.Range(-alturaMapa + petitaAltura, alturaMapa - petitaAmplada);
-
-        spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
-            
-        bool ocupada = PosicioOcupada(spawnPosition, habitacionsInstanciades, 1);
-        int intentos = 0;
-
-        while(ocupada && intentos < 100){ //comporbar que spawnPosition es buida
-            x = Random.Range(-ampladaMapa + petitaAmplada, ampladaMapa - petitaAmplada);
-            y = Random.Range(-alturaMapa + petitaAltura, alturaMapa - petitaAltura);
-            spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
-
-            ocupada = PosicioOcupada(spawnPosition, habitacionsInstanciades, 1);
-            intentos++;
+    
+    float PosicioHabitacioNovaX(GameObject portaRef, int tipus){
+        float x;
+        if (tipus == 1){
+            x = portaRef.transform.position.x - 1.6f;
         }
-
-
-        GameObject instanciarHabitacio = Instantiate(habitacioSpawn, spawnPosition, Quaternion.identity);
-        habitacionsInstanciades.Add(instanciarHabitacio);
-
-        GestioSpawn aux = instanciarHabitacio.GetComponent<GestioSpawn>();
-            
-        aux.TancarPortesAleatories();
-        aux.PosicioPortes();
-            
-        List<GameObject> posPortes = aux.posicionsPortes;
-        posPortesPerHabitacio.Add(posPortes);
+        else if (tipus == 2){
+            x = portaRef.transform.position.x - 2.56f;
+        }
+        else{
+            x = portaRef.transform.position.x - 3.52f;
+        }
+        return x;
     }
 
+    float PosicioHabitacioNovaY(GameObject portaRef, int tipus){
+        float y;
+        if (tipus == 1){
+            y = portaRef.transform.position.y - 1.6f;
+        }
+        else if (tipus == 2){
+            y = portaRef.transform.position.y - 2.56f;
+        }
+        else{
+            y = portaRef.transform.position.y - 3.84f;
+        }
+        return y;
+    }
 
     void FerPassadis(){
-        for (int i = 0; i < posPortesPerHabitacio.Count; i++){
-            int habitacio = i;
-            for (int j = 0; j < posPortesPerHabitacio[i].Count; j++){
-                GameObject porta1 = posPortesPerHabitacio[i][j];
-                int[] indexPorta2 = TrobarPortaMesPropera(habitacio,porta1);
-                GameObject porta2 = new GameObject();
-                if (indexPorta2[0] != -1 && indexPorta2[1] != -1){
-                    porta2 = posPortesPerHabitacio[indexPorta2[0]][indexPorta2[1]];
-                     if (porta1.transform.position != Vector3.zero && porta2.transform.position != Vector3.zero){
-                        ConnectarPortes(porta1,porta2);
-                        AfegirPortaUsada(habitacio, j);
-                        AfegirPortaUsada(indexPorta2[0], indexPorta2[1]);
-                    }
-                }
-
-               
-            }
+        foreach (Vector3[] parella in parellesPortes){
+            ConnectarPortes(parella[0], parella[1], parella[2]);
         }
-    }
-
-    int[] TrobarPortaMesPropera(int habitacio, GameObject portaRef){
-        int[] indexPortaSeleccionada = {-1, -1};
-        float distanciaMinima = float.MaxValue;
-
-        for (int i = 0; i < posPortesPerHabitacio.Count; i++){
-            if (i != habitacio){
-                List<GameObject> posPortesHabitacio = posPortesPerHabitacio[i];
-                foreach (GameObject porta in posPortesHabitacio){
-                    int indexPorta = posPortesPerHabitacio[i].IndexOf(porta);
-                    if (!portesUsades.ContainsKey(i) || (portesUsades.ContainsKey(i) && !portesUsades[i].Contains(indexPorta))){
-                        float distancia = Vector3.Distance(portaRef.transform.position, porta.transform.position);
-                        if (distancia < distanciaMinima && PortesAlineades(portaRef, porta)){
-                            distanciaMinima = distancia;
-                            indexPortaSeleccionada[0] = i;
-                            indexPortaSeleccionada[1] = indexPorta;
-                        }
-                    }
-                }
-            }
-        }
-        return indexPortaSeleccionada;
     }
 
     bool PortesAlineades(GameObject porta1, GameObject porta2){
-        if ((porta1.tag == "PortaEsq" && porta2.tag == "PortaDreta") || (porta1.tag == "PortaDreta" && porta2.tag == "PortaEsq") || (porta1.tag == "PortaDreta" && porta2.tag == "PortaDreta") || (porta1.tag == "PortaEsq" && porta2.tag == "PortaEsq")){
-            return true;
+        bool alineada = false;
+        if ((porta1.tag == "PortaEsq" && porta2.tag == "PortaDreta") || (porta2.tag == "PortaEsq" && porta1.tag == "PortaDreta")){
+            alineada = true;
         }
-        else if ((porta1.tag == "PortaSuperior" && porta2.tag == "PortaInferior") || (porta1.tag == "PortaInferior" && porta2.tag == "PortaSuperior") || (porta1.tag == "PortaInferior" && porta2.tag == "PortaInferior") || (porta1.tag == "PortaSuperior" && porta2.tag == "PortaSuperior")){
-            return true;
+        if ((porta1.tag == "PortaSuperior" && porta2.tag == "PortaInferior") || (porta2.tag == "PortaSuperior" && porta1.tag == "PortaInferior")){
+            alineada = true;
         }
-        else{
-            return false;
-        }
+        return alineada;
     }
 
-    void ConnectarPortes(GameObject porta1, GameObject porta2){
-        Vector3Int tilePos1 = tilemapMapa.WorldToCell(porta1.transform.position);
-        Vector3Int tilePos2 = tilemapMapa.WorldToCell(porta2.transform.position);
+    void ConnectarPortes(Vector3 porta1, Vector3 porta2, Vector3 tipus){
+        Vector3Int tilePos1 = tilemapMapa.WorldToCell(porta1);
+        Vector3Int tilePos2 = tilemapMapa.WorldToCell(porta2);
 
         int startX = tilePos1.x;
         int startY = tilePos1.y;
         int endX = tilePos2.x;
         int endY = tilePos2.y;
 
-        tilemapMapa.SetTile(tilePos1, error);
-        tilemapMapa.SetTile(tilePos2, error);
         int directionX = (startX < endX) ? 1 : -1;
         int directionY = (startY < endY) ? 1 : -1;
 
-        for (int x = startX; x != endX; x += directionX) {
-            Vector3Int tilePos = new Vector3Int(x, startY, 0);
-            if (!PosicioTileMapOcupada(tilePos) && !PosicioOcupada(new Vector3(x, startY, 0), habitacionsInstanciades, 0)) {
-                ColocarPassadisHoritzontal(tilePos);
+        if (tipus == new Vector3(0,0,0)){
+            startX +=directionX;
+            for (int x = startX; x != endX; x += directionX) {
+                Vector3Int tilePos = new Vector3Int(x, startY, 0);
+                if (true) {
+                    ColocarPassadisHoritzontal(tilePos);
+                }
             }
         }
 
-        for (int y = startY; y != endY; y += directionY) {
-            Vector3Int tilePos = new Vector3Int(endX, y, 0);
-            if (!PosicioTileMapOcupada(tilePos) && !PosicioOcupada(new Vector3(endX, y, 0), habitacionsInstanciades, 0)) {
-                ColocarPassadisVertical(tilePos);
+        else{
+            startY += directionY;
+            for (int y = startY; y != endY; y += directionY) {
+                Vector3Int tilePos = new Vector3Int(endX, y, 0);
+                if (true) {
+                    ColocarPassadisVertical(tilePos);
+                }
             }
-        }  
+        }
+          
     }
     
     void ColocarPassadisHoritzontal(Vector3Int tilePos){
         tilemapMapa.SetTile(tilePos, terraPassadis);
         tilemapCollision.SetTile(tilePos, paretInf);
 
-        /*Vector3Int paretInfPos = new Vector3Int(tilePos.x, tilePos.y + 1, 0);
+        Vector3Int paretInfPos = new Vector3Int(tilePos.x, tilePos.y + 1, 0);
         tilemapMapa.SetTile(paretInfPos, terraPassadis);
 
         Vector3Int paretSupDPos = new Vector3Int(tilePos.x, tilePos.y + 2, 0);
@@ -242,20 +242,20 @@ public class MapGenerator : MonoBehaviour
         tilemapMapa.SetTile(paretSupDPos, terraPassadis);
 
         Vector3Int paretSupPos = new Vector3Int(tilePos.x, tilePos.y + 3, 0);
-        tilemapCollision.SetTile(paretSupPos, paretSup);*/
+        tilemapCollision.SetTile(paretSupPos, paretSup);
     }
 
     void ColocarPassadisVertical(Vector3Int tilePos){
         tilemapMapa.SetTile(tilePos, terraPassadis);
         tilemapCollision.SetTile(tilePos, paretEsq);
 
-        /*Vector3Int paretEsqPos = new Vector3Int(tilePos.x + 1 , tilePos.y, 0);
+        Vector3Int paretEsqPos = new Vector3Int(tilePos.x + 1 , tilePos.y, 0);
         
         tilemapMapa.SetTile(paretEsqPos, terraPassadis);
 
         Vector3Int paretDrtPos = new Vector3Int(tilePos.x + 2, tilePos.y, 0);
         tilemapCollision.SetTile(paretDrtPos, paretDrt);
-        tilemapMapa.SetTile(paretDrtPos, terraPassadis);*/
+        tilemapMapa.SetTile(paretDrtPos, terraPassadis);
     }
 
     void ObtenirTipusHabitacio(out int tipus, out float ampladaHabitacio, out float alturaHabitacio){
@@ -379,19 +379,8 @@ public class MapGenerator : MonoBehaviour
     }
 
     bool PosicioTileMapOcupada(Vector3Int pos){
-        int i = -3;
-        bool HiHaPassadis = false;
-        while(i <=3 && !HiHaPassadis){
-            TileBase tile = tilemapMapa.GetTile(pos + new Vector3Int(i,0,0));
-            TileBase tile1= tilemapMapa.GetTile(pos + new Vector3Int(0,i,0));
-            TileBase tile2 = tilemapMapa.GetTile(pos + new Vector3Int(i,i,0));
-            TileBase tile3 = tilemapMapa.GetTile(pos + new Vector3Int(i,-i,0));
-            if (tile != null || tile1 != null || tile2 != null || tile3 != null){
-                HiHaPassadis = true;
-            }
-            i++;
-        }
-        return HiHaPassadis;
+        TileBase tile = tilemapMapa.GetTile(pos);
+        return tileSize != null;
     }
 
     void ClearMap(){
@@ -416,7 +405,6 @@ public class MapGenerator : MonoBehaviour
         petitaUsades.Clear();
         mitjanaUsades.Clear();
         granUsades.Clear();
-        posPortesPerHabitacio.Clear();
         portesUsades.Clear();
         habitacionsInstanciades.Clear();
     }

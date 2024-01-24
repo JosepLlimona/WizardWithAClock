@@ -27,8 +27,6 @@ public class GestioHabitacio : MonoBehaviour
 
     private List<string> habitacionsVisitades = new List<string>(); 
 
-    public List<GameObject> posicionsPortes = new List<GameObject>();
-
     private List<GameObject> portesAleatoriesTancades = new List<GameObject>();
 
 
@@ -43,14 +41,11 @@ public class GestioHabitacio : MonoBehaviour
         }
     }
 
-    public void TancarPortesAleatories(){
-        int i = 0;
-        while (i < posPortes.Length && tancades < posPortes.Length /2){
-            float nRandom = Random.Range(0f,1f);
-
-            if (nRandom < 0.5f){
-                Vector3 posicio = posPortes[i].transform.position;
-                string lloc = posPortes[i].name;
+    public void TancarPortesAleatories(List<Vector3[]> posicionsPortes){
+        foreach (GameObject porta in posPortes){
+            if (!PosicioEnLlista(porta.transform.position, posicionsPortes)){
+                Vector3 posicio = porta.transform.position;
+                string lloc = porta.name;
                 
                 GameObject paretPerColocar = ObtenirParetPerNom(lloc);
 
@@ -61,9 +56,16 @@ public class GestioHabitacio : MonoBehaviour
                     tancades++;
                 } 
             }
-            i++;
         }
-        PosicioPortes();
+    }
+
+    bool PosicioEnLlista(Vector3 posicio, List<Vector3[]> posicionsPortes){
+        foreach(Vector3[] parella in posicionsPortes){
+            if (posicio == parella[0] || posicio == parella[1]){
+                return true;
+            }
+        }
+        return false;
     }
 
     void TancarTotesLesPortes(){
@@ -168,22 +170,6 @@ public class GestioHabitacio : MonoBehaviour
         }
         
     }
-
-    public void PosicioPortes(){
-        List<GameObject> portes = new List<GameObject>();
-
-        for (int i = 0; i < posPortes.Length; i++){
-            GameObject porta = posPortes[i];
-            Vector3 posicio = porta.transform.position;
-            if (!posPortesTancades.Contains(posicio)){  
-                portes.Add(porta);
-                porta.name = (i).ToString();
-
-            }
-        } 
-        posicionsPortes = portes;
-    }
-
     public void ClearHabitacio(){
         ObrirTotesLesPortes();
         nEnemics = 0;
@@ -197,11 +183,27 @@ public class GestioHabitacio : MonoBehaviour
         portesAleatoriesTancades.Clear();
         portesTancades = false;
     }
-    
+
+    public GameObject PortaAleatoria(){
+        GameObject porta = posPortes[Random.Range(0,posPortes.Length)];
+        return porta;
+    }
+
+    public Vector3 PosicioPortaPerTipus(string tipus){
+        Vector3 pos = new Vector3();
+        foreach (GameObject porta in posPortes){
+           if (porta.tag == tipus){
+            pos = porta.transform.position;
+           } 
+        }
+        return pos;
+    }
 
     void Update(){
         if (nEnemics <= 0 && portesTancades){
             ObrirTotesLesPortes();
         }
     }
+
+
 }
