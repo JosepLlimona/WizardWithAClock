@@ -73,13 +73,13 @@ public class polarity : MonoBehaviour, EnemyLife
 
     private void RayGun()
     {
-        if (!armor)
+        if (armor)
         {
             print("doing RayGun");
             Vector2 pos = bulletStart.transform.position;
             GameObject BulletInstance = Instantiate(bullet, pos, Quaternion.identity);
             BulletInstance.GetComponent<bulletScript>().setPlayer(player);
-            BulletInstance.GetComponent<Animator>().SetTrigger("Shot");
+            //BulletInstance.GetComponent<Animator>().SetTrigger("Shot");
         }
     }
 

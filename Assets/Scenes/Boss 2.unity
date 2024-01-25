@@ -208,10 +208,15 @@ MonoBehaviour:
   counterpart: {fileID: 1548941759}
   speed: 1
   timemove: 3
-  bullet: {fileID: 0}
-  bulletStart: {fileID: 0}
+  bullet: {fileID: 4992617130643129305, guid: 8ece589e8bf25ef4b8d19141ee072240, type: 3}
+  bulletStart: {fileID: 997683950}
   BossAnim: {fileID: 835036681}
   habitacio: {fileID: 0}
+--- !u!4 &997683950 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 65777849296563186, guid: ce72295d5cde4144eb46184992d57622, type: 3}
+  m_PrefabInstance: {fileID: 1704220965}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1247636326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -381,8 +386,8 @@ MonoBehaviour:
   counterpart: {fileID: 835036679}
   speed: 1
   timemove: 3
-  bullet: {fileID: 0}
-  bulletStart: {fileID: 0}
+  bullet: {fileID: 4992617130643129305, guid: 8ece589e8bf25ef4b8d19141ee072240, type: 3}
+  bulletStart: {fileID: 1881481067}
   BossAnim: {fileID: 1548941761}
   habitacio: {fileID: 0}
 --- !u!95 &1548941761 stripped
@@ -450,6 +455,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 835036686}
   m_SourcePrefab: {fileID: 100100000, guid: ce72295d5cde4144eb46184992d57622, type: 3}
+--- !u!4 &1881481067 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 65777849296563186, guid: 1f9d121c9b1fca246a13605807f1967f, type: 3}
+  m_PrefabInstance: {fileID: 403148141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
