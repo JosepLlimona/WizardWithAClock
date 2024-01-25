@@ -22,7 +22,7 @@ public class MapGenerator : MonoBehaviour
     private List<int> mitjanaUsades = new List<int>();
     public GameObject[] habGran;
     private List<int> granUsades = new List<int>();
-
+    public GameObject habBoss;
     public GameObject habitacioSpawn;
 
     public int habitacionsMapa;
@@ -44,7 +44,6 @@ public class MapGenerator : MonoBehaviour
     private int anterior = 0; 
 
     private List<Vector3[]> parellesPortes = new List<Vector3[]>(); //vector3[2] indica el tipus: si (0,0,0) = horitzontal, si (1,1,1) = vertical;
-    private Dictionary<int, HashSet<int>> portesUsades = new Dictionary<int, HashSet<int>>();
 
     private List<GameObject> habitacionsInstanciades = new List<GameObject>();
 
@@ -77,10 +76,9 @@ public class MapGenerator : MonoBehaviour
 
             while (ocupada && intents < 1000){
 
-                int iHabitacio = Random.Range(0, habitacionsInstanciades.Count);
-                GameObject habitacioExistent = habitacionsInstanciades[iHabitacio];
+                GameObject habitacioExistent = habitacionsInstanciades[i];
                 GameObject portaOrigen;
-                if (iHabitacio == 0){
+                if (i == 0){
                     GestioSpawn gestioS = habitacioExistent.GetComponent<GestioSpawn>();
                     portaOrigen = gestioS.PortaAleatoria();
                 }
@@ -110,7 +108,7 @@ public class MapGenerator : MonoBehaviour
                     tipusPorta = "PortaInferior";
                     parella[2] = new Vector3(1,1,1);
                 }
-                else{
+                else if (portaOrigen.tag == "PortaInferior"){
                     x = PosicioHabitacioNovaX(portaOrigen, tipus);;
                     y = Random.Range(habitacioExistent.transform.position.y - 10f, habitacioExistent.transform.position.y - 15f);
                     tipusPorta = "PortaSuperior";
@@ -140,6 +138,8 @@ public class MapGenerator : MonoBehaviour
                 parellesPortes.Add(parella);
             }
         }
+        CrearHabitacioBoss();
+
         GestioSpawn auxS = habitacionsInstanciades[0].GetComponent<GestioSpawn>();
         auxS.TancarPortesAleatories(parellesPortes);
 
@@ -149,6 +149,46 @@ public class MapGenerator : MonoBehaviour
         }
 
         FerPassadis();
+    }
+
+    void CrearHabitacioBoss(){
+        bool ocupada = true;
+        Vector3[] parella = new Vector3[3];
+        string tipusPorta = "";
+        int i = 1;
+        Vector3 spawnPosition = new Vector3();
+
+        while (ocupada && i < habitacionsInstanciades.Count){
+            GameObject habitacioExistent = habitacionsInstanciades[i];
+            GestioHabitacio gestio = habitacioExistent.GetComponent<GestioHabitacio>();
+            GameObject portaOrigen = gestio.PortaPerTipus("PortaSuperior");
+
+            if (portaOrigen != null){
+                parella[0] = portaOrigen.transform.position;
+
+                float x = PosicioHabitacioNovaX(portaOrigen, 3);
+                float y = Random.Range(habitacioExistent.transform.position.y + 10f, habitacioExistent.transform.position.y + 15f);
+                tipusPorta = "PortaInferior";
+                parella[2] = new Vector3(1,1,1);
+
+                spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
+
+                ocupada = PosicioOcupada(spawnPosition, habitacionsInstanciades, 3);
+                i++;
+            }
+        }
+        if (!ocupada){
+
+                GameObject Boss = Instantiate(habBoss, spawnPosition, Quaternion.identity);
+
+                habitacionsInstanciades.Add(Boss);
+
+                GestioHabitacio aux = Boss.GetComponent<GestioHabitacio>();
+
+                parella[1] = aux.PosicioPortaPerTipus(tipusPorta);
+
+                parellesPortes.Add(parella);
+            }
     }
     
     float PosicioHabitacioNovaX(GameObject portaRef, int tipus){
@@ -183,17 +223,6 @@ public class MapGenerator : MonoBehaviour
         foreach (Vector3[] parella in parellesPortes){
             ConnectarPortes(parella[0], parella[1], parella[2]);
         }
-    }
-
-    bool PortesAlineades(GameObject porta1, GameObject porta2){
-        bool alineada = false;
-        if ((porta1.tag == "PortaEsq" && porta2.tag == "PortaDreta") || (porta2.tag == "PortaEsq" && porta1.tag == "PortaDreta")){
-            alineada = true;
-        }
-        if ((porta1.tag == "PortaSuperior" && porta2.tag == "PortaInferior") || (porta2.tag == "PortaSuperior" && porta1.tag == "PortaInferior")){
-            alineada = true;
-        }
-        return alineada;
     }
 
     void ConnectarPortes(Vector3 porta1, Vector3 porta2, Vector3 tipus){
@@ -364,23 +393,17 @@ public class MapGenerator : MonoBehaviour
         return false;
     }
 
-    void AfegirPortaUsada(int habitacio, int porta){
-        if (!portesUsades.ContainsKey(habitacio)){
-            portesUsades[habitacio] = new HashSet<int>();
-        }
-        portesUsades[habitacio].Add(porta);
-    }
+    void RespawnHabitacioBoss(){
+        GestioHabitacio habitacioBoss = habitacionsInstanciades[habitacionsInstanciades.Count-1].GetComponent<GestioHabitacio>();
+        if (habitacioBoss != null){
+            habitacioBoss.ClearHabitacio();
+            habitacionsInstanciades.RemoveAt(habitacionsInstanciades.Count-1);
+            parellesPortes.RemoveAt(parellesPortes.Count-1);
+            Destroy(habitacionsInstanciades[habitacionsInstanciades.Count-1]);
 
-    bool PortaUsada(int habitacio, int porta){
-        if (portesUsades.ContainsKey(habitacio)){
-            return portesUsades[habitacio].Contains(porta);
+            CrearHabitacioBoss();
         }
-        return false;
-    }
 
-    bool PosicioTileMapOcupada(Vector3Int pos){
-        TileBase tile = tilemapMapa.GetTile(pos);
-        return tileSize != null;
     }
 
     void ClearMap(){
@@ -405,7 +428,6 @@ public class MapGenerator : MonoBehaviour
         petitaUsades.Clear();
         mitjanaUsades.Clear();
         granUsades.Clear();
-        portesUsades.Clear();
         habitacionsInstanciades.Clear();
     }
 

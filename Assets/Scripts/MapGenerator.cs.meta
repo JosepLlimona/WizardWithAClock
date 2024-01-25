@@ -3,7 +3,19 @@ guid: 6a31a8c5fb898d74e82790dcc15da3ce
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tilemapMapa: {instanceID: 0}
+  - tilemapDecoracio: {instanceID: 0}
+  - tilemapCollision: {instanceID: 0}
+  - terraPassadis: {instanceID: 0}
+  - paretEsq: {instanceID: 0}
+  - paretDrt: {instanceID: 0}
+  - paretInf: {instanceID: 0}
+  - paretSup: {instanceID: 0}
+  - paretSupD: {instanceID: 0}
+  - error: {instanceID: 0}
+  - habBoss: {fileID: 6299064922356691428, guid: 41140299ad369a74f9c62df9e4b3935d, type: 3}
+  - habitacioSpawn: {fileID: 2275442363970937889, guid: 65293faf040ac6447b832a13c73c80b2, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -5,11 +5,11 @@ using UnityEngine.Tilemaps;
 
 public class GestioHabitacio : MonoBehaviour
 {
-    public Tilemap tilemapColisions;
+    public Tilemap tilemapPortal;
     public GameObject[] posPortes;
     public GameObject[] enemicsNormal;
     public GameObject[] enemicsGrans;
-    public GameObject Boss;
+    public GameObject[] Boss;
     public GameObject tileParetEsq;
     public GameObject tileParetDreta;
     public GameObject tileParetSuperior;
@@ -29,6 +29,14 @@ public class GestioHabitacio : MonoBehaviour
 
     private List<GameObject> portesAleatoriesTancades = new List<GameObject>();
 
+
+    void Start(){
+        if (gameObject.CompareTag("Habitacio Boss")){
+            if (tilemapPortal != null){
+                tilemapPortal.gameObject.SetActive(false);
+            }
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Player") && !portesTancades){
@@ -95,6 +103,9 @@ public class GestioHabitacio : MonoBehaviour
         portesTancades = false;
         portaColocada.Clear();
         habitacionsVisitades.Add(gameObject.name);
+        if (gameObject.CompareTag("Habitacio Boss")){
+            tilemapPortal.gameObject.SetActive(true); // que pase al siguiente nivel
+        }
     }
 
     GameObject ObtenirParetPerNom(string lloc){
@@ -137,7 +148,7 @@ public class GestioHabitacio : MonoBehaviour
         BoxCollider2D colliderHabitacio = GetComponent<BoxCollider2D>();
         if (gameObject.CompareTag("Habitacio Boss")){
             Vector2 spawnPoint = new Vector2(colliderHabitacio.bounds.center.x, colliderHabitacio.bounds.center.y);
-            Instantiate(Boss, spawnPoint, Quaternion.identity);
+            Instantiate(Boss[Random.Range(0, Boss.Length)], spawnPoint, Quaternion.identity);
         }
         else{
             if (gameObject.tag == "HabitacioPetita"){
@@ -187,6 +198,15 @@ public class GestioHabitacio : MonoBehaviour
     public GameObject PortaAleatoria(){
         GameObject porta = posPortes[Random.Range(0,posPortes.Length)];
         return porta;
+    }
+
+    public GameObject PortaPerTipus(string tipus){
+        foreach(GameObject porta in posPortes){
+            if (porta.tag == tipus){
+                return porta;
+            }
+        }
+        return null;
     }
 
     public Vector3 PosicioPortaPerTipus(string tipus){
