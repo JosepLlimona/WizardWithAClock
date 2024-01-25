@@ -29,6 +29,8 @@ public class polarity_blue : MonoBehaviour, EnemyLife
     private int bulletAmount = 1;
     private int damageTaken = 0;
 
+    private bool canMove = true;
+
     public GameObject habitacio;
 
     // Start is called before the first frame update
@@ -52,20 +54,35 @@ public class polarity_blue : MonoBehaviour, EnemyLife
 
     private void moveboss()
     {
-        rbody.velocity = Vector3.zero;
-        rbody.angularVelocity = 0;
-        if (Direction >= 0)
+        if (canMove)
         {
-            Direction = -4;
+            rbody.velocity = Vector3.zero;
+            rbody.angularVelocity = 0;
+            if (Direction >= 0)
+            {
+                Direction = -4;
+            }
+            else if (Direction < 0)
+            {
+                Direction = 4;
+            }
+            objective = new Vector2(0, Direction + transform.position.y);
+            jumping();
         }
-        else if (Direction < 0)
-        {
-            Direction = 4;
-        }
-        objective = new Vector2(0, Direction + transform.position.y);
-        jumping();
     }
 
+    public void stop()
+    {
+        StartCoroutine(stopM());
+    }
+
+    private IEnumerator stopM()
+    {
+        canMove = false;
+        rbody.velocity = Vector2.zero;
+        yield return new WaitForSeconds(2f);
+        canMove = true;
+    }
     private void RayGun()
     {
         print("doing RayGun");

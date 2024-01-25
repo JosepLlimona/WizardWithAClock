@@ -36,6 +36,7 @@ public class SFBossAI : MonoBehaviour, EnemyLife
     private float maximumPortalPunch = 3;
     private int numPortalPunch = 0;
     private int LIFE = 1000;
+    private bool canMove = true;
 
     public GameObject habitacio;
 
@@ -65,7 +66,7 @@ public class SFBossAI : MonoBehaviour, EnemyLife
         Vector2 direction = objective;
         rbody.velocity = direction.normalized * speed;
     }
-    public void stop()
+    public void stopMovement()
     {
         rbody.velocity = Vector3.zero;
         rbody.angularVelocity = 0;
@@ -73,42 +74,58 @@ public class SFBossAI : MonoBehaviour, EnemyLife
 
     private void moveboss()
     {
-        AtackOption = Random.Range(0, 15);
-        num1 = Random.Range(-5, 6);
-        num2 = Random.Range(-5, 6);
-        if (num1 < 2 && num1 > -2)
+        if (canMove)
         {
-            num1 = 2;
-        }
-        if (num2 < 2 && num1 > -2)
-        {
-            num2 = 2;
-        }
-        objective = new Vector2(player.transform.position.x + num1 - transform.position.x, player.transform.position.y + num2 - transform.position.y);
-        canmove = !canmove;
-        if (canmove && !atack && !overload)
-        {
-            BossAnim.SetTrigger("jump");
-        }
-        if (!canmove && !overload)
-        {
-            rbody.velocity = Vector3.zero;
-            rbody.angularVelocity = 0;
+            AtackOption = Random.Range(0, 15);
+            num1 = Random.Range(-5, 6);
+            num2 = Random.Range(-5, 6);
+            if (num1 < 2 && num1 > -2)
+            {
+                num1 = 2;
+            }
+            if (num2 < 2 && num1 > -2)
+            {
+                num2 = 2;
+            }
+            objective = new Vector2(player.transform.position.x + num1 - transform.position.x, player.transform.position.y + num2 - transform.position.y);
+            canmove = !canmove;
+            if (canmove && !atack && !overload)
+            {
+                BossAnim.SetTrigger("jump");
+            }
+            if (!canmove && !overload)
+            {
+                rbody.velocity = Vector3.zero;
+                rbody.angularVelocity = 0;
 
-            if (AtackOption >= 0 && AtackOption < 2 && !atack)
-            {
-                portalPunch();
-                BossAnim.SetBool("PreparingPortalP", true);
-            }
-            else if (AtackOption >= 2 && AtackOption < 4 && !atack)
-            {
-                TpPunchCharge();
-            }
-            if (!atack)
-            {
-                BossAnim.SetTrigger("rasho");
+                if (AtackOption >= 0 && AtackOption < 2 && !atack)
+                {
+                    portalPunch();
+                    BossAnim.SetBool("PreparingPortalP", true);
+                }
+                else if (AtackOption >= 2 && AtackOption < 4 && !atack)
+                {
+                    TpPunchCharge();
+                }
+                if (!atack)
+                {
+                    BossAnim.SetTrigger("rasho");
+                }
             }
         }
+    }
+
+    public void stop()
+    {
+        StartCoroutine(stopM());
+    }
+
+    private IEnumerator stopM()
+    {
+        canMove = false;
+        rbody.velocity = Vector2.zero;
+        yield return new WaitForSeconds(2f);
+        canMove = true;
     }
 
     private void portalPunch()

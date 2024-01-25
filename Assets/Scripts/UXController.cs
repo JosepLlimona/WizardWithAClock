@@ -23,6 +23,8 @@ public class UXController : MonoBehaviour
     private GameObject exitButton;
     [SerializeField]
     private GameObject closeButton;
+    [SerializeField]
+    private GameObject itemButton;
 
 
     [Header("Xbox")]
@@ -36,6 +38,9 @@ public class UXController : MonoBehaviour
     private Sprite dashButtonX;
     [SerializeField]
     private Sprite grabButtonX;
+    [SerializeField]
+    private Sprite itemButtonX;
+
 
     [Header("Playstation")]
     [SerializeField]
@@ -48,6 +53,8 @@ public class UXController : MonoBehaviour
     private Sprite dashButtonP;
     [SerializeField]
     private Sprite grabButtonP;
+    [SerializeField]
+    private Sprite itemButtonP;
 
     [Header("PC")]
     [SerializeField]
@@ -60,6 +67,8 @@ public class UXController : MonoBehaviour
     private Sprite dashButtonPC;
     [SerializeField]
     private Sprite grabButtonPC;
+    [SerializeField]
+    private Sprite itemButtonPC;
 
     private bool paused = false;
 
@@ -100,6 +109,7 @@ public class UXController : MonoBehaviour
             lastButtonObj.GetComponent<Image>().sprite = lastButtonPC;
             dashButtonObj.GetComponent<Image>().sprite = dashButtonPC;
             grabButtonObj.GetComponent<Image>().sprite = grabButtonPC;
+            itemButton.GetComponent<Image>().sprite = itemButtonPC;
         }
         else if(controlls == "Xbox")
         {
@@ -108,6 +118,7 @@ public class UXController : MonoBehaviour
             lastButtonObj.GetComponent<Image>().sprite = lastButtonX;
             dashButtonObj.GetComponent<Image>().sprite = dashButtonX;
             grabButtonObj.GetComponent<Image>().sprite = grabButtonX;
+            itemButton.GetComponent<Image>().sprite = itemButtonX;
         }
         else if(controlls == "Playstation")
         {
@@ -116,6 +127,7 @@ public class UXController : MonoBehaviour
             lastButtonObj.GetComponent<Image>().sprite = lastButtonP;
             dashButtonObj.GetComponent<Image>().sprite = dashButtonP;
             grabButtonObj.GetComponent<Image>().sprite = grabButtonP;
+            itemButton.GetComponent<Image>().sprite = itemButtonP;
         }
     }
 

@@ -78,12 +78,12 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Heal",
+                    "name": "Item",
                     "type": "Button",
-                    "id": "cd096970-1748-4e5e-b6bb-404ef7db24a7",
+                    "id": "bbc9d576-d89b-4b98-ab62-7f5c26f66ea4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -464,23 +464,23 @@
                 },
                 {
                     "name": "",
-                    "id": "ac100c99-4fd0-4895-a2dc-e49bd6d07a4a",
-                    "path": "<Keyboard>/r",
+                    "id": "f691c5fe-0e8d-4e83-862b-31aebe978792",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Heal",
+                    "action": "Item",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "bcebb82b-b497-41fc-b095-ebaab7319f5c",
+                    "id": "98f18639-f19b-4d64-bd55-3c48e2bea953",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Xbox;Playstation",
-                    "action": "Heal",
+                    "action": "Item",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
