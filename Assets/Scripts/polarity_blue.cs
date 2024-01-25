@@ -36,6 +36,7 @@ public class polarity_blue : MonoBehaviour, EnemyLife
     {
         rbody = GetComponent<Rigidbody2D>();
         InvokeRepeating("moveboss", 0f, timemove);
+        InvokeRepeating("RayGun", 0f, 1f);
         player = GameObject.Find("Player");
     }
 
@@ -68,11 +69,14 @@ public class polarity_blue : MonoBehaviour, EnemyLife
 
     private void RayGun()
     {
-        print("doing RayGun");
-        Vector2 pos = bulletStart.transform.position;
-        GameObject BulletInstance = Instantiate(bullet, pos, Quaternion.identity);
-        BulletInstance.GetComponent<bulletScript>().setPlayer(player);
-        BulletInstance.GetComponent<Animator>().SetTrigger("Shot");
+        if (armor)
+        {
+            print("doing RayGun");
+            Vector2 pos = bulletStart.transform.position;
+            GameObject BulletInstance = Instantiate(bullet, pos, Quaternion.identity);
+            BulletInstance.GetComponent<bulletScript>().setPlayer(player);
+            //BulletInstance.GetComponent<Animator>().SetTrigger("Shot");
+        }
     }
 
 
