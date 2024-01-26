@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class MapGenerator : MonoBehaviour
 {
+    public GameObject Player;
     public Tilemap tilemapMapa;
     public Tilemap tilemapDecoracio;
     public Tilemap tilemapCollision;
@@ -24,6 +25,7 @@ public class MapGenerator : MonoBehaviour
     private List<int> granUsades = new List<int>();
     public GameObject habBoss;
     public GameObject habitacioSpawn;
+    public GameObject habitacioLobby;
 
     public int habitacionsMapa;
 
@@ -47,21 +49,39 @@ public class MapGenerator : MonoBehaviour
 
     private List<GameObject> habitacionsInstanciades = new List<GameObject>();
 
+    private nivellActual = 0; //Només genera Boss si es al 2 o al 4
+
 
     void Start()
     {
-        GenerateMap();
+        AnarAlLobby();
     }
 
-    void GenerateMap(){
+    void AnarAlLobby(){
+        Vector3 spawnPosition = new Vector3(0, 0, 0);
+        GameObject lobby = Instantiate(habitacioLobby, spawnPosition, Quaternion.identity);
+        habitacionsInstanciades.Add(lobby);
 
+        PlayerController gestioP = Player.GetComponent<PlayerController>();
+        gestioP.setPosition(new Vector3(1.2f, 0.64f, 0));
+
+        GestioHabitacio gestio = lobby.GetComponent<GestioHabitacio>();
+    }
+
+    public void GenerateMap(){
+        Debug.Log("1");
         float x = Random.Range(-ampladaMapa + petitaAmplada, ampladaMapa - petitaAmplada);
         float y = Random.Range(-alturaMapa + petitaAltura, alturaMapa - petitaAltura);
         Vector3 spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
         GameObject spawn = Instantiate(habitacioSpawn, spawnPosition, Quaternion.identity);
+        GestioSpawn gestioS = spawn.GetComponent<GestioSpawn>();
+        GameObject posSpawnPlayer = gestioS.posSpawn;
+
+        PlayerController gestioP = Player.GetComponent<PlayerController>();
+        gestioP.setPosition(posSpawnPlayer.transform.position);
 
         habitacionsInstanciades.Add(spawn);
-
+        Debug.Log("2");
         for (int i = 0; i < habitacionsMapa; i++){
             int tipus;
             float ampladaHabitacio;
@@ -79,7 +99,7 @@ public class MapGenerator : MonoBehaviour
                 GameObject habitacioExistent = habitacionsInstanciades[i];
                 GameObject portaOrigen;
                 if (i == 0){
-                    GestioSpawn gestioS = habitacioExistent.GetComponent<GestioSpawn>();
+                    gestioS = habitacioExistent.GetComponent<GestioSpawn>();
                     portaOrigen = gestioS.PortaAleatoria();
                 }
                 else{ 
@@ -149,6 +169,7 @@ public class MapGenerator : MonoBehaviour
         }
 
         FerPassadis();
+        nivellActual++;
     }
 
     void CrearHabitacioBoss(){
@@ -406,14 +427,25 @@ public class MapGenerator : MonoBehaviour
 
     }
 
-    void ClearMap(){
+    public void ClearMap(){
+
+        tilemapMapa.ClearAllTiles();
+        tilemapDecoracio.ClearAllTiles();
+        tilemapCollision.ClearAllTiles();
         
         GestioSpawn auxS = habitacionsInstanciades[0].GetComponent<GestioSpawn>();
-        auxS.ClearSpawn();
-        Destroy(habitacionsInstanciades[0]);
+        if (auxS != null){
+            auxS.ClearSpawn();
+            Destroy(habitacionsInstanciades[0]);
+        }
+        GestioHabitacio aux = habitacionsInstanciades[0].GetComponent<GestioHabitacio>();
+        if (aux != null){
+            aux.ClearHabitacio();
+            Destroy(habitacionsInstanciades[0]);
+        }
 
         for (int i = 1; i < habitacionsInstanciades.Count; i++){
-            GestioHabitacio aux = habitacionsInstanciades[i].GetComponent<GestioHabitacio>();
+            aux = habitacionsInstanciades[i].GetComponent<GestioHabitacio>();
             if (aux != null){
                 aux.ClearHabitacio();
                 Destroy(habitacionsInstanciades[i]);
@@ -421,14 +453,12 @@ public class MapGenerator : MonoBehaviour
             
         }
 
-        tilemapMapa.ClearAllTiles();
-        tilemapDecoracio.ClearAllTiles();
-        tilemapCollision.ClearAllTiles();
-
         petitaUsades.Clear();
         mitjanaUsades.Clear();
         granUsades.Clear();
         habitacionsInstanciades.Clear();
+
+        Debug.Log("acaba de limpiar");
     }
 
     void Update(){

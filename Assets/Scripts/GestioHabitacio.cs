@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class GestioHabitacio : MonoBehaviour
 {
-    public Tilemap tilemapPortal;
     public GameObject[] posPortes;
     public GameObject[] enemicsNormal;
     public GameObject[] enemicsGrans;
@@ -19,6 +18,8 @@ public class GestioHabitacio : MonoBehaviour
     public GameObject tilePortaSuperior;
     public GameObject tilePortaInferior;
 
+    public GameObject Portal;
+
     private int tancades = 0;
     private List<Vector3> posPortesTancades = new List<Vector3>();
     private List<GameObject> portaColocada = new List<GameObject>();
@@ -29,15 +30,6 @@ public class GestioHabitacio : MonoBehaviour
 
     private List<GameObject> portesAleatoriesTancades = new List<GameObject>();
 
-
-    void Start(){
-        if (gameObject.CompareTag("Habitacio Boss")){
-            if (tilemapPortal != null){
-                tilemapPortal.gameObject.SetActive(false);
-            }
-        }
-    }
-
     void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Player") && !portesTancades){
             Debug.Log("El jugador ha entrado en la habitacion");
@@ -45,7 +37,15 @@ public class GestioHabitacio : MonoBehaviour
                 TancarTotesLesPortes();
                 GenerarEnemics();
             }
-            
+        }
+    }
+
+    public void PortalActivat(){
+        Debug.Log("detecta portal");
+        MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
+        if(mapGenerator != null){
+            mapGenerator.ClearMap();
+            mapGenerator.GenerateMap();
         }
     }
 
@@ -104,7 +104,8 @@ public class GestioHabitacio : MonoBehaviour
         portaColocada.Clear();
         habitacionsVisitades.Add(gameObject.name);
         if (gameObject.CompareTag("Habitacio Boss")){
-            tilemapPortal.gameObject.SetActive(true); // que pase al siguiente nivel
+            GestioPortal gestioP = Portal.GetComponent<GestioPortal>();
+            gestioP.MostarPortal();
         }
     }
 
@@ -188,6 +189,7 @@ public class GestioHabitacio : MonoBehaviour
         foreach (GameObject porta in portesAleatoriesTancades){
             Destroy(porta);
         }
+
         tancades = 0;
         posPortesTancades.Clear();
         portaColocada.Clear();
