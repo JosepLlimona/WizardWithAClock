@@ -15,7 +15,6 @@ public class MapGenerator : MonoBehaviour
     public Tile paretInf;
     public Tile paretSup;
     public Tile paretSupD;
-    public Tile error;
 
     public GameObject[] habPetita;
     private List<int> petitaUsades = new List<int>();
@@ -49,7 +48,7 @@ public class MapGenerator : MonoBehaviour
 
     private List<GameObject> habitacionsInstanciades = new List<GameObject>();
 
-    private int nivellActual = 1; //Només genera Boss si es al 2 o al 4
+    public int nivellActual = 0; //Només genera Boss si es al 2 o al 4
 
 
     void Start()
@@ -57,18 +56,20 @@ public class MapGenerator : MonoBehaviour
         AnarAlLobby();
     }
 
-    void AnarAlLobby(){
+    public void AnarAlLobby(){
+        
         Vector3 spawnPosition = new Vector3(0, 0, 0);
         GameObject lobby = Instantiate(habitacioLobby, spawnPosition, Quaternion.identity);
         habitacionsInstanciades.Add(lobby);
 
         PlayerController gestioP = Player.GetComponent<PlayerController>();
         gestioP.setPosition(new Vector3(1.2f, 0.64f, 0));
-
-        GestioHabitacio gestio = lobby.GetComponent<GestioHabitacio>();
     }
 
     public void GenerateMap(){
+
+        nivellActual++;
+        Debug.Log(nivellActual);
         float x = Random.Range(-ampladaMapa + petitaAmplada, ampladaMapa - petitaAmplada);
         float y = Random.Range(-alturaMapa + petitaAltura, alturaMapa - petitaAltura);
         Vector3 spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
@@ -166,7 +167,6 @@ public class MapGenerator : MonoBehaviour
         }
 
         FerPassadis();
-        nivellActual++;
     }
 
     void CrearHabitacioBoss(){
@@ -429,12 +429,13 @@ public class MapGenerator : MonoBehaviour
         tilemapMapa.ClearAllTiles();
         tilemapDecoracio.ClearAllTiles();
         tilemapCollision.ClearAllTiles();
-        
+
         GestioSpawn auxS = habitacionsInstanciades[0].GetComponent<GestioSpawn>();
         if (auxS != null){
             auxS.ClearSpawn();
             Destroy(habitacionsInstanciades[0]);
         }
+
         GestioHabitacio aux = habitacionsInstanciades[0].GetComponent<GestioHabitacio>();
         if (aux != null){
             aux.ClearHabitacio();
@@ -454,14 +455,19 @@ public class MapGenerator : MonoBehaviour
         mitjanaUsades.Clear();
         granUsades.Clear();
         habitacionsInstanciades.Clear();
-
-        Debug.Log("acaba de limpiar");
+        parellesPortes.Clear();
     }
 
     void Update(){
         if (Input.GetKeyDown(KeyCode.P)){
             ClearMap();
-            GenerateMap();
+            if (nivellActual >= 5){
+                AnarAlLobby();
+                nivellActual = 1;
+            }
+            else{
+                GenerateMap();
+            }
         }
     }
 

@@ -30,6 +30,15 @@ public class GestioHabitacio : MonoBehaviour
 
     private List<GameObject> portesAleatoriesTancades = new List<GameObject>();
 
+    private int nivellActual;
+
+    void Start(){
+        MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
+        if (mapGenerator != null){
+            nivellActual = mapGenerator.nivellActual;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Player") && !portesTancades){
             Debug.Log("El jugador ha entrado en la habitacion");
@@ -41,11 +50,15 @@ public class GestioHabitacio : MonoBehaviour
     }
 
     public void PortalActivat(){
-        Debug.Log("detecta portal");
         MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
         if(mapGenerator != null){
             mapGenerator.ClearMap();
-            mapGenerator.GenerateMap();
+            if (nivellActual < 4){
+                mapGenerator.GenerateMap();
+            }
+            else{
+                mapGenerator.AnarAlLobby();
+            }
         }
     }
 
@@ -144,12 +157,22 @@ public class GestioHabitacio : MonoBehaviour
 
 
     void GenerarEnemics(){
+        Debug.Log(nivellActual);
         int nPerGenerar;
         int nEnemicsGrans = 0;
         BoxCollider2D colliderHabitacio = GetComponent<BoxCollider2D>();
         if (gameObject.CompareTag("Habitacio Boss")){
-            Vector2 spawnPoint = new Vector2(colliderHabitacio.bounds.center.x, colliderHabitacio.bounds.center.y);
-            Instantiate(Boss[Random.Range(0, Boss.Length)], spawnPoint, Quaternion.identity);
+            if (nivellActual == 2 ){
+                Vector2 spawnPoint = new Vector2(colliderHabitacio.bounds.center.x, colliderHabitacio.bounds.center.y);
+                Instantiate(Boss[0], spawnPoint, Quaternion.identity);
+            }
+            else if (nivellActual == 4){
+                Vector2 spawnPoint = new Vector2(colliderHabitacio.bounds.center.x, colliderHabitacio.bounds.center.y);
+                Instantiate(Boss[Boss.Length-1], spawnPoint, Quaternion.identity);
+            }
+            else{
+                ObrirTotesLesPortes();
+            }
         }
         else{
             if (gameObject.tag == "HabitacioPetita"){
@@ -183,6 +206,7 @@ public class GestioHabitacio : MonoBehaviour
         
     }
     public void ClearHabitacio(){
+        EliminarEnemicsInstanciats();
         ObrirTotesLesPortes();
         nEnemics = 0;
 
