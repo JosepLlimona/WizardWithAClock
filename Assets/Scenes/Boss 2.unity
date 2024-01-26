@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4027273180842857875, guid: 1f9d121c9b1fca246a13605807f1967f, type: 3}
+      propertyPath: counterpart
+      value: 
+      objectReference: {fileID: 835036679}
     - target: {fileID: 9196378915961048284, guid: 1f9d121c9b1fca246a13605807f1967f, type: 3}
       propertyPath: m_Name
       value: pol
@@ -178,43 +182,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9196378915961048284, guid: 1f9d121c9b1fca246a13605807f1967f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1548941760}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f9d121c9b1fca246a13605807f1967f, type: 3}
 --- !u!1 &835036679 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9196378915961048284, guid: ce72295d5cde4144eb46184992d57622, type: 3}
-  m_PrefabInstance: {fileID: 1704220965}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &835036681 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7019940374098050707, guid: ce72295d5cde4144eb46184992d57622, type: 3}
-  m_PrefabInstance: {fileID: 1704220965}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &835036686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 835036679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28fe9b1ba8d48e342a5fe38bc19e0cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  counterpart: {fileID: 1548941759}
-  speed: 1
-  timemove: 3
-  bullet: {fileID: 4992617130643129305, guid: 8ece589e8bf25ef4b8d19141ee072240, type: 3}
-  bulletStart: {fileID: 997683950}
-  BossAnim: {fileID: 835036681}
-  habitacio: {fileID: 0}
---- !u!4 &997683950 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 65777849296563186, guid: ce72295d5cde4144eb46184992d57622, type: 3}
   m_PrefabInstance: {fileID: 1704220965}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1247636326
@@ -371,30 +343,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9196378915961048284, guid: 1f9d121c9b1fca246a13605807f1967f, type: 3}
   m_PrefabInstance: {fileID: 403148141}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1548941760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548941759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9acb92d8b7acbc4bb9b21ae8d63c677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  counterpart: {fileID: 835036679}
-  speed: 1
-  timemove: 3
-  bullet: {fileID: 4992617130643129305, guid: 8ece589e8bf25ef4b8d19141ee072240, type: 3}
-  bulletStart: {fileID: 1881481067}
-  BossAnim: {fileID: 1548941761}
-  habitacio: {fileID: 0}
---- !u!95 &1548941761 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7019940374098050707, guid: 1f9d121c9b1fca246a13605807f1967f, type: 3}
-  m_PrefabInstance: {fileID: 403148141}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1704220965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -443,6 +391,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7761663363925120900, guid: ce72295d5cde4144eb46184992d57622, type: 3}
+      propertyPath: counterpart
+      value: 
+      objectReference: {fileID: 1548941759}
     - target: {fileID: 9196378915961048284, guid: ce72295d5cde4144eb46184992d57622, type: 3}
       propertyPath: m_Name
       value: pol Blue
@@ -450,16 +402,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9196378915961048284, guid: ce72295d5cde4144eb46184992d57622, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 835036686}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce72295d5cde4144eb46184992d57622, type: 3}
---- !u!4 &1881481067 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 65777849296563186, guid: 1f9d121c9b1fca246a13605807f1967f, type: 3}
-  m_PrefabInstance: {fileID: 403148141}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

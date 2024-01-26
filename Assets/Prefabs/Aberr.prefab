@@ -44,9 +44,8 @@ GameObject:
   - component: {fileID: 3152047896318251978}
   - component: {fileID: 6249505262155882796}
   - component: {fileID: 7019940374098050707}
-  - component: {fileID: 4027273180842857875}
   m_Layer: 9
-  m_Name: pol
+  m_Name: Aberr
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +108,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1519061314, guid: 03563a9ec3109af478f528fa8fc0e73c, type: 3}
+  m_Sprite: {fileID: -171227283, guid: 6622a9771f188e94096a56c0d83735c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -192,7 +191,7 @@ Animator:
   m_GameObject: {fileID: 9196378915961048284}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5187b1ca3b697054a9da386d496a59ae, type: 2}
+  m_Controller: {fileID: 9100000, guid: dba1885cb4e9d934fb466e909bb7da60, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -203,22 +202,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4027273180842857875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9196378915961048284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9acb92d8b7acbc4bb9b21ae8d63c677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  counterpart: {fileID: 0}
-  speed: 1
-  timemove: 3
-  bullet: {fileID: 4992617130643129305, guid: 8ece589e8bf25ef4b8d19141ee072240, type: 3}
-  bulletStart: {fileID: 65777849296563186}
-  BossAnim: {fileID: 7019940374098050707}
-  habitacio: {fileID: 0}
