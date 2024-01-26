@@ -49,7 +49,7 @@ public class MapGenerator : MonoBehaviour
 
     private List<GameObject> habitacionsInstanciades = new List<GameObject>();
 
-    private nivellActual = 0; //Només genera Boss si es al 2 o al 4
+    private int nivellActual = 0; //Només genera Boss si es al 2 o al 4
 
 
     void Start()
