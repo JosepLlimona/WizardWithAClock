@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 3152047896318251978}
   - component: {fileID: 6249505262155882796}
   - component: {fileID: 7019940374098050707}
+  - component: {fileID: 5036045994438559008}
   m_Layer: 9
   m_Name: Aberr
   m_TagString: Enemy
@@ -202,3 +203,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5036045994438559008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9196378915961048284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b2cc21ba5f47c4dbbe4d08be5dafe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  explosion: {fileID: 0}
+  BossAnim: {fileID: 7019940374098050707}
+  habitacio: {fileID: 0}

@@ -235,6 +235,10 @@ public class SFBossAI : MonoBehaviour, EnemyLife
     public void changeLife(int damage)
     {
         LIFE = LIFE - damage;
+        if (LIFE <= 0)
+        {
+            die();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -253,5 +257,9 @@ public class SFBossAI : MonoBehaviour, EnemyLife
         set{
             habitacio = value;
         }
+    }
+    public void die()
+    {
+        Destroy(this.gameObject);
     }
 }

@@ -149,6 +149,6 @@ public class polarity : MonoBehaviour, EnemyLife
     }
     public void die()
     {
-
+        Destroy(this.gameObject);
     }
 }
