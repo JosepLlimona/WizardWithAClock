@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a31a8c5fb898d74e82790dcc15da3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 1038224487}
   tilemapMapa: {fileID: 688351158}
   tilemapDecoracio: {fileID: 1335119164}
   tilemapCollision: {fileID: 838995286}
@@ -220,6 +221,7 @@ MonoBehaviour:
   - {fileID: 8340938953758021030, guid: 61504b21e9a61d34c8af2b23c0fd90ec, type: 3}
   habBoss: {fileID: 6299064922356691428, guid: 41140299ad369a74f9c62df9e4b3935d, type: 3}
   habitacioSpawn: {fileID: 4458790291251065916, guid: 373e050b9bc444c47a3ab6f7de323212, type: 3}
+  habitacioLobby: {fileID: 1377601311556964377, guid: 7f768f3cd713c4340b0c30a9171d6271, type: 3}
   habitacionsMapa: 10
 --- !u!1 &273305516
 GameObject:
@@ -623,6 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a31a8c5fb898d74e82790dcc15da3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   tilemapMapa: {fileID: 0}
   tilemapDecoracio: {fileID: 0}
   tilemapCollision: {fileID: 0}
@@ -656,6 +659,7 @@ MonoBehaviour:
   - {fileID: 8340938953758021030, guid: 61504b21e9a61d34c8af2b23c0fd90ec, type: 3}
   habBoss: {fileID: 0}
   habitacioSpawn: {fileID: 0}
+  habitacioLobby: {fileID: 0}
   habitacionsMapa: 10
 --- !u!1 &838995283
 GameObject:
@@ -838,6 +842,11 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1 &1038224487 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2517380927504100526, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
+  m_PrefabInstance: {fileID: 8241632657743746710}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1335119161
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,7 +996,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4314743969612818657, guid: a6e23b6cf4a54054ab5d3050c2319989, type: 3}
   m_PrefabInstance: {fileID: 8241632657743746710}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1038224487}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f5233ded71bad84794e057b98c02e07, type: 3}
@@ -1061,13 +1070,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Digital
       objectReference: {fileID: 0}
-    - target: {fileID: 4907431165747063395, guid: b82310a8af0b1c843b9d95ea271ca6db, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 3501237788896100688, guid: b82310a8af0b1c843b9d95ea271ca6db, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4907431165747063395, guid: b82310a8af0b1c843b9d95ea271ca6db, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907431165747063395, guid: b82310a8af0b1c843b9d95ea271ca6db, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

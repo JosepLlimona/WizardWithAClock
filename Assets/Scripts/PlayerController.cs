@@ -640,4 +640,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void setPosition(Vector3 pos){
+        gameObject.transform.position = pos;
+    }
+
 }
