@@ -49,7 +49,7 @@ public class MapGenerator : MonoBehaviour
 
     private List<GameObject> habitacionsInstanciades = new List<GameObject>();
 
-    private int nivellActual = 0; //Només genera Boss si es al 2 o al 4
+    private int nivellActual = 1; //Només genera Boss si es al 2 o al 4
 
 
     void Start()
@@ -69,7 +69,6 @@ public class MapGenerator : MonoBehaviour
     }
 
     public void GenerateMap(){
-        Debug.Log("1");
         float x = Random.Range(-ampladaMapa + petitaAmplada, ampladaMapa - petitaAmplada);
         float y = Random.Range(-alturaMapa + petitaAltura, alturaMapa - petitaAltura);
         Vector3 spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
@@ -81,7 +80,7 @@ public class MapGenerator : MonoBehaviour
         gestioP.setPosition(posSpawnPlayer.transform.position);
 
         habitacionsInstanciades.Add(spawn);
-        Debug.Log("2");
+        
         for (int i = 0; i < habitacionsMapa; i++){
             int tipus;
             float ampladaHabitacio;
@@ -106,9 +105,6 @@ public class MapGenerator : MonoBehaviour
                     GestioHabitacio gestio = habitacioExistent.GetComponent<GestioHabitacio>();
                     portaOrigen = gestio.PortaAleatoria();
                 }
-
-                parella[0] = portaOrigen.transform.position;
-                
                 
                 if (portaOrigen.tag == "PortaEsq"){
                     x = Random.Range(habitacioExistent.transform.position.x - 10f, habitacioExistent.transform.position.x - 15f);
@@ -135,10 +131,11 @@ public class MapGenerator : MonoBehaviour
                     parella[2] = new Vector3(1,1,1);
                 }
 
+                parella[0] = portaOrigen.transform.position;
+
                 spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
 
                 ocupada = PosicioOcupada(spawnPosition, habitacionsInstanciades, tipus);
-                intents++;
             }
 
             if (!ocupada){

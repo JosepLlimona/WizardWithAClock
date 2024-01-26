@@ -221,9 +221,20 @@ public class GestioHabitacio : MonoBehaviour
         return pos;
     }
 
+    void EliminarEnemicsInstanciats(){
+        GameObject[] enemicsInstanciats = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemic in enemicsInstanciats){
+            Destroy(enemic);
+            nEnemics--;
+        }
+    }
+
     void Update(){
         if (nEnemics <= 0 && portesTancades){
             ObrirTotesLesPortes();
+        }
+        if (Input.GetKeyDown(KeyCode.O)){
+            EliminarEnemicsInstanciats();
         }
     }
 
