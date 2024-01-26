@@ -9,4 +9,5 @@ public interface EnemyLife
         set;
     }    
     void changeLife(int damage);
+    void stop();
 }

@@ -10,7 +10,7 @@ using UnityEngine.InputSystem.Interactions;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header ("Movement")]
+    [Header("Movement")]
     [SerializeField]
     private float speed;
     private PlayerControlls playerControlls;
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     [SerializeField]
     private TextMeshProUGUI text;
-    
+
     [Header("GameObjects")]
     [SerializeField]
     private GameObject hammer;
@@ -78,6 +78,27 @@ public class PlayerController : MonoBehaviour
     private TextMeshProUGUI lifeText;
     private int life = 100;
     private int maxLife = 100;
+
+    [Header("Items")]
+    [SerializeField]
+    private Image itemImage;
+    [SerializeField]
+    private Sprite sBalaStop;
+    [SerializeField]
+    private Sprite sLastHit;
+    [SerializeField]
+    private Sprite sBrokenClock;
+    [SerializeField]
+    private GameObject bullet;
+    [SerializeField]
+    private GameObject brokenClock;
+    private bool hasBalaStop = false;
+    private bool hasLastHit = false;
+    private bool hasBrokenClock = false;
+    private bool canShot = false;
+    [SerializeField]
+    private int cooldown = 5;
+    private int lastHit;
 
     private int actualClock = 1;
 
@@ -193,9 +214,26 @@ public class PlayerController : MonoBehaviour
             }
         };
 
-        playerControlls.Standard.Heal.performed += context =>
+        playerControlls.Standard.Item.performed += context =>
         {
-            heal(20);
+            if (hasBalaStop && canShot)
+            {
+                GameObject bulletInstance = Instantiate(bullet, hammerStart.position, hammerStart.rotation);
+                bulletInstance.transform.localScale = transform.localScale;
+                Vector2 dir = hammerStart.position - transform.position;
+                bulletInstance.GetComponent<Rigidbody2D>().velocity = dir.normalized * 3;
+                StartCoroutine(shootCooldown());
+            }
+            if (hasLastHit && canShot)
+            {
+                heal(lastHit);
+                StartCoroutine(shootCooldown());
+            }
+            if(hasBrokenClock && canShot)
+            {
+                brokenClock.SetActive(true);
+                StartCoroutine(shootCooldown());
+            }
         };
     }
 
@@ -211,7 +249,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-     
+
         if (esMirror)
         {
             moveInput = playerControlls.Standard.Movement.ReadValue<Vector2>();
@@ -224,7 +262,7 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             rbody.velocity = moveInput * speed;
-            if(moveInput == Vector2.zero)
+            if (moveInput == Vector2.zero)
             {
                 playerAnim.SetBool("isWalking", false);
             }
@@ -250,11 +288,11 @@ public class PlayerController : MonoBehaviour
                 fists.transform.localScale = leftPos.transform.localScale;
                 sword.transform.position = leftPos.transform.position;
                 sword.transform.rotation = leftPos.transform.rotation;
-                sword   .transform.localScale = leftPos.transform.localScale;
+                sword.transform.localScale = leftPos.transform.localScale;
                 hammerStart = leftPos.transform;
                 transform.localScale = new Vector3(1, 1, 1);
             }
-            if(moveInput.y > 0)
+            if (moveInput.y > 0)
             {
                 fists.transform.position = upPos.transform.position;
                 fists.transform.rotation = upPos.transform.rotation;
@@ -264,7 +302,7 @@ public class PlayerController : MonoBehaviour
                 sword.transform.localScale = upPos.transform.localScale;
                 hammerStart = upPos.transform;
             }
-            else if(moveInput.y < 0)
+            else if (moveInput.y < 0)
             {
                 fists.transform.position = downPos.transform.position;
                 fists.transform.rotation = downPos.transform.rotation;
@@ -274,8 +312,8 @@ public class PlayerController : MonoBehaviour
                 sword.transform.localScale = downPos.transform.localScale;
                 hammerStart = downPos.transform;
             }
-            
-            if((moveInput.x > 0 || moveInput.x < 0) && moveInput.y > 0)
+
+            if ((moveInput.x > 0 || moveInput.x < 0) && moveInput.y > 0)
             {
                 fists.transform.position = upDPos.transform.position;
                 fists.transform.rotation = upDPos.transform.rotation;
@@ -285,7 +323,7 @@ public class PlayerController : MonoBehaviour
                 sword.transform.localScale = upDPos.transform.localScale;
                 hammerStart = upDPos.transform;
             }
-            else if((moveInput.x > 0 || moveInput.x < 0) && moveInput.y < 0)
+            else if ((moveInput.x > 0 || moveInput.x < 0) && moveInput.y < 0)
             {
                 fists.transform.position = downDPos.transform.position;
                 fists.transform.rotation = downDPos.transform.rotation;
@@ -305,7 +343,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Item")
+        if (col.tag == "Item")
         {
             GameObject.Find("HUD").GetComponent<UXController>().activeGrabButton();
             Debug.Log("Entro");
@@ -316,7 +354,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if(col.tag == "Item")
+        if (col.tag == "Item")
         {
             GameObject.Find("HUD").GetComponent<UXController>().activeGrabButton();
             Debug.Log("Surto");
@@ -447,7 +485,7 @@ public class PlayerController : MonoBehaviour
     {
         switch (actual)
         {
-            case "FirstAttack": 
+            case "FirstAttack":
                 if (combo <= 1)
                 {
                     clockAnim.SetBool("MediumAttack", false);
@@ -477,9 +515,10 @@ public class PlayerController : MonoBehaviour
 
     public void lostLife(int damage)
     {
+        lastHit = damage;
         playerAnim.SetTrigger("Hurt");
         life -= damage;
-        if(life <= 0)
+        if (life <= 0)
         {
             life = 0;
             Debug.Log("Game Over");
@@ -514,16 +553,16 @@ public class PlayerController : MonoBehaviour
 
     public void changeWeaponDamage(int newDamage, string weapon)
     {
-        if(weapon == "fists")
+        if (weapon == "fists")
         {
             transform.Find("Fists").GetComponent<FistsController>().setDamage(newDamage);
         }
-        else if(weapon == "sword")
+        else if (weapon == "sword")
         {
             transform.Find("Sword").GetComponent<SwordController>().setDamage(newDamage);
             swordDamage = newDamage;
         }
-        else if(weapon == "hammer")
+        else if (weapon == "hammer")
         {
             hammerDamage += newDamage;
         }
@@ -538,6 +577,53 @@ public class PlayerController : MonoBehaviour
         lifeText.text = this.life.ToString();
     }
 
+    public void activeItem(string itemName)
+    {
+        Debug.Log("Activant: " + itemName);
+        switch (itemName)
+        {
+            case "BalaStop":
+                Debug.Log("Entro case");
+                hasBalaStop = true;
+                hasLastHit = false;
+                hasBrokenClock = false;
+                canShot = true;
+                itemImage.sprite = sBalaStop;
+                itemImage.enabled = true;
+                break;
+            case "LastHit":
+                hasLastHit = true;
+                hasBalaStop = false;
+                hasBrokenClock = false;
+                canShot = true;
+                itemImage.sprite = sLastHit;
+                itemImage.enabled = true;
+                break;
+            case "BrokenClock":
+                hasBrokenClock = true;
+                hasBalaStop = false;
+                hasLastHit = false;
+                canShot = true;
+                itemImage.sprite = sBrokenClock;
+                itemImage.enabled = true;
+                break;
+
+        }
+
+    }
+
+    private IEnumerator shootCooldown()
+    {
+        Color tempColor = itemImage.color;
+        tempColor.a = 0.5f;
+        itemImage.color = tempColor;
+        canShot = false;
+        yield return new WaitForSeconds(cooldown);
+        canShot = true;
+        tempColor.a = 1f;
+        itemImage.color = tempColor;
+    }
+
     private void SwitchControls(PlayerInput input)
     {
         currentControllScheme = input.currentControlScheme;
@@ -549,9 +635,9 @@ public class PlayerController : MonoBehaviour
     {
         if (esMirror)
         {
-           gameObject.SetActive(false);
-           
+            gameObject.SetActive(false);
+
         }
     }
-    
+
 }

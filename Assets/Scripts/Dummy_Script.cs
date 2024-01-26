@@ -24,11 +24,13 @@ public class Dummy_Script : MonoBehaviour, EnemyLife
     private GameObject player;
     public GameObject habitacio;
 
+    private bool canMove = true;
+
     [SerializeField]
     Slider life;
 
 
-    
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -45,60 +47,82 @@ public class Dummy_Script : MonoBehaviour, EnemyLife
         isInChaseRange = Physics2D.OverlapCircle(transform.position, checkRadius, layerPlayer);
         isInAttackRange = Physics2D.OverlapCircle(transform.position, attackRadius, layerPlayer);
 
-        if(shouldRotate)
+        if (shouldRotate)
         {
             anim.SetFloat("X", dir.x);
             anim.SetFloat("Y", dir.y);
         }
     }
 
-    private void FixedUpdate(){
+    private void FixedUpdate()
+    {
 
-        
-        dir = player.transform.position - transform.position;
-        if(!isInAttackRange){
-            anim.SetBool("isAttacking", false);
-            isAttacking = false;
+        if (canMove)
+        {
+            dir = player.transform.position - transform.position;
+            if (!isInAttackRange)
+            {
+                anim.SetBool("isAttacking", false);
+                isAttacking = false;
+            }
+            if (isInChaseRange && !isInAttackRange)
+            {
+                rb.velocity = dir.normalized * speed;
+            }
+            if (isInAttackRange)
+            {
+                rb.velocity = Vector2.zero;
+                isAttacking = true;
+                anim.SetBool("isAttacking", true);
+            }
         }
-        if(isInChaseRange && !isInAttackRange){
-            rb.velocity = dir.normalized * speed;
-        }
-        if(isInAttackRange){
-            rb.velocity = Vector2.zero;
-            isAttacking = true;
-            anim.SetBool("isAttacking", true);
-        }
-    
-        
+
     }
 
-    private void OnTriggerEnter2D(Collider2D col){
+    private void OnTriggerEnter2D(Collider2D col)
+    {
 
-       if(col.tag == "Player")
+        if (col.tag == "Player")
         {
             Debug.Log("danya");
             player.GetComponent<PlayerController>().lostLife(9);
         }
-   }
+    }
 
 
     public void changeLife(int damage)
     {
-    
+
         life.value -= damage;
-        if(life.value <= 0 ) 
+        if (life.value <= 0)
         {
             habitacio.GetComponent<GestioHabitacio>().nEnemics--;
             Destroy(this.gameObject);
         }
-    
+
     }
 
-    public GameObject Habitacio{
-        get{
+    public void stop()
+    {
+        StartCoroutine(stopM());
+    }
+
+    private IEnumerator stopM()
+    {
+        canMove = false;
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(2f);
+        canMove = true;
+    }
+
+    public GameObject Habitacio
+    {
+        get
+        {
             return habitacio;
         }
-        set{
+        set
+        {
             habitacio = value;
         }
     }

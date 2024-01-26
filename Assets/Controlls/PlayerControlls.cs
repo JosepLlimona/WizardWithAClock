@@ -100,12 +100,12 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Heal"",
+                    ""name"": ""Item"",
                     ""type"": ""Button"",
-                    ""id"": ""cd096970-1748-4e5e-b6bb-404ef7db24a7"",
+                    ""id"": ""bbc9d576-d89b-4b98-ab62-7f5c26f66ea4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -486,23 +486,23 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ac100c99-4fd0-4895-a2dc-e49bd6d07a4a"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""id"": ""f691c5fe-0e8d-4e83-862b-31aebe978792"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Heal"",
+                    ""action"": ""Item"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bcebb82b-b497-41fc-b095-ebaab7319f5c"",
+                    ""id"": ""98f18639-f19b-4d64-bd55-3c48e2bea953"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Xbox;Playstation"",
-                    ""action"": ""Heal"",
+                    ""action"": ""Item"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -555,7 +555,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         m_Standard_ShowCanvas = m_Standard.FindAction("ShowCanvas", throwIfNotFound: true);
         m_Standard_Grab = m_Standard.FindAction("Grab", throwIfNotFound: true);
         m_Standard_Pause = m_Standard.FindAction("Pause", throwIfNotFound: true);
-        m_Standard_Heal = m_Standard.FindAction("Heal", throwIfNotFound: true);
+        m_Standard_Item = m_Standard.FindAction("Item", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -625,7 +625,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Standard_ShowCanvas;
     private readonly InputAction m_Standard_Grab;
     private readonly InputAction m_Standard_Pause;
-    private readonly InputAction m_Standard_Heal;
+    private readonly InputAction m_Standard_Item;
     public struct StandardActions
     {
         private @PlayerControlls m_Wrapper;
@@ -638,7 +638,7 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         public InputAction @ShowCanvas => m_Wrapper.m_Standard_ShowCanvas;
         public InputAction @Grab => m_Wrapper.m_Standard_Grab;
         public InputAction @Pause => m_Wrapper.m_Standard_Pause;
-        public InputAction @Heal => m_Wrapper.m_Standard_Heal;
+        public InputAction @Item => m_Wrapper.m_Standard_Item;
         public InputActionMap Get() { return m_Wrapper.m_Standard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -672,9 +672,9 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
-            @Heal.started += instance.OnHeal;
-            @Heal.performed += instance.OnHeal;
-            @Heal.canceled += instance.OnHeal;
+            @Item.started += instance.OnItem;
+            @Item.performed += instance.OnItem;
+            @Item.canceled += instance.OnItem;
         }
 
         private void UnregisterCallbacks(IStandardActions instance)
@@ -703,9 +703,9 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
-            @Heal.started -= instance.OnHeal;
-            @Heal.performed -= instance.OnHeal;
-            @Heal.canceled -= instance.OnHeal;
+            @Item.started -= instance.OnItem;
+            @Item.performed -= instance.OnItem;
+            @Item.canceled -= instance.OnItem;
         }
 
         public void RemoveCallbacks(IStandardActions instance)
@@ -760,6 +760,6 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         void OnShowCanvas(InputAction.CallbackContext context);
         void OnGrab(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-        void OnHeal(InputAction.CallbackContext context);
+        void OnItem(InputAction.CallbackContext context);
     }
 }

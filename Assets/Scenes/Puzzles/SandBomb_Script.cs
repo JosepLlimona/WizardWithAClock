@@ -9,6 +9,7 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
     public float speed;
     public float checkRadius;
     public float attackRadius;
+    private bool canMove = true;
 
     public bool shouldRotate;
     public LayerMask layerPlayer;
@@ -38,16 +39,19 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
 
     private void Update()
     {
-        anim.SetBool("isMoving", isInChaseRange);
-        anim.SetBool("isExploding", isInAttackRange);
-
-        isInChaseRange = Physics2D.OverlapCircle(transform.position, checkRadius, layerPlayer);
-        isInAttackRange = Physics2D.OverlapCircle(transform.position, attackRadius, layerPlayer);
-
-        if(shouldRotate)
+        if (canMove)
         {
-            anim.SetFloat("X", dir.x);
-            anim.SetFloat("Y", dir.y);
+            anim.SetBool("isMoving", isInChaseRange);
+            anim.SetBool("isExploding", isInAttackRange);
+
+            isInChaseRange = Physics2D.OverlapCircle(transform.position, checkRadius, layerPlayer);
+            isInAttackRange = Physics2D.OverlapCircle(transform.position, attackRadius, layerPlayer);
+
+            if (shouldRotate)
+            {
+                anim.SetFloat("X", dir.x);
+                anim.SetFloat("Y", dir.y);
+            }
         }
     }
 
@@ -101,6 +105,19 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
             Destroy(this.gameObject);
         }
         
+    }
+
+    public void stop()
+    {
+        StartCoroutine(stopM());
+    }
+
+    private IEnumerator stopM()
+    {
+        canMove = false;
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(2f);
+        canMove = true;
     }
 
     public GameObject Habitacio{

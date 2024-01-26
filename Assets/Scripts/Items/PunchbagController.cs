@@ -20,6 +20,10 @@ public class PunchbagController : MonoBehaviour, EnemyLife
         damageText.text = damage.ToString();
         particles.Play();
     }
+    public void stop()
+    {
+        return;
+    }
 
     public GameObject Habitacio{
         get{

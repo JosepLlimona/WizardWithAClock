@@ -26,6 +26,7 @@ public class Digital_Script : MonoBehaviour, EnemyLife
     public float speed;
     public float checkRadius;
     public float attackRadius;
+    private bool canMove = true;
 
     public bool shouldRotate;
     public LayerMask layerPlayer;
@@ -61,6 +62,7 @@ public class Digital_Script : MonoBehaviour, EnemyLife
 
     private void Update()
     {
+
         anim.SetBool("isMoving", isInChaseRange);
 
 
@@ -72,50 +74,66 @@ public class Digital_Script : MonoBehaviour, EnemyLife
             anim.SetFloat("X", dir.x);
             anim.SetFloat("Y", dir.y);
         }
+
     }
 
     private void FixedUpdate()
     {
 
+        if (canMove)
+        {
+            dir = player.transform.position - transform.position;
 
-        dir = player.transform.position - transform.position;
+            if (Number == 1 && !isAttacking)
+            {
+                rb.velocity = Vector2.zero;
+                isAttacking = true;
+                anim.SetTrigger("Uno");
+            }
+            else if (Number == 2 && !isAttacking)
+            {
+                rb.velocity = Vector2.zero;
+                isAttacking = true;
+                anim.SetTrigger("Dos");
+            }
+            else if (Number == 3 && !isAttacking)
+            {
+                rb.velocity = Vector2.zero;
+                isAttacking = true;
+                anim.SetTrigger("Tres");
+            }
+            else if (Number == 4 && !isAttacking)
+            {
+                rb.velocity = Vector2.zero;
+                isAttacking = true;
+                anim.SetTrigger("Cuatro");
+            }
+            else if (Number == 5 && !isAttacking)
+            {
+                rb.velocity = Vector2.zero;
+                isAttacking = true;
+                anim.SetTrigger("Cinco");
+            }
 
-        if (Number == 1 && !isAttacking)
-        {
-            rb.velocity = Vector2.zero;
-            isAttacking = true;
-            anim.SetTrigger("Uno");
-        }
-        else if (Number == 2 && !isAttacking)
-        {
-            rb.velocity = Vector2.zero;
-            isAttacking = true;
-            anim.SetTrigger("Dos");
-        }
-        else if (Number == 3 && !isAttacking)
-        {
-            rb.velocity = Vector2.zero;
-            isAttacking = true;
-            anim.SetTrigger("Tres");
-        }
-        else if (Number == 4 && !isAttacking)
-        {
-            rb.velocity = Vector2.zero;
-            isAttacking = true;
-            anim.SetTrigger("Cuatro");
-        }
-        else if (Number == 5 && !isAttacking)
-        {
-            rb.velocity = Vector2.zero;
-            isAttacking = true;
-            anim.SetTrigger("Cinco");
+            if (!isInAttackRange)
+            {
+                isAttacking = false;
+            }
         }
 
-        if (!isInAttackRange)
-        {
-            isAttacking = false;
-        }
+    }
 
+    public void stop()
+    {
+        StartCoroutine(stopM());
+    }
+
+    private IEnumerator stopM()
+    {
+        canMove = false;
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(2f);
+        canMove = true;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
