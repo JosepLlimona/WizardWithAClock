@@ -42,7 +42,7 @@ public class abberration : MonoBehaviour, EnemyLife
         if (absorving)
         {
             Vector2 direction = new Vector2(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y);
-            Prbody.AddForce(direction.normalized * 50f);
+            Prbody.AddForce(direction.normalized * 60f);
         }
     }
 
@@ -72,6 +72,12 @@ public class abberration : MonoBehaviour, EnemyLife
                 cooldown = 0;
             }
         }
+    }
+
+    public void explode()
+    {
+            Vector2 pos = new Vector2(player.transform.position.x, player.transform.position.y);
+            GameObject explosionInstance = Instantiate(explosion, pos, Quaternion.identity);
     }
 
     public void absortion()

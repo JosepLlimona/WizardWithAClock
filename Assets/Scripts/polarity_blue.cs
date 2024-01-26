@@ -149,5 +149,6 @@ public class polarity_blue : MonoBehaviour, EnemyLife
     public void die()
     {
         Destroy(this.gameObject);
+        counterpart.GetComponent<polarity>().die();
     }
 }

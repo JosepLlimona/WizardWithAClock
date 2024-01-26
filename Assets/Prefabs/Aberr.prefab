@@ -179,9 +179,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000014901161, y: -0.07732405}
-  m_Size: {x: 0.4215282, y: 1.0701203}
-  m_Direction: 0
+  m_Offset: {x: -0.020672102, y: -0.1324492}
+  m_Size: {x: 1.6618953, y: 0.98659617}
+  m_Direction: 1
 --- !u!95 &7019940374098050707
 Animator:
   serializedVersion: 5
@@ -216,6 +216,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  explosion: {fileID: 0}
+  explosion: {fileID: 4997157328353192316, guid: 3d168a18d48f24445aa476b0db3c418d, type: 3}
   BossAnim: {fileID: 7019940374098050707}
   habitacio: {fileID: 0}
