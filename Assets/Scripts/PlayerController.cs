@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        hammerStart = leftPos.transform;
         //if (esMirror) { this.gameObject.SetActive(false); }
         playerControlls = new PlayerControlls();
         rbody = GetComponent<Rigidbody2D>();
