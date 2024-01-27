@@ -31,6 +31,11 @@ public class polarity_blue : MonoBehaviour, EnemyLife
 
     private bool canMove = true;
 
+    [SerializeField]
+    private AudioSource shieldSound;
+    [SerializeField]
+    private AudioSource raygunSound;
+
     public GameObject habitacio;
 
     // Start is called before the first frame update
@@ -88,6 +93,7 @@ public class polarity_blue : MonoBehaviour, EnemyLife
     {
         if (armor)
         {
+            raygunSound.Play();
             print("doing RayGun");
             Vector2 pos = bulletStart.transform.position;
             GameObject BulletInstance = Instantiate(bullet, pos, Quaternion.identity);
@@ -134,6 +140,10 @@ public class polarity_blue : MonoBehaviour, EnemyLife
         {
             habitacio = value;
         }
+    }
+    public void play_armor()
+    {
+        shieldSound.Play();
     }
     public void activateArmor()
     {
