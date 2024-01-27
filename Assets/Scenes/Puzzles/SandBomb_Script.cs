@@ -6,6 +6,11 @@ using UnityEngine.UI;
 public class SandBomb_Script : MonoBehaviour, EnemyLife
 {
 
+    [SerializeField]
+    private AudioSource steps;
+    [SerializeField]
+    private AudioSource explo;
+
     public float speed;
     public float checkRadius;
     public float attackRadius;
