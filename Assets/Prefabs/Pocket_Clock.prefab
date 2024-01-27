@@ -327,9 +327,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 110
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 110
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -517,6 +517,7 @@ MonoBehaviour:
   layerPlayer:
     serializedVersion: 2
     m_Bits: 256
+  habitacio: {fileID: 0}
   life: {fileID: 2840896815062799058}
 --- !u!70 &6980473945702460302
 CapsuleCollider2D:
