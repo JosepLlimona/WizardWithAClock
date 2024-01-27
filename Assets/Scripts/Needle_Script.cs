@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class Needle_Script : MonoBehaviour, EnemyLife
 {
 
+    [SerializeField]
+    private AudioSource attack;
+    [SerializeField]
+    private AudioSource move;
     public float speed;
     public float checkRadius;
     public float attackRadius;
@@ -64,7 +68,7 @@ public class Needle_Script : MonoBehaviour, EnemyLife
                 anim.SetBool("isAttacking", false);
                 isAttacking = false;
             }
-            if (isInChaseRange && !isInAttackRange)
+            if (isInChaseRange && !isInAttackRange && !isAttacking)
             {
                 rb.velocity = dir.normalized * speed;
             }
@@ -123,5 +127,15 @@ public class Needle_Script : MonoBehaviour, EnemyLife
         {
             habitacio = value;
         }
+    }
+
+    void PlayAttack()
+    {
+        attack.Play();
+    }
+
+    void PlayMove()
+    {
+        move.Play();
     }
 }
