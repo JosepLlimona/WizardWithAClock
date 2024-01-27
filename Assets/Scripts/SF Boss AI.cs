@@ -41,6 +41,8 @@ public class SFBossAI : MonoBehaviour, EnemyLife
     private AudioSource punchSound;
     [SerializeField]
     private AudioSource fireballSound;
+    [SerializeField]
+    private AudioSource raygunSound;
 
     public GameObject habitacio;
 
@@ -203,6 +205,7 @@ public class SFBossAI : MonoBehaviour, EnemyLife
     private void RayGun()
     {
         print("doing RayGun");
+        raygunSound.Play();
         Vector2 pos = bulletStart.transform.position;
         GameObject BulletInstance = Instantiate(bullet, pos, Quaternion.identity);
         BulletInstance.GetComponent<bulletScript>().setPlayer(player);
@@ -252,7 +255,7 @@ public class SFBossAI : MonoBehaviour, EnemyLife
         if (collision.tag == "Player")
         {
             Debug.Log("Tocant desde boss");
-            player.GetComponent<PlayerController>().lostLife(20);
+            player.GetComponent<PlayerController>().lostLife(10);
         }
     }
 
