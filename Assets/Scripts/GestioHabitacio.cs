@@ -32,10 +32,13 @@ public class GestioHabitacio : MonoBehaviour
 
     private int nivellActual;
 
+    private GameObject Player;
+
     void Start(){
         MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
         if (mapGenerator != null){
             nivellActual = mapGenerator.nivellActual;
+            Player = mapGenerator.Player;
         }
     }
 
@@ -116,6 +119,10 @@ public class GestioHabitacio : MonoBehaviour
         portesTancades = false;
         portaColocada.Clear();
         habitacionsVisitades.Add(gameObject.name);
+
+        PlayerController gestio = Player.GetComponent<PlayerController>();
+        gestio.heal(10);
+
         if (gameObject.CompareTag("Habitacio Boss")){
             GestioPortal gestioP = Portal.GetComponent<GestioPortal>();
             gestioP.MostarPortal();
