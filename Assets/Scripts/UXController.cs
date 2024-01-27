@@ -150,7 +150,7 @@ public class UXController : MonoBehaviour
     public void exitGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 
     public void closeGame()

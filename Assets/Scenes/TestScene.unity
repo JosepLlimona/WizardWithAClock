@@ -221,8 +221,7 @@ MonoBehaviour:
   habBoss: {fileID: 6299064922356691428, guid: 41140299ad369a74f9c62df9e4b3935d, type: 3}
   habitacioSpawn: {fileID: 4458790291251065916, guid: 373e050b9bc444c47a3ab6f7de323212, type: 3}
   habitacioLobby: {fileID: 1377601311556964377, guid: 7f768f3cd713c4340b0c30a9171d6271, type: 3}
-  habPuzzle:
-  - {fileID: 8819024140602633859, guid: a9f3cef45278a244995daf18f878cd41, type: 3}
+  habPuzzle: []
   habitacionsMapa: 10
   nivellActual: 0
 --- !u!1 &273305516

@@ -8,7 +8,7 @@ public class ButtonMenu : MonoBehaviour
     public void OnButtonClick()
     {
         // Load the main scene (you can replace "MainScene" with the actual scene name)
-        SceneManager.LoadScene("Demo");
+        SceneManager.LoadScene("TestScene");
     }
     public void OnEndButtonClick()
     {
