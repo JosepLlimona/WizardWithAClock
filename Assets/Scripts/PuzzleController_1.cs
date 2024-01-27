@@ -18,6 +18,7 @@ public class PuzzleController_1 : PuzzleController
     // Start is called before the first frame update
     void Start()
     {
+       
         //uis = GetComponent<CanvasController>();
         mirrorPlayer.gameObject.SetActive(false);
 
