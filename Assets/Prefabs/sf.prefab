@@ -39,7 +39,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993031157120327451}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -262,7 +262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43e565808c07014fa727088d4fcec99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   speed: 3
   timemove: 0.75
   punch: {fileID: 4997157328353192316, guid: 7c5cda7a5c792a84ab6edf1393d43430, type: 3}
@@ -270,6 +269,7 @@ MonoBehaviour:
   bullet: {fileID: 4992617130643129305, guid: 6f06321715e88ce4cb88b68cbc84a24c, type: 3}
   bulletStart: {fileID: 65777849296563186}
   BossAnim: {fileID: 7019940374098050707}
+  habitacio: {fileID: 0}
 --- !u!95 &7019940374098050707
 Animator:
   serializedVersion: 5
