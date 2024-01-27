@@ -18,6 +18,8 @@ public class Digital_Script : MonoBehaviour, EnemyLife
     private GameObject Num5;
     [SerializeField]
     private Transform numStart;
+    [SerializeField]
+    private AudioSource shot;
     private bool atack = false;
     private int num1 = 0;
     private int num2 = 0;
@@ -193,6 +195,7 @@ public class Digital_Script : MonoBehaviour, EnemyLife
 
     public void Dispara1()
     {
+        shot.Play();
         print("1 shot");
         Vector2 pos = numStart.transform.position;
         pos.x += 0.5f;
@@ -203,6 +206,7 @@ public class Digital_Script : MonoBehaviour, EnemyLife
 
     public void Dispara2()
     {
+        shot.Play();
         print("2 shot");
         Vector2 pos = numStart.transform.position;
         pos.x += 0.5f;
@@ -213,6 +217,7 @@ public class Digital_Script : MonoBehaviour, EnemyLife
 
     public void Dispara3()
     {
+        shot.Play();
         print("3 shot");
         Vector2 pos = numStart.transform.position;
         pos.x += 0.5f;
@@ -223,6 +228,7 @@ public class Digital_Script : MonoBehaviour, EnemyLife
 
     public void Dispara4()
     {
+        shot.Play();
         print("4 shot");
         Vector2 pos = numStart.transform.position;
         pos.x += 0.5f;
@@ -233,11 +239,17 @@ public class Digital_Script : MonoBehaviour, EnemyLife
 
     public void Dispara5()
     {
+        shot.Play();
         print("5 shot");
         Vector2 pos = numStart.transform.position;
         pos.x += 0.5f;
         GameObject NumInstance = Instantiate(Num5, pos, Quaternion.identity);
         NumInstance.GetComponent<Num5>().setPlayer(player);
         isAttacking = false;
+    }
+
+    void PlayShot()
+    {
+        shot.Play();
     }
 }
