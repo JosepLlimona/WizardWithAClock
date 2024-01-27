@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.UI;
 
 public class abberration : MonoBehaviour, EnemyLife
 {
@@ -27,6 +28,9 @@ public class abberration : MonoBehaviour, EnemyLife
 
     [SerializeField]
     private AudioSource vacum;
+
+    [SerializeField]
+    Slider life;
 
     public GameObject habitacio;
 
@@ -103,8 +107,8 @@ public class abberration : MonoBehaviour, EnemyLife
     public void changeLife(int damage)
     {
 
-        LIFE = LIFE - damage;
-        if (LIFE <= 0)
+        life.value -= damage;
+        if (life.value <= 0)
         {
             die();
         }

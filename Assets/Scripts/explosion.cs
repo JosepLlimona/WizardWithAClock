@@ -17,7 +17,7 @@ public class explosion : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("Tocant desde explosió");
-            other.gameObject.GetComponent<PlayerController>().lostLife(5);
+            other.gameObject.GetComponent<PlayerController>().lostLife(15);
         }
     }
     public void activate_explosion()

@@ -9,6 +9,8 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
     [SerializeField]
     private AudioSource steps;
     [SerializeField]
+    private AudioSource steps2;
+    [SerializeField]
     private AudioSource explo;
 
     public float speed;
@@ -33,7 +35,7 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
     [SerializeField]
     Slider life;
 
-
+    
     
     private void Start()
     {
@@ -46,6 +48,7 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
     {
         if (canMove)
         {
+
             anim.SetBool("isMoving", isInChaseRange);
             anim.SetBool("isExploding", isInAttackRange);
 
@@ -61,8 +64,8 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
     }
 
     private void FixedUpdate(){
-        dir = player.transform.position - transform.position;
 
+        dir = player.transform.position - transform.position;
         if(isInChaseRange && !isInAttackRange){
             rb.velocity = dir.normalized * speed;
         }
@@ -93,12 +96,12 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
    }
 
    public void Explode(){
-
-    if(hit){
-        player.GetComponent<PlayerController>().lostLife(14);
-    }
-    habitacio.GetComponent<GestioHabitacio>().nEnemics--;
-    Destroy(this.gameObject);
+        
+        if(hit){
+            player.GetComponent<PlayerController>().lostLife(14);
+        }
+        habitacio.GetComponent<GestioHabitacio>().nEnemics--;
+        Destroy(this.gameObject);
    }
 
     public void changeLife(int damage)
@@ -110,6 +113,21 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
             Destroy(this.gameObject);
         }
         
+    }
+
+    void PlayStep()
+    {
+        steps.Play();
+    }
+
+    void PlayStep2()
+    {
+        steps2.Play();
+    }
+
+    void PlayExplosion()
+    {
+        explo.Play();
     }
 
     public void stop()

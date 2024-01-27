@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.UI;
 
 public class polarity_blue : MonoBehaviour, EnemyLife
 {
@@ -35,6 +36,8 @@ public class polarity_blue : MonoBehaviour, EnemyLife
     private AudioSource shieldSound;
     [SerializeField]
     private AudioSource raygunSound;
+    [SerializeField]
+    Slider life;
 
     public GameObject habitacio;
 
@@ -107,7 +110,7 @@ public class polarity_blue : MonoBehaviour, EnemyLife
     {
         if (!armor)
         {
-            LIFE = LIFE - damage;
+            life.value -= damage;
             damageTaken += damage;
         }
         if (damageTaken > 50)
@@ -115,7 +118,7 @@ public class polarity_blue : MonoBehaviour, EnemyLife
             activateArmor();
             damageTaken = 0;
         }
-        if (LIFE <= 0)
+        if (life.value <= 0)
         {
             die();
         }
