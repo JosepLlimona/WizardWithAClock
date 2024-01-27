@@ -73,6 +73,7 @@ public class NormalCofre : MonoBehaviour
 
         winnerItemPosition = Random.Range(0, WinnerItems.Count);
         winnerItem = WinnerItems[winnerItemPosition];
+        Instantiate(winnerItem);
         return winnerItem;
     }
     public void canOpenChest() { canOpen = true; }
