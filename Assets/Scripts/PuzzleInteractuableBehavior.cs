@@ -9,6 +9,7 @@ public class PuzzleInteractuableBehavior : MonoBehaviour
     [SerializeField] PuzzleInteractable primeraPlaca;
     [SerializeField] PuzzleInteractable segonaPlaca;
     private bool completades = false;
+    [SerializeField] AudioSource audio;
     // Start is called before the first frame update
     void Start()
     {
