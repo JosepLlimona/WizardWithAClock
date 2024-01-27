@@ -63,6 +63,8 @@ public class MapGenerator : MonoBehaviour
         Vector3 spawnPosition = new Vector3(0, 0, 0);
         GameObject lobby = Instantiate(habitacioLobby, spawnPosition, Quaternion.identity);
         habitacionsInstanciades.Add(lobby);
+        GestioHabitacio gestioL = lobby.GetComponent<GestioHabitacio>();
+        gestioL.MostrarText();
 
         PlayerController gestioP = Player.GetComponent<PlayerController>();
         gestioP.setPosition(new Vector3(1.2f, 0.64f, 0));

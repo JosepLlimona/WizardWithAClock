@@ -19,6 +19,10 @@ public class GestioHabitacio : MonoBehaviour
     public GameObject tilePortaInferior;
 
     public GameObject Portal;
+    public GameObject Canvas;
+    public GameObject text1;
+    public GameObject text2;
+
 
     private int tancades = 0;
     private List<Vector3> posPortesTancades = new List<Vector3>();
@@ -50,6 +54,24 @@ public class GestioHabitacio : MonoBehaviour
                 GenerarEnemics();
             }
         }
+    }
+
+    public void MostrarText(){
+        StartCoroutine(MostrarTextTemps());
+    }
+
+    private IEnumerator MostrarTextTemps(){
+        Canvas.SetActive(true);
+        text1.SetActive(true);
+
+        yield return new WaitForSeconds(5);
+
+        text1.SetActive(false);
+        text2.SetActive(true);
+
+        yield return new WaitForSeconds(5);
+
+        Canvas.SetActive(false);
     }
 
     public void PortalActivat(){

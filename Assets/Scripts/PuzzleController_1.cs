@@ -10,12 +10,15 @@ public class PuzzleController_1 : PuzzleController
     [SerializeField] private List<PuzzleInteractuableBehavior> _plaquesPuzzle;
     [SerializeField] private PlayerController mirrorPlayer;
     [SerializeField] private PlayerController player;
+    [SerializeField] private AudioSource audio;
+    //[SerializeField] private CanvasController uis;
 
     private bool mirrorPlayerInstantiated = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        //uis = GetComponent<CanvasController>();
         mirrorPlayer.gameObject.SetActive(false);
 
         foreach (var plaques in _plaquesPuzzle)
@@ -29,6 +32,7 @@ public class PuzzleController_1 : PuzzleController
     {
         if (startPlate.IsON() && !puzzleStarted && !puzzleComplet)
         {
+            //uis.hideInteractText();
             OnPuzzleStart();
 
             if (!mirrorPlayerInstantiated)
@@ -47,7 +51,7 @@ public class PuzzleController_1 : PuzzleController
                  */
                 Vector3 mirrorPlayerPosition = new Vector3(
                      player.transform.position.x,
-                     -player.transform.position.y-0.1f,
+                     -player.transform.position.y+0.6f,
                  player.transform.position.z
 );
 
@@ -76,6 +80,7 @@ public class PuzzleController_1 : PuzzleController
 
                 if (plaques.esCompleta())
                 {
+                    audio.Play();
                     _plaquesPuzzle.Remove(plaques);
                 }
 
