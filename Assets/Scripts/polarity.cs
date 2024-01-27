@@ -29,6 +29,10 @@ public class polarity : MonoBehaviour, EnemyLife
     private int bulletAmount = 1;
     private int damageTaken = 0;
     private bool canMove = true;
+    [SerializeField]
+    private AudioSource shieldSound;
+    [SerializeField]
+    private AudioSource raygunSound;
 
     public GameObject habitacio;
 
@@ -75,6 +79,7 @@ public class polarity : MonoBehaviour, EnemyLife
     {
         if (armor)
         {
+            raygunSound.Play();
             print("doing RayGun");
             Vector2 pos = bulletStart.transform.position;
             GameObject BulletInstance = Instantiate(bullet, pos, Quaternion.identity);
@@ -127,6 +132,10 @@ public class polarity : MonoBehaviour, EnemyLife
         BossAnim.SetTrigger("ChargingArmor");
         armor = true;
         counterpart.GetComponent<polarity_blue>().deactivateArmor();
+    }
+    public void play_armor()
+    {
+        shieldSound.Play();
     }
     public void deactivateArmor()
     {
