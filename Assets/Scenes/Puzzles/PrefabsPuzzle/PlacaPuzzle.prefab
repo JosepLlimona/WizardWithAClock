@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4b900a1b4d89f4dbda3dcb0e5bd6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
   estaEncesa: 0
   PlacaIniciPuzzle: 0
+  spriteRenderer: {fileID: 5326381162577033770}
   spriteON: {fileID: 21300000, guid: 184daf161a84fb946b25da2ce9a09537, type: 3}
   spriteOFF: {fileID: 21300000, guid: 0cc912f29b470b944ae7e6da727f85c5, type: 3}
   mirrorPlayer: {fileID: 6391547698706114718, guid: b16a26a2681f3fe40a956962b2b5efba, type: 3}

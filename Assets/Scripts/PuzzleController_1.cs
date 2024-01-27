@@ -35,12 +35,21 @@ public class PuzzleController_1 : PuzzleController
             {
                 Debug.Log("holaaa");
                 mirrorPlayerInstantiated = true;
-
+                /**
+                 * 
+                 * 
                 Vector3 mirrorPlayerPosition = new Vector3(
-                    player.transform.position.x,
-                    -player.transform.position.y,
+                    -0.072f,
+                    -0.3f,
                     player.transform.position.z
                 );
+
+                 */
+                Vector3 mirrorPlayerPosition = new Vector3(
+                     player.transform.position.x,
+                     -player.transform.position.y-0.1f,
+                 player.transform.position.z
+);
 
                 mirrorPlayer.transform.position = mirrorPlayerPosition;
                 mirrorPlayer.enabled = true;
