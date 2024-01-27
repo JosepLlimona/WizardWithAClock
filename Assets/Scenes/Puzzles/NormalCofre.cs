@@ -23,11 +23,9 @@ public class NormalCofre : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        //EnableChest();
+
         Debug.Log("Hauries de veurem");
-        // winnerItem.SetActive(false);
-        //gameObject.transform.position = new Vector3(0,0.5f,0);
-        //gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+
         canOpen = false;
         isOpen = false;
 
@@ -55,17 +53,15 @@ public class NormalCofre : MonoBehaviour
     public void EnableChest()
     {
         gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
-        //fader.startFadingIn();
-        //transform.position = Vector3.zero;
+
     }
 
     public void DisableChest()
     {
-        //fader.startFadingOut();
+
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         Debug.Log("shoud fade out");
-        //Destroy(this.gameObject);
-        //gameObject.SetActive(false);
+;
 
     }
 
