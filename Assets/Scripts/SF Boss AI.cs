@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.UI;
 
 public class SFBossAI : MonoBehaviour, EnemyLife
 {
@@ -43,6 +44,8 @@ public class SFBossAI : MonoBehaviour, EnemyLife
     private AudioSource fireballSound;
     [SerializeField]
     private AudioSource raygunSound;
+    [SerializeField]
+    Slider life;
 
     public GameObject habitacio;
 
@@ -243,8 +246,8 @@ public class SFBossAI : MonoBehaviour, EnemyLife
 
     public void changeLife(int damage)
     {
-        LIFE = LIFE - damage;
-        if (LIFE <= 0)
+        life.value -= damage;
+        if (life.value <= 0)
         {
             die();
         }
