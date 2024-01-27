@@ -11,27 +11,58 @@ public class MusicController : MonoBehaviour
     void Start()
     {
         audios = new List<AudioSource>();
-        foreach(AudioSource audio in GameObject.FindObjectsOfType<AudioSource>())
+        getAllAudio();
+
+    }
+
+    private void getAllAudio()
+    {
+        foreach (AudioSource audio in GameObject.FindObjectsOfType<AudioSource>())
         {
             audios.Add(audio);
         }
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M)){
-            muteAudio();
+        if (Input.GetKeyDown(KeyCode.M) && isMuted){
+            unmuteAll();
+        }
+        else if(Input.GetKeyDown(KeyCode.M) && !isMuted)
+        {
+            muteAll();
         }
     }
 
-    private void muteAudio()
+    public void muteAudio()
+    {
+        getAllAudio();
+        if (isMuted)
+        {
+            muteAll();
+        }
+        else
+        {
+            unmuteAll();
+        }
+    }
+
+    private void muteAll()
+    {
+        foreach (AudioSource audio in audios)
+        {
+            audio.enabled = false;
+        }
+        isMuted = true;
+    }
+
+    private void unmuteAll()
     {
         foreach(AudioSource audio in audios)
         {
-            audio.enabled = !audio.enabled;
+            audio.enabled = true;
         }
-        isMuted = !isMuted;
+        isMuted = false;
     }
 }

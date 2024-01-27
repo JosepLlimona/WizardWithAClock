@@ -233,7 +233,7 @@ public class GestioHabitacio : MonoBehaviour
                 }
             }
         }
-        
+        GameObject.Find("MusicController").GetComponent<MusicController>().muteAudio();
     }
     public void ClearHabitacio(){
         EliminarEnemicsInstanciats();
