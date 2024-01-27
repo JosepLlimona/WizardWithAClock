@@ -180,6 +180,7 @@ public class GestioHabitacio : MonoBehaviour
             else{
                 ObrirTotesLesPortes();
             }
+            nEnemics++;
         }
         else{
             if (gameObject.tag == "HabitacioPetita"){
