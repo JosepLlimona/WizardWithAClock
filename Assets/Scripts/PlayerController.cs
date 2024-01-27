@@ -113,11 +113,12 @@ public class PlayerController : MonoBehaviour
     private int swordDamage = 15;
     private int hammerDamage = 30;
 
-    private string currentControllScheme;
+    public string currentControllScheme;
 
 
     private void Awake()
     {
+        currentControllScheme = "Keyboard";
         hammerStart = leftPos.transform;
         //if (esMirror) { this.gameObject.SetActive(false); }
         playerControlls = new PlayerControlls();
@@ -437,8 +438,14 @@ public class PlayerController : MonoBehaviour
         else if (actualClock == 3)
         {
             canHeavyAttack = false;
-
-            Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+            Vector3 pos;
+            if (currentControllScheme == "Keyboard")
+            {
+                pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+            }
+            else {
+                pos = hammerStart.transform.position;
+            }
             GameObject hammerInstance = Instantiate(hammer, pos, Quaternion.identity);
             hammerInstance.GetComponent<HammerController>().setDamage(hammerDamage);
             clockAnim.SetBool("HeavyAttack", true);
