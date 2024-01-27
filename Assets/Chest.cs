@@ -11,6 +11,7 @@ public class Chest : MonoBehaviour
 
     [SerializeField] private List<GameObject> WinnerItems;
     [SerializeField] private FadeObject fader;
+    public bool cofreNormal;
 
 
     private bool isOpen,canOpen;
@@ -20,6 +21,7 @@ public class Chest : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
+        if(cofreNormal) { canOpenChest();  EnableChest(); }
         // winnerItem.SetActive(false);
         //gameObject.transform.position = new Vector3(0,0.5f,0);
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
@@ -72,6 +74,8 @@ public class Chest : MonoBehaviour
         return winnerItem;
     }
     public void canOpenChest() { canOpen = true; }
+
+
 
     
 }
