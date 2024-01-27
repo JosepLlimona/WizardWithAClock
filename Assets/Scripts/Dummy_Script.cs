@@ -6,6 +6,17 @@ using UnityEngine.UI;
 public class Dummy_Script : MonoBehaviour, EnemyLife
 {
 
+    [SerializeField]
+    private AudioSource steps;
+    [SerializeField]
+    private AudioSource steps2;
+    [SerializeField]
+    private AudioSource steps3;
+    [SerializeField]
+    private AudioSource steps4;
+    [SerializeField]
+    private AudioSource attack;
+
     public float speed;
     public float checkRadius;
     public float attackRadius;
@@ -125,5 +136,30 @@ public class Dummy_Script : MonoBehaviour, EnemyLife
         {
             habitacio = value;
         }
+    }
+
+    void PlayStep()
+    {
+        steps.Play();
+    }
+
+    void PlayStep2()
+    {
+        steps2.Play();
+    }
+
+    void PlayStep3()
+    {
+        steps3.Play();
+    }
+
+    void PlayStep4()
+    {
+        steps4.Play();
+    }
+
+    void PlayAttack()
+    {
+        attack.Play();
     }
 }

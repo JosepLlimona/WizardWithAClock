@@ -9,7 +9,7 @@ public class PuzzleController_1 : PuzzleController
 {
     [SerializeField] private List<PuzzleInteractuableBehavior> _plaquesPuzzle;
     [SerializeField] private PlayerController mirrorPlayer;
-    [SerializeField] private PlayerController player;
+     private PlayerController player;
     [SerializeField] private AudioSource audio;
     //[SerializeField] private CanvasController uis;
 
@@ -18,7 +18,7 @@ public class PuzzleController_1 : PuzzleController
     // Start is called before the first frame update
     void Start()
     {
-       
+        player.GetComponent<PlayerController>();
         //uis = GetComponent<CanvasController>();
         mirrorPlayer.gameObject.SetActive(false);
 
