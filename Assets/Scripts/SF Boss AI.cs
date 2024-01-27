@@ -35,7 +35,7 @@ public class SFBossAI : MonoBehaviour, EnemyLife
     private int numOverloaded = 0;
     private float maximumPortalPunch = 3;
     private int numPortalPunch = 0;
-    private int LIFE = 1000;
+    private int LIFE = 500;
     private bool canMove = true;
 
     public GameObject habitacio;
