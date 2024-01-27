@@ -37,6 +37,10 @@ public class SFBossAI : MonoBehaviour, EnemyLife
     private int numPortalPunch = 0;
     private int LIFE = 500;
     private bool canMove = true;
+    [SerializeField]
+    private AudioSource punchSound;
+    [SerializeField]
+    private AudioSource fireballSound;
 
     public GameObject habitacio;
 
@@ -130,6 +134,7 @@ public class SFBossAI : MonoBehaviour, EnemyLife
 
     private void portalPunch()
     {
+        punchSound.Play();
         float place = numPortalPunch + 1;
         SummonInstance(PunchStart.transform.position.x + place / 3, PunchStart.transform.position.y + place / 3);
         SummonInstance(PunchStart.transform.position.x - place / 3, PunchStart.transform.position.y + place / 3);
@@ -185,6 +190,7 @@ public class SFBossAI : MonoBehaviour, EnemyLife
     }
     public void punchDash()
     {
+        fireballSound.Play();
         Vector2 direction = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
         rbody.velocity = direction.normalized * speed * 4;
     }
