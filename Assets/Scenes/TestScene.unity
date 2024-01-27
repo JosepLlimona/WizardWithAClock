@@ -198,7 +198,6 @@ MonoBehaviour:
   paretInf: {fileID: 11400000, guid: 5afd7fb3cbce31447954e755e4157ba9, type: 2}
   paretSup: {fileID: 11400000, guid: c6cda26560eab0049a6b0396d128de0a, type: 2}
   paretSupD: {fileID: 11400000, guid: 9ca4edb8ae328df48b49555bbc088abd, type: 2}
-  error: {fileID: 11400000, guid: 37e62f0bccc534a468e12132417a38c4, type: 2}
   habPetita:
   - {fileID: 2704241189179990617, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
   - {fileID: 1432208134790832122, guid: b540772425b545d4da52f520764fe9a0, type: 3}
@@ -222,7 +221,10 @@ MonoBehaviour:
   habBoss: {fileID: 6299064922356691428, guid: 41140299ad369a74f9c62df9e4b3935d, type: 3}
   habitacioSpawn: {fileID: 4458790291251065916, guid: 373e050b9bc444c47a3ab6f7de323212, type: 3}
   habitacioLobby: {fileID: 1377601311556964377, guid: 7f768f3cd713c4340b0c30a9171d6271, type: 3}
+  habPuzzle:
+  - {fileID: 8398647893813273578, guid: 0dc72d66f62bd3f42938c953a54680be, type: 3}
   habitacionsMapa: 10
+  nivellActual: 0
 --- !u!1 &273305516
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +512,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -12
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -635,7 +637,6 @@ MonoBehaviour:
   paretInf: {fileID: 0}
   paretSup: {fileID: 0}
   paretSupD: {fileID: 0}
-  error: {fileID: 0}
   habPetita:
   - {fileID: 2704241189179990617, guid: 74009e7a17c1a2f4d9769684780b3814, type: 3}
   - {fileID: 1432208134790832122, guid: b540772425b545d4da52f520764fe9a0, type: 3}
@@ -660,7 +661,9 @@ MonoBehaviour:
   habBoss: {fileID: 0}
   habitacioSpawn: {fileID: 0}
   habitacioLobby: {fileID: 0}
+  habPuzzle: []
   habitacionsMapa: 10
+  nivellActual: 0
 --- !u!1 &838995283
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,7 +738,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -11
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -920,7 +923,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: -10
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -1393,6 +1396,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 202271619}
+    - target: {fileID: 8161072993519411505, guid: 4938fd12e8e705d4c8e002614344c289, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1471,6 +1478,10 @@ PrefabInstance:
     - target: {fileID: 4996493016945073179, guid: e8b98ee7d5bfa83438f25084a871fe82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5890221766776642001, guid: e8b98ee7d5bfa83438f25084a871fe82, type: 3}
+      propertyPath: orthographic size
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

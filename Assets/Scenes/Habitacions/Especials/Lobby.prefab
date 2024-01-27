@@ -61,7 +61,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610f78a48fbaccf4ebe43da1fe95e607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Portal: {fileID: 442002396901413113}
   posPortes: []
   enemicsNormal: []
   enemicsGrans: []
@@ -74,6 +73,7 @@ MonoBehaviour:
   tilePortaDreta: {fileID: 1129423310124026210, guid: f73218884f543044a9dde3a0127a3239, type: 3}
   tilePortaSuperior: {fileID: 1129423310124026210, guid: 05f00702dc68e3d4ca600ceafe32bfea, type: 3}
   tilePortaInferior: {fileID: 1129423310124026210, guid: 1a53e9db3440ccf419c89aed317dc307, type: 3}
+  Portal: {fileID: 442002396901413113}
   nEnemics: 0
 --- !u!1 &2511640466730460148
 GameObject:

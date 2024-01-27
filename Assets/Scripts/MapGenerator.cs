@@ -26,6 +26,8 @@ public class MapGenerator : MonoBehaviour
     public GameObject habitacioSpawn;
     public GameObject habitacioLobby;
 
+    public GameObject[] habPuzzle;
+
     public int habitacionsMapa;
 
     private static float tileSize = 0.32f;
@@ -48,7 +50,7 @@ public class MapGenerator : MonoBehaviour
 
     private List<GameObject> habitacionsInstanciades = new List<GameObject>();
 
-    public int nivellActual = 0; //Només genera Boss si es al 2 o al 4
+    public int nivellActual = 1; //Només genera Boss si es al 2 o al 4
 
 
     void Start()
@@ -158,6 +160,10 @@ public class MapGenerator : MonoBehaviour
         }
         CrearHabitacioBoss();
 
+        if(habPuzzle.Length != 0){
+            CrearHabitacioPuzzle();
+        }
+
         GestioSpawn auxS = habitacionsInstanciades[0].GetComponent<GestioSpawn>();
         auxS.TancarPortesAleatories(parellesPortes);
 
@@ -196,17 +202,53 @@ public class MapGenerator : MonoBehaviour
             }
         }
         if (!ocupada){
+            GameObject Boss = Instantiate(habBoss, spawnPosition, Quaternion.identity);
+            habitacionsInstanciades.Add(Boss);
+            GestioHabitacio aux = Boss.GetComponent<GestioHabitacio>();
 
-                GameObject Boss = Instantiate(habBoss, spawnPosition, Quaternion.identity);
+            parella[1] = aux.PosicioPortaPerTipus(tipusPorta);
+            parellesPortes.Add(parella);
+        }
+    }
 
-                habitacionsInstanciades.Add(Boss);
+    void CrearHabitacioPuzzle(){
+        bool ocupada = true;
+        Vector3[] parella = new Vector3[3];
+        string tipusPorta = "";
+        int i = 1;
+        Vector3 spawnPosition = new Vector3();
 
-                GestioHabitacio aux = Boss.GetComponent<GestioHabitacio>();
+        while (ocupada && i < habitacionsInstanciades.Count - 1){
+            GameObject habitacioExistent = habitacionsInstanciades[i];
+            GestioHabitacio gestio = habitacioExistent.GetComponent<GestioHabitacio>();
+            GameObject portaOrigen = gestio.PortaPerTipus("PortaDreta");
 
-                parella[1] = aux.PosicioPortaPerTipus(tipusPorta);
+            if (portaOrigen != null){
+                Debug.Log("hay puerta origen");
+                parella[0] = portaOrigen.transform.position;
 
-                parellesPortes.Add(parella);
+                float x = Random.Range(habitacioExistent.transform.position.x + 10f, habitacioExistent.transform.position.x + 15f);
+                float y = PosicioHabitacioNovaY(portaOrigen,2);
+                tipusPorta = "PortaEsq";
+                parella[2] = new Vector3(0,0,0);
+
+                spawnPosition = new Vector3(Mathf.Round(x / tileSize) * tileSize, Mathf.Round(y / tileSize) * tileSize, 0);
+
+                ocupada = PosicioOcupada(spawnPosition, habitacionsInstanciades, 2);
+                i++;
             }
+        }
+        if (!ocupada){
+            Debug.Log("posicion buena");
+            GameObject puzzle = Instantiate(habPuzzle[Random.Range(0, habPuzzle.Length)], spawnPosition, Quaternion.identity);
+            habitacionsInstanciades.Add(puzzle);
+            GestioHabitacio aux = puzzle.GetComponent<GestioHabitacio>();
+
+            parella[1] = aux.PosicioPortaPerTipus(tipusPorta);
+            parellesPortes.Add(parella);
+
+            puzzle.name = "Puzzle";
+        }
     }
     
     float PosicioHabitacioNovaX(GameObject portaRef, int tipus){
@@ -461,7 +503,7 @@ public class MapGenerator : MonoBehaviour
     void Update(){
         if (Input.GetKeyDown(KeyCode.P)){
             ClearMap();
-            if (nivellActual >= 5){
+            if (nivellActual >= 4){
                 AnarAlLobby();
                 nivellActual = 1;
             }
