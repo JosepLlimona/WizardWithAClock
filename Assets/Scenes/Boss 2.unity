@@ -175,10 +175,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aberr
       objectReference: {fileID: 0}
-    - target: {fileID: 9196378915961048284, guid: b22b6d0a611d93242870f89c0f5b2c63, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -242,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9196378915961048284, guid: 1f9d121c9b1fca246a13605807f1967f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -666,7 +662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9196378915961048284, guid: ce72295d5cde4144eb46184992d57622, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

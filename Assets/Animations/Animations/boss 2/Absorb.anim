@@ -315,6 +315,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.4
+    functionName: play_vacum
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 2
     functionName: explode
     data: 
@@ -345,6 +352,13 @@ AnimationClip:
     messageOptions: 0
   - time: 6.4
     functionName: finishAbsortion
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 6.4
+    functionName: stop_vacum
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

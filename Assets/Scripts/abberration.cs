@@ -25,6 +25,9 @@ public class abberration : MonoBehaviour, EnemyLife
     private bool absorving = false;
     private int cooldown = 0;
 
+    [SerializeField]
+    private AudioSource vacum;
+
     public GameObject habitacio;
 
     // Start is called before the first frame update
@@ -141,5 +144,14 @@ public class abberration : MonoBehaviour, EnemyLife
     public void die()
     {
         Destroy(this.gameObject);
+    }
+
+    public void play_vacum()
+    {
+        vacum.Play();
+    }
+    public void stop_vacum()
+    {
+        vacum.Stop();
     }
 }
