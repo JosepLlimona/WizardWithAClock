@@ -6,6 +6,13 @@ using UnityEngine.UI;
 public class EnemyController : MonoBehaviour, EnemyLife
 {
 
+    [SerializeField]
+    private AudioSource attack;
+    [SerializeField]
+    private AudioSource move;
+    [SerializeField]
+    private AudioSource shield;
+
     public float speed;
     public float checkRadius;
     public float attackRadius;
@@ -102,7 +109,7 @@ public class EnemyController : MonoBehaviour, EnemyLife
         if (col.tag == "Player")
         {
             Debug.Log("pega");
-            player.GetComponent<PlayerController>().lostLife(15);
+            player.GetComponent<PlayerController>().lostLife(8);
         }
     }
 
@@ -168,5 +175,20 @@ public class EnemyController : MonoBehaviour, EnemyLife
         {
             habitacio = value;
         }
+    }
+
+    void PlayAttack()
+    {
+        attack.Play();
+    }
+
+    void PlayMove()
+    {
+        move.Play();
+    }
+
+    void PlayShield()
+    {
+        shield.Play();
     }
 }

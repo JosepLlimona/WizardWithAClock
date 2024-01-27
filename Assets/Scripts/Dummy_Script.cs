@@ -96,7 +96,7 @@ public class Dummy_Script : MonoBehaviour, EnemyLife
         if (col.tag == "Player")
         {
             Debug.Log("danya");
-            player.GetComponent<PlayerController>().lostLife(9);
+            player.GetComponent<PlayerController>().lostLife(7);
         }
     }
 

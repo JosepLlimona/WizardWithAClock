@@ -98,7 +98,7 @@ public class SandBomb_Script : MonoBehaviour, EnemyLife
    public void Explode(){
         
         if(hit){
-            player.GetComponent<PlayerController>().lostLife(14);
+            player.GetComponent<PlayerController>().lostLife(11);
         }
         habitacio.GetComponent<GestioHabitacio>().nEnemics--;
         Destroy(this.gameObject);

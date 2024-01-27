@@ -9,7 +9,6 @@ public class GestioSpawn : MonoBehaviour{
     public GameObject tileParetDreta;
     public GameObject tileParetSuperior;
     public GameObject tileParetInferior;
-
     private int tancades = 0;
     private List<Vector3> posPortesTancades = new List<Vector3>();
     private bool portesTancades = false;

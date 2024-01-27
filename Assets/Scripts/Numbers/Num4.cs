@@ -42,7 +42,7 @@ public class Num4 : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("Tocant desde bala");
-            player.GetComponent<PlayerController>().lostLife(20);
+            player.GetComponent<PlayerController>().lostLife(13);
             Destroy(this.gameObject);
         }
     }

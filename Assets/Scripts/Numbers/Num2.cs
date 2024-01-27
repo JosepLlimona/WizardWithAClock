@@ -36,7 +36,7 @@ public class Num2 : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("Tocant desde bala");
-            player.GetComponent<PlayerController>().lostLife(10);
+            player.GetComponent<PlayerController>().lostLife(5);
             Destroy(this.gameObject);
         }
     }
