@@ -146,6 +146,13 @@ MonoBehaviour:
   spriteRenderer: {fileID: 5234879847766007620}
   openSprite: {fileID: 21300000, guid: a9dde749bffc0fb429587c36609434eb, type: 3}
   closedSprite: {fileID: 21300000, guid: 5e15073517f3cde49b509025fbdf7d31, type: 3}
-  WinnerItems: []
-  fader: {fileID: 0}
-  cofreNormal: 0
+  WinnerItems:
+  - {fileID: 2568668993349911969, guid: d60b36002af46ef4b9371d9323708b6c, type: 3}
+  - {fileID: 8729092758690079826, guid: e75183aa35c60434a934954b16eec007, type: 3}
+  - {fileID: 1211988487749434002, guid: 003262d445f1b29448d6517c5ac30c9d, type: 3}
+  - {fileID: 2279365563804244262, guid: 538dd984168c48946945b858e32a5dcd, type: 3}
+  - {fileID: 6962146579145124416, guid: 455b0aafa29be9f4eb436f326439782f, type: 3}
+  - {fileID: 6453049243752497661, guid: 7bc399ebf487d0640bfd2ed54e80651d, type: 3}
+  - {fileID: 8060692915147723939, guid: ddbe2d6d31b401e4b9596c2659e0b37d, type: 3}
+  - {fileID: 4506304847374584955, guid: 88b85e0716d890c4ebd6a9f28f807e0d, type: 3}
+  - {fileID: 443219690455529016, guid: ed0d498fdaaee2a479b50b6242956d2f, type: 3}

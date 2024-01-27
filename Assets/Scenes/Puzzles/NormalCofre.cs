@@ -21,19 +21,20 @@ public class NormalCofre : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        canOpenChest(); 
-        EnableChest();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        //EnableChest();
         Debug.Log("Hauries de veurem");
         // winnerItem.SetActive(false);
         //gameObject.transform.position = new Vector3(0,0.5f,0);
-        gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        //gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         canOpen = false;
         isOpen = false;
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isOpen && canOpen)
+        if (!isOpen)
         {
             Debug.Log("hoila tio");
             isOpen = true;
@@ -41,7 +42,7 @@ public class NormalCofre : MonoBehaviour
             winnerItem = GetWinnerItem();
             Debug.Log(winnerItemPosition);
             Debug.Log(WinnerItems.Count());
-            winnerItem.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.7f, 0);
+            winnerItem.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.4f, 0);
             Instantiate(winnerItem);
 
             //
