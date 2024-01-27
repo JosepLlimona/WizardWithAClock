@@ -447,6 +447,10 @@ public class PlayerController : MonoBehaviour
                 pos = hammerStart.transform.position;
             }
             GameObject hammerInstance = Instantiate(hammer, pos, Quaternion.identity);
+            foreach(AudioSource audio in hammerInstance.GetComponents<AudioSource>())
+            {
+                audio.enabled = !GameObject.Find("MusicController").GetComponent<MusicController>().isMuted;
+            }
             hammerInstance.GetComponent<HammerController>().setDamage(hammerDamage);
             clockAnim.SetBool("HeavyAttack", true);
             hammerInstance.GetComponent<Animator>().SetTrigger("Attacking");

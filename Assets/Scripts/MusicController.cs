@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
-    public List<AudioSource> audios;
+    private List<AudioSource> audios;
+    public bool isMuted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,5 +32,6 @@ public class MusicController : MonoBehaviour
         {
             audio.enabled = !audio.enabled;
         }
+        isMuted = !isMuted;
     }
 }
