@@ -241,7 +241,6 @@ public class MapGenerator : MonoBehaviour
             }
         }
         if (!ocupada){
-            Debug.Log("posicion buena");
             GameObject puzzle = Instantiate(habPuzzle[Random.Range(0, habPuzzle.Length)], spawnPosition, Quaternion.identity);
             habitacionsInstanciades.Add(puzzle);
             GestioHabitacio aux = puzzle.GetComponent<GestioHabitacio>();
