@@ -201,9 +201,27 @@ public class GestioHabitacio : MonoBehaviour
                 BossInstanciat.GetComponent<EnemyLife>().Habitacio = this.gameObject;
             }
             else if (nivellActual == 4){
+                int num = Random.Range(0,2);
                 Vector2 spawnPoint = new Vector2(colliderHabitacio.bounds.center.x, colliderHabitacio.bounds.center.y);
-                BossInstanciat=Instantiate(Boss[Boss.Length-1], spawnPoint, Quaternion.identity);
-                BossInstanciat.GetComponent<EnemyLife>().Habitacio = this.gameObject;
+                if (num == 0)
+                {
+                    GameObject BossInstanciat2;
+                    Vector2 spawnPointblue = new Vector2(colliderHabitacio.bounds.center.x-2, colliderHabitacio.bounds.center.y);
+                    Vector2 spawnPointred = new Vector2(colliderHabitacio.bounds.center.x+2, colliderHabitacio.bounds.center.y);
+                    BossInstanciat = Instantiate(Boss[Boss.Length - 2], spawnPointblue, Quaternion.identity);
+                    BossInstanciat.GetComponent<EnemyLife>().Habitacio = this.gameObject;
+
+                    BossInstanciat2 = Instantiate(Boss[Boss.Length - 3], spawnPointred, Quaternion.identity);
+                    BossInstanciat2.GetComponent<EnemyLife>().Habitacio = this.gameObject;
+
+                    BossInstanciat.GetComponent<polarity_blue>().set_counterpart(BossInstanciat2);
+                    BossInstanciat2.GetComponent<polarity>().set_counterpart(BossInstanciat);
+                }
+                else if (num > 0)
+                {
+                    BossInstanciat = Instantiate(Boss[Boss.Length - 1], spawnPoint, Quaternion.identity);
+                    BossInstanciat.GetComponent<EnemyLife>().Habitacio = this.gameObject;
+                }
             }
             else{
                 ObrirTotesLesPortes();

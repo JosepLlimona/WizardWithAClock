@@ -59,7 +59,7 @@ public class MapGenerator : MonoBehaviour
     }
 
     public void AnarAlLobby(){
-        
+        nivellActual = 0;
         Vector3 spawnPosition = new Vector3(0, 0, 0);
         GameObject lobby = Instantiate(habitacioLobby, spawnPosition, Quaternion.identity);
         habitacionsInstanciades.Add(lobby);

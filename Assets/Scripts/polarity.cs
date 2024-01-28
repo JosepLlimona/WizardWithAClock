@@ -43,7 +43,7 @@ public class polarity : MonoBehaviour, EnemyLife
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
-        InvokeRepeating("moveboss", 0f, timemove);
+        //InvokeRepeating("moveboss", 0f, timemove);
         InvokeRepeating("RayGun", 0f, 1f);
         player = GameObject.Find("Player");
     }
@@ -59,6 +59,10 @@ public class polarity : MonoBehaviour, EnemyLife
         rbody.velocity = direction.normalized * speed;
     }
 
+    public void set_counterpart(GameObject counter)
+    {
+        counterpart = counter;
+    }
     private void moveboss()
     {
         if (canMove)
@@ -91,13 +95,17 @@ public class polarity : MonoBehaviour, EnemyLife
         }
     }
 
-
+    public void perd_paralel(float mal)
+    {
+        life.value -= mal;
+    }
     public void changeLife(int damage)
     {
         if (!armor)
         {
             life.value -= damage;
             damageTaken += damage;
+            counterpart.GetComponent<polarity_blue>().perd_paralel(damage);
         }
         if (damageTaken > 50)
         {
@@ -107,6 +115,7 @@ public class polarity : MonoBehaviour, EnemyLife
         if (life.value <= 0)
         {
             die();
+            counterpart.GetComponent<polarity_blue>().die();
             habitacio.GetComponent<GestioHabitacio>().nEnemics--;
         }
     }
@@ -163,6 +172,5 @@ public class polarity : MonoBehaviour, EnemyLife
     public void die()
     {
         Destroy(this.gameObject);
-        counterpart.GetComponent<polarity_blue>().die();
     }
 }

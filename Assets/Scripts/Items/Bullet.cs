@@ -17,8 +17,7 @@ public class Bullet : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             collision.GetComponent<EnemyLife>().stop();
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
-
     }
 }

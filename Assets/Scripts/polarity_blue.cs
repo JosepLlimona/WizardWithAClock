@@ -45,7 +45,7 @@ public class polarity_blue : MonoBehaviour, EnemyLife
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
-        InvokeRepeating("moveboss", 0f, timemove);
+        //InvokeRepeating("moveboss", 0f, timemove);
         InvokeRepeating("RayGun", 0f, 1f);
         player = GameObject.Find("Player");
     }
@@ -60,22 +60,27 @@ public class polarity_blue : MonoBehaviour, EnemyLife
         Vector2 direction = objective;
         rbody.velocity = direction.normalized * speed;
     }
-
+    public void set_counterpart(GameObject counter)
+    {
+        counterpart = counter;
+    }
     private void moveboss()
     {
         if (canMove)
         {
+            Debug.Log("entro");
             rbody.velocity = Vector3.zero;
             rbody.angularVelocity = 0;
             if (Direction >= 0)
             {
-                Direction = -4;
+                Direction = -4; 
+                
             }
             else if (Direction < 0)
             {
                 Direction = 4;
             }
-            objective = new Vector2(0, Direction + transform.position.y);
+            objective = new Vector2(this.transform.position.x, Direction + habitacio.GetComponent<Collider2D>().bounds.center.y);
             jumping();
         }
     }
@@ -105,13 +110,17 @@ public class polarity_blue : MonoBehaviour, EnemyLife
         }
     }
 
-
+    public void perd_paralel(float mal)
+    {
+        life.value -= mal;
+    }
     public void changeLife(int damage)
     {
         if (!armor)
         {
             life.value -= damage;
             damageTaken += damage;
+            counterpart.GetComponent<polarity>().perd_paralel(damage);
         }
         if (damageTaken > 50)
         {
@@ -121,6 +130,7 @@ public class polarity_blue : MonoBehaviour, EnemyLife
         if (life.value <= 0)
         {
             die();
+            counterpart.GetComponent<polarity>().die();
             habitacio.GetComponent<GestioHabitacio>().nEnemics--;
         }
     }
@@ -163,6 +173,5 @@ public class polarity_blue : MonoBehaviour, EnemyLife
     public void die()
     {
         Destroy(this.gameObject);
-        counterpart.GetComponent<polarity>().die();
     }
 }

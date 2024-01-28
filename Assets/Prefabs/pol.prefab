@@ -225,9 +225,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 250
+  m_MaxValue: 500
   m_WholeNumbers: 0
-  m_Value: 250
+  m_Value: 500
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -595,7 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9acb92d8b7acbc4bb9b21ae8d63c677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counterpart: {fileID: 0}
+  counterpart: {fileID: 9196378915961048284, guid: ce72295d5cde4144eb46184992d57622, type: 3}
   speed: 1
   timemove: 3
   bullet: {fileID: 4992617130643129305, guid: 8ece589e8bf25ef4b8d19141ee072240, type: 3}
