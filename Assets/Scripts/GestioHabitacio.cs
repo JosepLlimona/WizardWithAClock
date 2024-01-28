@@ -191,13 +191,16 @@ public class GestioHabitacio : MonoBehaviour
         int nEnemicsGrans = 0;
         BoxCollider2D colliderHabitacio = GetComponent<BoxCollider2D>();
         if (gameObject.CompareTag("Habitacio Boss")){
+            GameObject BossInstanciat;
             if (nivellActual == 2 ){
                 Vector2 spawnPoint = new Vector2(colliderHabitacio.bounds.center.x, colliderHabitacio.bounds.center.y);
-                Instantiate(Boss[0], spawnPoint, Quaternion.identity);
+                BossInstanciat=Instantiate(Boss[0], spawnPoint, Quaternion.identity);
+                BossInstanciat.GetComponent<EnemyLife>().Habitacio = this.gameObject;
             }
             else if (nivellActual == 4){
                 Vector2 spawnPoint = new Vector2(colliderHabitacio.bounds.center.x, colliderHabitacio.bounds.center.y);
-                Instantiate(Boss[Boss.Length-1], spawnPoint, Quaternion.identity);
+                BossInstanciat=Instantiate(Boss[Boss.Length-1], spawnPoint, Quaternion.identity);
+                BossInstanciat.GetComponent<EnemyLife>().Habitacio = this.gameObject;
             }
             else{
                 ObrirTotesLesPortes();
