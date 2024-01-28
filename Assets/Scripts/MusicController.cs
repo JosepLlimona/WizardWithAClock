@@ -52,16 +52,22 @@ public class MusicController : MonoBehaviour
     {
         foreach (AudioSource audio in audios)
         {
-            audio.enabled = false;
+            if (audio != null)
+            {
+                audio.enabled = false;
+            }
         }
         isMuted = true;
     }
 
     private void unmuteAll()
     {
-        foreach(AudioSource audio in audios)
+        foreach (AudioSource audio in audios)
         {
-            audio.enabled = true;
+            if (audio != null)
+            {
+                audio.enabled = true;
+            }
         }
         isMuted = false;
     }

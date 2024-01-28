@@ -469,6 +469,11 @@ public class MapGenerator : MonoBehaviour
 
     public void ClearMap(){
 
+        foreach(GameObject item in GameObject.FindGameObjectsWithTag("Item"))
+        {
+            Destroy(item);
+        }
+
         tilemapMapa.ClearAllTiles();
         tilemapDecoracio.ClearAllTiles();
         tilemapCollision.ClearAllTiles();
