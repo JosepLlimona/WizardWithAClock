@@ -535,7 +535,7 @@ public class PlayerController : MonoBehaviour
         {
             life = 0;
             Debug.Log("Game Over");
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("TestScene");
         }
         lifeSlider.value = life;
         lifeText.text = life.ToString();
