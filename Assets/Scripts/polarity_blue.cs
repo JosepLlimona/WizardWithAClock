@@ -120,6 +120,7 @@ public class polarity_blue : MonoBehaviour, EnemyLife
         }
         if (life.value <= 0)
         {
+            habitacio.GetComponent<GestioHabitacio>().nEnemics--;
             die();
         }
     }

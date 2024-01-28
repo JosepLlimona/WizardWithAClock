@@ -106,6 +106,7 @@ public class polarity : MonoBehaviour, EnemyLife
         }
         if (life.value <= 0)
         {
+            habitacio.GetComponent<GestioHabitacio>().nEnemics--;
             die();
         }
     }

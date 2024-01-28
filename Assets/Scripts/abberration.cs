@@ -110,6 +110,7 @@ public class abberration : MonoBehaviour, EnemyLife
         life.value -= damage;
         if (life.value <= 0)
         {
+            habitacio.GetComponent<GestioHabitacio>().nEnemics--;
             die();
         }
     }
