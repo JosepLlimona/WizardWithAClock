@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -534,7 +535,7 @@ public class PlayerController : MonoBehaviour
         {
             life = 0;
             Debug.Log("Game Over");
-            Application.Quit();
+            SceneManager.LoadScene("Menu");
         }
         lifeSlider.value = life;
         lifeText.text = life.ToString();
