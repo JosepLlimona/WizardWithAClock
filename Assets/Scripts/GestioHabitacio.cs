@@ -78,11 +78,13 @@ public class GestioHabitacio : MonoBehaviour
         MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
         if(mapGenerator != null){
             mapGenerator.ClearMap();
-            if (nivellActual <= 4){
+            if (nivellActual < 4){
                 mapGenerator.GenerateMap();
             }
             else{
+                nivellActual = 0;
                 mapGenerator.AnarAlLobby();
+                
             }
         }
     }
