@@ -147,6 +147,7 @@ public class GestioHabitacio : MonoBehaviour
 
         if (gameObject.CompareTag("Habitacio Boss")){
             GestioPortal gestioP = Portal.GetComponent<GestioPortal>();
+            Portal.SetActive(true);
             gestioP.MostarPortal();
         }
     }
