@@ -251,7 +251,6 @@ public class SFBossAI : MonoBehaviour, EnemyLife
         {
             die();
             habitacio.GetComponent<GestioHabitacio>().nEnemics--;
-            
         }
     }
 
